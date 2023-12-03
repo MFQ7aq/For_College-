@@ -8,6 +8,7 @@ import "./css/Home.css"
 import "./css/MUIT.css"
 import "./css/KOMTEHNO.css"
 import "./css/KITE.css"
+import "./css/KiteLink.css"
 import App from './App.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(

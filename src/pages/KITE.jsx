@@ -24,22 +24,22 @@ function Kite() {
             <h5>Итого</h5>
           </div>
           <div className="row">
-            <h6>Гуманитарных и экономических дисциплин</h6>
+            <Link to="/KITE/GiED" className="h6">Гуманитарных и экономических дисциплин</Link>
           </div>
           <div className="row">
-            <h6>383</h6>
+            <h6 className="h6">383</h6>
           </div>
           <div className="row">
-            <h6>383</h6>
+            <h6 className="h6">383</h6>
           </div>
           <div className="row">
-            <h6>Естественных и технических дисциплин</h6>
+            <h6><Link to="/KITE/EiTD" className="h6">Естественных и технических дисциплин</Link></h6>
           </div>
           <div className="row">
-            <h6>186</h6>
+            <h6 className="h6">186</h6>
           </div>
           <div className="row">
-            <h6>186</h6>
+            <h6 className="h6">186</h6>
           </div>
         </div>
         <div className="forBtn"><button className="btn__Back" ><Link to="/home" className="Back__link" >Назад</Link></button></div>
