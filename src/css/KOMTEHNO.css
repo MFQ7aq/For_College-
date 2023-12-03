@@ -1,0 +1,53 @@
+.Komteh {
+  display: flex;
+  gap: 50px;
+  padding: 36px 36px;
+}
+.Komteh__logo {
+  background: url(../img/image1.png) no-repeat center center;
+  background-size: 103px 103px;
+  width: 103px;
+  height: 103px;
+}
+.Komteh__name {
+  display: flex;
+  align-items: center;
+  width: 42%;
+  color: #00453D;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+}
+.table__komteh {
+  width: 70%;
+  display: grid;
+  grid-template-rows: 45px 45px 45px;
+  grid-template-columns: 70% 15% 15%;
+}
+.row:nth-child(1),.row:nth-child(2),.row:nth-child(3) {
+  background: #2C2670;
+}
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px #2C2670 solid;
+}
+.forBtn {
+  margin: 44px auto 0;
+  width: 85%;
+  display: flex;
+  justify-content: flex-end;
+}
+.btn__komteh {
+  border: none;
+  padding: 13.5px 0px;
+  border-radius: 39px;
+  background: #D9D9D9;
+}
+.komteh__link {
+  color: #fff;
+  text-decoration: none;
+  border-radius: 39px;
+  padding: 13.5px 30px;
+}

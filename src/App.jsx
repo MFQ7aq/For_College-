@@ -1,7 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import PageNotFound from './pages/PageNotFound'
 import Wellcome from './pages/Wellcome'
 import Home from './pages/Home'
 import Muit from './pages/MUIT'
+import Komteh from './pages/KOMTEH'
+import Kite from './pages/KITE'
 
 function App() {
   return (
@@ -10,7 +13,9 @@ function App() {
 				<Route path='/' element={<Wellcome />}/>
         <Route path='/home' element={<Home />}/>
         <Route path='/MUIT' element={<Muit />}/>
-				<Route path="*" element={<h2>Page not Found</h2>} />
+        <Route path='/KOMTEHNO' element={<Komteh />}/>
+        <Route path='/KITE' element={<Kite />}/>
+				<Route path="*" element={<PageNotFound/>} />
 			</Routes>
     </Router>
   )

@@ -22,7 +22,7 @@ function Muit() {
             <li>РЕЙТИНГ ИНСТИТУТОВ</li>
           </ul>
         </div>
-        <div className="forBtn"><button className="btn__muit" ><Link to="/home" className="muit__link" >Назад</Link></button></div>
+        <div className="forBtn"><button className="btn__Back" ><Link to="/home" className="Back__link" >Назад</Link></button></div>
       </div>
     </div>
   )
