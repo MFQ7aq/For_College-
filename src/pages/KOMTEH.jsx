@@ -24,22 +24,22 @@ function Komteh() {
             <h5>Итого</h5>
           </div>
           <div className="row">
-            <h6>Информатика, вычислительная техника и дизайна</h6>
+          <Link to="/KOMTEHNO/IVTD" className="h6">Информатика, вычислительная техника и дизайна</Link>
           </div>
           <div className="row">
-            <h6>865</h6>
+            <h6 className="h6">865</h6>
           </div>
           <div className="row">
-            <h6>865</h6>
+            <h6 className="h6">865</h6>
           </div>
           <div className="row">
-            <h6>Экономика, управление и банковское дело</h6>
+            <Link to="/KOMTEHNO/EUBD" className="h6">Экономика, управление и банковское дело</Link>
           </div>
           <div className="row">
-            <h6>504</h6>
+            <h6 className="h6">504</h6>
           </div>
           <div className="row">
-            <h6>504</h6>
+            <h6 className="h6">504</h6>
           </div>
         </div>
         <div className="forBtn"><button className="btn__Back" ><Link to="/home" className="Back__link" >Назад</Link></button></div>
