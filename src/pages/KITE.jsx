@@ -1,4 +1,5 @@
 import NavBar from "../components/NavBar"
+import BackButton from "../components/Back"
 import { Link } from "react-router-dom"
 
 function Kite() {
@@ -9,11 +10,11 @@ function Kite() {
       </div>
       <div className="main">
         <button className="btn" ><Link to="/" className="btn__link" >Инструкция по заполнению анкеты</Link></button>
-        <div className="Kite">
+        <div className="Edu__logo-name">
           <div className="Kite__logo"></div>
-          <div className="Kite__name">Колледж инновационных технологий и экономики</div>
+          <div className="Edu__text-L Kite__name">Колледж инновационных технологий и экономики</div>
         </div>
-        <div className="table__kite">
+        <div className="Edu__table">
           <div className="row">
             <h5>Отделения</h5>
           </div>
@@ -27,22 +28,22 @@ function Kite() {
             <Link to="/KITE/GiED" className="h6">Гуманитарных и экономических дисциплин</Link>
           </div>
           <div className="row">
-            <h6 className="h6">383</h6>
+            <h6>383</h6>
           </div>
           <div className="row">
-            <h6 className="h6">383</h6>
+            <h6>383</h6>
           </div>
           <div className="row">
-            <h6><Link to="/KITE/EiTD" className="h6">Естественных и технических дисциплин</Link></h6>
+            <h6><Link to="/KITE/EiTD">Естественных и технических дисциплин</Link></h6>
           </div>
           <div className="row">
-            <h6 className="h6">186</h6>
+            <h6>186</h6>
           </div>
           <div className="row">
-            <h6 className="h6">186</h6>
+            <h6>186</h6>
           </div>
         </div>
-        <div className="forBtn"><button className="btn__Back" ><Link to="/home" className="Back__link" >Назад</Link></button></div>
+        <BackButton/>
       </div>
     </div>
   )

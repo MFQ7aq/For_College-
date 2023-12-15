@@ -1,4 +1,5 @@
 import NavBar from "../components/NavBar"
+import BackButton from "../components/Back"
 import { Link } from "react-router-dom"
 
 function Komteh() {
@@ -9,11 +10,11 @@ function Komteh() {
       </div>
       <div className="main">
         <button className="btn" ><Link to="/" className="btn__link" >Инструкция по заполнению анкеты</Link></button>
-        <div className="Komteh">
+        <div className="Edu__logo-name">
           <div className="Komteh__logo"></div>
-          <div className="Komteh__name">Бишкекский колледж компьютерных систем и технологий</div>
+          <div className="Edu__text-L Komteh__name">Бишкекский колледж компьютерных систем и технологий</div>
         </div>
-        <div className="table__komteh">
+        <div className="Edu__table">
           <div className="row">
             <h5>Отделения</h5>
           </div>
@@ -42,7 +43,7 @@ function Komteh() {
             <h6 className="h6">504</h6>
           </div>
         </div>
-        <div className="forBtn"><button className="btn__Back" ><Link to="/home" className="Back__link" >Назад</Link></button></div>
+        <BackButton/>
       </div>
     </div>
   )

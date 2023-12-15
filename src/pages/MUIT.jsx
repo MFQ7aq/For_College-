@@ -1,3 +1,4 @@
+import BackButton from "../components/Back"
 import NavBar from "../components/NavBar"
 import { Link } from "react-router-dom"
 
@@ -9,20 +10,20 @@ function Muit() {
       </div>
       <div className="main">
         <button className="btn" ><Link to="/" className="btn__link" >Инструкция по заполнению анкеты</Link></button>
-        <div className="MUIT">
+        <div className="Edu__logo-name">
           <div className="MUIT__logo"></div>
-          <div className="MUIT__name">Международный университет инновационных технологий</div>
+          <div className="Edu__text-L MUIT__name">Международный университет инновационных технологий</div>
         </div>
-        <div className="MUIT__links">
+        <div className="MUIT__links Edu__text-M">
           <ul>
-            <li>Приказ МУИТ «О проведении рейтинговой оценки ППС и структурных подразделений»</li>
-            <li>Предварительный просмотр «Анкету рейтинговой оценки преподавателя»</li>
-            <li>Предварительный просмотр «Анкету рейтинговой оценки институтов»</li>
-            <li>РЕЙТИНГ ППС</li>
-            <li>РЕЙТИНГ ИНСТИТУТОВ</li>
+            <li><Link to="/MUIT/">Приказ МУИТ «О проведении рейтинговой оценки ППС и структурных подразделений»</Link></li>
+            <li><Link to="/MUIT/">Предварительный просмотр «Анкету рейтинговой оценки преподавателя»</Link></li>
+            <li><Link to="/MUIT/">Предварительный просмотр «Анкету рейтинговой оценки институтов»</Link></li>
+            <li><Link to="/MUIT/">РЕЙТИНГ ППС</Link></li>
+            <li><Link to="/MUIT/">РЕЙТИНГ ИНСТИТУТОВ</Link></li>
           </ul>
         </div>
-        <div className="forBtn"><button className="btn__Back" ><Link to="/home" className="Back__link" >Назад</Link></button></div>
+        <BackButton/>
       </div>
     </div>
   )

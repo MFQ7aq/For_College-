@@ -10,7 +10,17 @@ const NavBar = () => {
             <li><Link to="/MUIT">МУИТ</Link></li>
             <li><Link to="/KOMTEHNO">Комтехно</Link></li>
             <li><Link to="/KITE">КИТЭ</Link></li>
-            <li><Link to="" className='burger'></Link></li>
+            <li>
+            <div className="hamburger-menu">
+              <input id="menu__toggle" type="checkbox" />
+              <ul className="menu__box">
+                <li><Link to="/home/LPPS" className="menu__item">Список ППС</Link></li>
+                <li><Link to="/home/Authorization" className="menu__item">Авторизация</Link></li>
+                <li><Link to="/home/Questionnaire" className="menu__item">Анкета институтов</Link></li>
+                <li><Link to="/home/private_office" className="menu__item">Личный кабинет</Link></li>
+              </ul>
+            </div>
+            </li>
           </ul>
         </div>
       </nav>

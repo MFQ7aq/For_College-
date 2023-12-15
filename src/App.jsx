@@ -3,6 +3,7 @@ import PageNotFound from './pages/PageNotFound'
 import Wellcome from './pages/Wellcome'
 import Home from './pages/Home'
 import Muit from './pages/MUIT'
+import LPPS from './pages/home/LPPS'
 import Komteh from './pages/KOMTEH'
 import Ivtd from './pages/KOMTEH/IVTD'
 import Eubd from './pages/KOMTEH/EUBD'
@@ -17,6 +18,7 @@ function App() {
 			<Routes>
 				<Route path='/' element={<Wellcome />}/>
         <Route path='/home' element={<Home />}/>
+        <Route path='/home/LPPS' element={<LPPS />} />
         <Route path='/MUIT' element={<Muit />}/>
         <Route path='/KOMTEHNO' element={<Komteh />}/>
         <Route path='/KOMTEHNO/IVTD' element={<Ivtd />}/>
