@@ -11,7 +11,7 @@ function GiED() {
       <div className="main">
         <button className="btn" ><Link to="/" className="btn__link" >Инструкция по заполнению анкеты</Link></button>
         <div className="Edu__logo-name">
-          <div className="Link__name Edu__text-L">ГиЭД</div>
+          <div className="Link__name Edu__text-M">ГиЭД</div>
         </div>
         <div className="table__link">
           <div className="row">

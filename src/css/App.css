@@ -36,6 +36,11 @@ h5 {
   margin: 0 auto;
   width: 90%;
 }
+.Link {
+  text-decoration: none;
+  color: #2C2670;
+  font-weight: 500;
+}
 .btn {
   border: none;
   padding: 12px 0px;

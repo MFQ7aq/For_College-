@@ -12,7 +12,7 @@ function Komteh() {
         <button className="btn" ><Link to="/" className="btn__link" >Инструкция по заполнению анкеты</Link></button>
         <div className="Edu__logo-name">
           <div className="Komteh__logo"></div>
-          <div className="Edu__text-L Komteh__name">Бишкекский колледж компьютерных систем и технологий</div>
+          <div className="Edu__text-M Komteh__name">Бишкекский колледж компьютерных систем и технологий</div>
         </div>
         <div className="Edu__table">
           <div className="row">

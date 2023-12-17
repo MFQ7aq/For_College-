@@ -1,5 +1,4 @@
 import NavBar from "../../components/NavBar"
-import BackButton from "../../components/Back"
 
 function Lpps() {
   return (
@@ -8,10 +7,11 @@ function Lpps() {
         <NavBar/>
       </div>
       <div className="main">
-        <label htmlFor="">
-          <input type="text" />
+        <div className="title__contain-M"><h2 className="Edu__text-M">Список ППС</h2></div>
+        <label htmlFor="" className="search__label">
+          <input type="text" className="search__input"/>
+          <div className="search__btn"><div className="search__btn-in"></div></div>
         </label>
-        <BackButton/>
       </div>
     </div>
   )

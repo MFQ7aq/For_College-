@@ -12,7 +12,7 @@ function Kite() {
         <button className="btn" ><Link to="/" className="btn__link" >Инструкция по заполнению анкеты</Link></button>
         <div className="Edu__logo-name">
           <div className="Kite__logo"></div>
-          <div className="Edu__text-L Kite__name">Колледж инновационных технологий и экономики</div>
+          <div className="Edu__text-M Kite__name">Колледж инновационных технологий и экономики</div>
         </div>
         <div className="Edu__table">
           <div className="row">
@@ -34,7 +34,7 @@ function Kite() {
             <h6>383</h6>
           </div>
           <div className="row">
-            <h6><Link to="/KITE/EiTD">Естественных и технических дисциплин</Link></h6>
+            <Link to="/KITE/EiTD"  className="h6">Естественных и технических дисциплин</Link>
           </div>
           <div className="row">
             <h6>186</h6>
