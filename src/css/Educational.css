@@ -6,15 +6,21 @@
 .title__contain {
   display: flex;
   justify-content: center;
+  margin-top: 32px;
 }
 .title__contain-M {
-  margin: 0 0 10px 0;
+  margin: 32px 0 16px 0;
+}
+.center {
+  display: flex;
+  justify-content: center;
 }
 .Edu__text-L {
   color: #2C2670;
+  width: 100%;
   display: flex;
   align-items: center;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: system-ui, 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: 48px;
   font-weight: 700;
 }
@@ -22,7 +28,7 @@
   color: #2C2670;
   display: flex;
   align-items: center;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: system-ui, 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: 32px;
   font-weight: 700;
 }
@@ -30,7 +36,7 @@
   color: #2C2670;
   display: flex;
   align-items: center;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: system-ui, 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: 18px;
   font-weight: 700;
 }
@@ -77,7 +83,7 @@
   height: 103px;
 }
 .Komteh__name {
-  width: 42%;
+  width: 45%;
   color: #00453D;
 }
 .Kite-link {
@@ -114,6 +120,23 @@
   border-radius: 40px 0 0 40px;
   padding: 5px 10px 5px 10px;
   box-sizing: border-box;
+}
+.search__input-rating {
+  width: 300px;
+  height: 45px;
+  border-radius: 40px 0 0 40px;
+  padding: 5px 10px 5px 10px;
+  box-sizing: border-box;
+}
+.search__btn-rating {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #2C2670;
+  cursor: pointer;
+  width: 50px;
+  height: 45px;
+  border-radius: 0px 40px 40px 0px;
 }
 .search__btn {
   display: flex;
@@ -153,7 +176,7 @@
   margin-top: 12.5px;
 }
 .Montherat {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: system-ui, 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 .checkbox {
   width: 20px;

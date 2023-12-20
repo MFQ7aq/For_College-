@@ -13,11 +13,14 @@ const NavBar = () => {
             <li>
             <div className="hamburger-menu">
               <input id="menu__toggle" type="checkbox" />
+              <label className="menu__btn" htmlFor="menu__toggle">
+                <span></span>
+              </label>
               <ul className="menu__box">
-                <li><Link to="/home/LPPS" className="menu__item">Список ППС</Link></li>
-                <li><Link to="/home/Authorization" className="menu__item">Авторизация</Link></li>
-                <li><Link to="/home/Questionnaire" className="menu__item">Анкета институтов</Link></li>
-                <li><Link to="/home/private_office" className="menu__item">Личный кабинет</Link></li>
+                <li><Link to="/LPPS" className="menu__item">Список ППС</Link></li>
+                <li><Link to="/Authorization" className="menu__item">Авторизация</Link></li>
+                <li><Link to="/Questionnaire" className="menu__item">Анкета институтов</Link></li>
+                <li><Link to="/private_office" className="menu__item">Личный кабинет</Link></li>
               </ul>
             </div>
             </li>

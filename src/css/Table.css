@@ -1,0 +1,79 @@
+.title__table {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  height: 100px;
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+.title__table-un {
+  display: flex;
+  justify-content: space-between;
+  height: 100px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+table.table{
+  text-decoration: none;
+  border-collapse: collapse;
+  width: 100%;
+  text-align: left;
+  margin-top: 20px;
+  margin-bottom: 25px;
+}
+.subtable{
+  font-family: system-ui, 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+table.table .blue {
+  color: #2C2670;
+}
+table.table .black {
+  color: black;
+}
+table.table thead {
+  width: 100%;
+}
+table.table th{
+  color: #FFF;
+  font-family: system-ui, 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: #2C2670;
+}
+/* table.table th:nth-child(1){width: 5%;}
+table.table th:nth-child(2){width: 30%;}
+table.table th:nth-child(3){width: 13%;}
+table.table th:nth-child(4){width: 13%;}
+table.table th:nth-child(5){width: 13%;}
+table.table th:nth-child(6){width: 13%;}
+table.table th:nth-child(7){width: 13%;} */
+
+table.table td{
+  font-family: system-ui, 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
+  text-align: center;
+  font-size: 14px;
+  color: black;
+}
+table.table td,table.table th{
+  white-space: pre-wrap;
+  padding:10px 5px; line-height:13px;
+  vertical-align: middle;
+  border: 1px solid #2C2670;
+}
+.redact {
+  position: absolute;
+  right: 76px;
+  top: 190px;
+  background-color: #16A767;
+  padding: 14px 40px;
+  border: none;
+  cursor: pointer;
+  color: #FFF;
+  font-family: system-ui, 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+}

@@ -6,6 +6,8 @@ import "./css/NavBar.css"
 import './css/Wellcome.css'
 import "./css/Home.css"
 import "./css/Educational.css"
+import "./css/PrivateOffice.css"
+import "./css/Table.css"
 import App from './App.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(

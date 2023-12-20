@@ -1,24 +1,62 @@
 import NavBar from "../../components/NavBar"
 import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
 function PrivateOffice() {
+  const navigate = useNavigate();
+
+  const Back = () => {
+    navigate(-1);
+  };
+  const reolad = () => {
+    window.location.reload()
+  }
+
   return (
     <div className="сontents">
       <div className="header">
         <NavBar/>
+        <div className="private-office-bg"></div>
       </div>
-      <div className="main">
-        <div className="title__contain-M"><h2 className="Edu__text-M">Анкета институтов</h2></div>
-        <div className="table__links Edu__text-S">
-          <ul>
-            <li><Link className="Link" to="/">Институт цифровой трансформации и программирования</Link></li>
-            <li><Link className="Link" to="/">Институт дизайна, архитектуры и текстиля</Link></li>
-            <li><Link className="Link" to="/">Институт строительства и инновационных технологий</Link></li>
-            <li><Link className="Link" to="/">Институт энергетики и транспорта</Link></li>
-            <li><Link className="Link" to="/">Институт экономики и менеджмента</Link></li>
-            <li><Link className="Link" to="/">Институт межкультурной коммуникации и психологии</Link></li>
-            <li><Link className="Link" to="/">Российско-Кыргызский институт автоматизации управления бизнеса</Link></li>
+      <div className="private-office__main">
+        <div className="account__config">
+          <div className="avatar__container"><div className="avatar"></div></div>
+          <h4 className="user__name">Test</h4>
+          <ul className="config__list">
+            <li className="config__items-li"><Link to="" className="config__items">Редактировать профиль</Link></li>
+            <li className="config__items-li"><Link to="" className="config__items">Моя учётная запись</Link></li>
+            <li className="config__items-li"><Link to="" className="config__items">Выйти</Link></li>
+            <li className="config__items-li"><Link to="" className="config__items">Отмена</Link></li>
           </ul>
+        </div>
+          <div className="office">
+            <h3 className="Edu__text-L">Личный кабинет</h3>
+            <div className="office__in">
+            <div className="form">
+              <label htmlFor="">
+                <p className="input__text-s">Анкета</p>
+                <input type="text" className="input__office"/>
+              </label>
+              <label htmlFor="">
+                <p className="input__text-s">Институт</p>
+                <input type="text" className="input__office"/>
+              </label>
+              <label htmlFor="">
+                <p className="input__text-s">Штат/совм.</p>
+                <input type="text" className="input__office"/>
+              </label>
+              <label htmlFor="">
+                <p className="input__text-s">E-mail</p>
+                <input type="text" className="input__office"/></label>
+              <label htmlFor="">
+                <p className="input__text-s">Номер телефона</p>
+                <input type="text" className="input__office"/></label>
+            </div>
+            <div className="btn__office">
+              <button onClick={reolad} className="btn__link btn__green montherat">Обновить </button>
+              <button onClick={Back} className="btn__link btn__blue montherat">Назад</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

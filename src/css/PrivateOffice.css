@@ -1,0 +1,123 @@
+.private-office-bg {
+  width: 100%;
+  height: 32vh;
+  background: url('../img/private-office-bg.jpeg') no-repeat center center;
+  background-size: 101vw 101vh;
+}
+.private-office__main {
+  height: 56.75vh;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.account__config {
+  box-sizing: border-box;
+  background-color: #2C2670;
+  width: 32vw;
+  height: 100%;
+  padding-top: 100px;
+}
+.avatar__container {
+  background-color: #fff;
+  border-radius: 100%;
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  top: 15vw;
+  left: 9.90vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.avatar {
+  width: 175px;
+  height: 175px;
+  border-radius: 100%;
+  background: url('../img/user.png') no-repeat;
+  background-size: 175px 175px;
+}
+.user__name {
+  color: #FFF;
+  font-family: system-ui, 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 26px;
+  font-weight: 500;
+  padding: 12.5px 0 6px 0;
+  text-align: center;
+}
+.config__list {
+  list-style: none;
+  text-align: center;
+  margin: 0 auto;
+  display: table;
+}
+.config__items-li {
+  padding: 12.5px 0 12.5px 0;
+}
+.config__items {
+  color: #FFF;
+  font-family: system-ui, 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  padding: 12.5px 0 12.5px 0;
+  cursor: pointer;
+  text-decoration: none;
+}
+.config__items:hover {
+  border-bottom: 2px #fff solid;
+}
+.office {
+  width: 62vw;
+}
+.office h3 {
+  display: block;
+  text-align: center;
+  margin-bottom: 12px;
+}
+.office__in {
+  display: flex;
+  flex-direction: row;
+}
+.form {
+  margin-left: 6vw;
+}
+.input__office {
+  width: 26vw;
+  height: 30px;
+  border: none;
+  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.1);
+}
+.input__text-s {
+  color: #2C2670;
+  font-family: system-ui, 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.btn__office {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 28vh 0 0 20.5vw;
+}
+.btn__link {
+  color: #FFF;
+  text-align: center;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  padding: 10px 42px;
+  border: none;
+  cursor: pointer;
+}
+.btn__blue {
+  background-color: #2C2670;
+}
+.btn__green {
+  background-color: #16A767;
+}

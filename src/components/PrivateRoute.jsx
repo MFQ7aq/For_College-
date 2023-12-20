@@ -4,7 +4,7 @@ const PrivateRoute = () => {
 	let userLogged = localStorage.getItem('token')
 
   return (
-    !userLogged ? <Outlet /> : <Navigate to="/home/Authorization"/>
+    !userLogged ? <Outlet /> : <Navigate to="/Authorization"/>
   )
 }
 
