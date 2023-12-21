@@ -1,30 +1,26 @@
 .private-office-bg {
   width: 100%;
-  height: 32vh;
+  height: 34vh;
   background: url('../img/private-office-bg.jpeg') no-repeat center center;
-  background-size: 101vw 101vh;
+  background-size: cover;
 }
 .private-office__main {
-  height: 56.75vh;
   width: 100%;
   display: flex;
   flex-direction: row;
 }
 .account__config {
-  box-sizing: border-box;
   background-color: #2C2670;
-  width: 32vw;
-  height: 100%;
-  padding-top: 100px;
+  padding: 0 0 12px 0;
+  height: 70vh;
+  width: 32%;
 }
 .avatar__container {
   background-color: #fff;
   border-radius: 100%;
   width: 200px;
   height: 200px;
-  position: absolute;
-  top: 15vw;
-  left: 9.90vw;
+  margin: -75px auto 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -68,25 +64,26 @@
   border-bottom: 2px #fff solid;
 }
 .office {
-  width: 62vw;
+  width: 62%;
 }
 .office h3 {
   display: block;
   text-align: center;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 .office__in {
   display: flex;
   flex-direction: row;
 }
 .form {
-  margin-left: 6vw;
+  margin-left: 6%;
 }
 .input__office {
-  width: 26vw;
+  width: 430px;
   height: 30px;
   border: none;
   box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.1);
+  outline: none
 }
 .input__text-s {
   color: #2C2670;
@@ -102,7 +99,7 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  margin: 28vh 0 0 20.5vw;
+  margin: 20% 0 0 28%;
 }
 .btn__link {
   color: #FFF;

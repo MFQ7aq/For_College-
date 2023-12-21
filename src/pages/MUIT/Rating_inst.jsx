@@ -10,7 +10,7 @@ function Rating_inst() {
       <div className="main">
         <div className="title__table">
           <h2 className="Edu__text-L center">Анкета</h2>
-          <p className="Edu__text-S center">рейтинговой оценки Институтов за 2021-2022 уч.год</p>
+          <p className="Edu__text-S center for_redact">рейтинговой оценки Институтов за 2021-2022 уч.год</p>
           <button className="redact">Редактировать</button>
         </div>
         <table className="table">

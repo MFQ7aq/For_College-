@@ -95,11 +95,12 @@
   width: 58%;
   color: #2C2670;
 }
-.table__kite-link {
+.table__link {
   width: 70%;
   display: grid;
   grid-template-rows: 45px 45px 45px 45px 45px;
   grid-template-columns: 10% 70% 20%;
+  margin-bottom: 25px;
 }
 .table__links ul{
   list-style: none;
@@ -120,6 +121,7 @@
   border-radius: 40px 0 0 40px;
   padding: 5px 10px 5px 10px;
   box-sizing: border-box;
+  outline: none
 }
 .search__input-rating {
   width: 300px;
@@ -127,6 +129,7 @@
   border-radius: 40px 0 0 40px;
   padding: 5px 10px 5px 10px;
   box-sizing: border-box;
+  outline: none
 }
 .search__btn-rating {
   display: flex;

@@ -1,5 +1,5 @@
 .nav {
-  width: 100vw;
+  width: 100%;
   background: #2C2670;
 }
 .nav__in {
@@ -37,62 +37,32 @@
 }
 .hamburger-menu {
   width: 30px;
-  height: 30px;
-  display: flex;
-  align-self: center;
+  height: 22px;
+  background: url(../img/burger.svg) no-repeat center center;
 }
 #menu__toggle {
   opacity: 0;
   width: 30px;
-  height: 30px;
-}
-.menu__btn {
-  display: flex;
-  align-items: center;
-  position: absolute;
-  top: 30px;
-  right: 70px;
-  width: 30px;
-  height: 30px;
+  height: 20px;
+  color: #fff;
   cursor: pointer;
-  z-index: 1;
-}
-.menu__btn > span,
-.menu__btn > span::before,
-.menu__btn > span::after {
-  display: block;
-  position: absolute;
-  width: 30px;
-  height: 2px;
-  background-color: white;
-}
-.menu__btn > span::before {
-  content: '';
-  top: -8px;
-}
-.menu__btn > span::after {
-  content: '';
-  top: 8px;
 }
 .menu__box {
   display: block;
-  position: absolute;
   visibility: hidden;
-  top: 0;
-  left: -100%;
-  width: 400px;
-  height: 100%;
-  margin: 0 0 0 73vw;
-  padding: 80px 0;
+  box-sizing: border-box;
+  width: 350px;
+  height: 300px;
+  margin: 0 0 0 -780%;
+  padding: 40px 0;
   list-style: none;
   text-align: center;
   background-color: #2C2670;
-  box-shadow: 1px 0px 6px rgba(0, 0, 0, .2);
 }
 .menu__item {
   display: block;
   padding: 12px 24px;
-  color: #333;
+  color: #fff;
   font-family: system-ui, 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: 20px;
   font-weight: 600;
@@ -107,14 +77,11 @@
   transform: rotate(45deg);
 }
 #menu__toggle:checked ~ .menu__btn > span::before {
-  top: 0;
   transform: rotate(0);
 }
 #menu__toggle:checked ~ .menu__btn > span::after {
-  top: 0;
   transform: rotate(90deg);
 }
 #menu__toggle:checked ~ .menu__box {
   visibility: visible;
-  left: 0;
 }

@@ -10,7 +10,7 @@ function Rating_pred() {
       <div className="main">
         <div className="title__table">
           <h2 className="Edu__text-L center">Анкета</h2>
-          <p className="Edu__text-S center">рейтинговой оценки преподавателя за 2021-2022 уч.год</p>
+          <p className="Edu__text-S center for_redact">рейтинговой оценки преподавателя за 2021-2022 уч.год</p>
           <button className="redact">Редактировать</button>
         </div>
         <table className="table">
@@ -264,7 +264,7 @@ function Rating_pred() {
               <td></td>
             </tr>
             <tr>
-              <td className="subtable black" colSpan="7">Публикации в журнале МУИТ "Наука и инновационные технологии"</td>
+              <td className="subtable black" colSpan="7">Публикации в журнале МУИТ Наука и инновационные технологии</td>
             </tr>
             <tr>
               <td>5.1</td>

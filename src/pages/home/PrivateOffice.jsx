@@ -13,7 +13,7 @@ function PrivateOffice() {
   }
 
   return (
-    <div className="сontents">
+    <div className="private-office-contents">
       <div className="header">
         <NavBar/>
         <div className="private-office-bg"></div>

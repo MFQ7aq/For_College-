@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-// import { Provider } from "react-redux"
 import './css/App.css'
 import "./css/NavBar.css"
 import './css/Wellcome.css'

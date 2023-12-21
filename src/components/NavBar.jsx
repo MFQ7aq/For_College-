@@ -12,10 +12,7 @@ const NavBar = () => {
             <li><Link to="/KITE">КИТЭ</Link></li>
             <li>
             <div className="hamburger-menu">
-              <input id="menu__toggle" type="checkbox" />
-              <label className="menu__btn" htmlFor="menu__toggle">
-                <span></span>
-              </label>
+              <input id="menu__toggle" type="checkbox"/>
               <ul className="menu__box">
                 <li><Link to="/LPPS" className="menu__item">Список ППС</Link></li>
                 <li><Link to="/Authorization" className="menu__item">Авторизация</Link></li>
