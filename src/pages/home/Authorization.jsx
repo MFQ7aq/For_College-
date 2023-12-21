@@ -8,7 +8,7 @@ function Authorization() {
         <NavBar/>
       </div>
       <div className="main">
-        <div className="title__contain"><h2 className="Edu__text-L">Авторизация</h2></div>
+        <div className="title__contain"><h2 className="Edu__text-L center">Авторизация</h2></div>
         <div className="auth__contain">
           <label htmlFor="" className="auth__label">
             <p className="input__text Montherat">Имя пользователя или E-mail</p>

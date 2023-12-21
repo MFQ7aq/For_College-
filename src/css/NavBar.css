@@ -58,6 +58,7 @@
   list-style: none;
   text-align: center;
   background-color: #2C2670;
+  position: relative;
 }
 .menu__item {
   display: block;

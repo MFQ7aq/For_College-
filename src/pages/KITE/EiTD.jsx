@@ -9,7 +9,7 @@ function GiED() {
         <NavBar/>
       </div>
       <div className="main">
-        <button className="btn" ><Link to="/" className="btn__link" >Инструкция по заполнению анкеты</Link></button>
+        <button className="btn" ><Link to="https://intuit.kg/questionnaire/" className="btn__link" >Инструкция по заполнению анкеты</Link></button>
         <div className="Edu__logo-name">
           <div className="Link__name Edu__text-M">ЕиТД</div>
         </div>
