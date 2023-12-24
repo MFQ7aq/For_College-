@@ -14,10 +14,10 @@ function Rating_inst_un() {
         <table className="table">
           <thead>
             <tr>
-              <th>Институты МУИТ</th>
-              <th>Средний балл ППС</th>
-              <th>Баллы институтов</th>
-              <th>Итого</th>
+              <th className="un_l">Институты МУИТ</th>
+              <th className="un_l">Средний балл ППС</th>
+              <th className="un_l">Баллы институтов</th>
+              <th className="un_l">Итого</th>
             </tr>
           </thead>
           <tbody>

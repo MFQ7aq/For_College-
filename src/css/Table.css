@@ -54,12 +54,16 @@ table.table th:nth-child(7){width: 13%;}
 table.table td{
   font-family: system-ui, 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
   text-align: center;
-  font-size: 14px;
+  font-size: 15px;
   color: black;
+}
+table.table .un_l {
+  padding: 20px 10px;
 }
 table.table td,table.table th{
   white-space: pre-wrap;
-  padding:10px 5px; line-height:13px;
+  padding: 10px 5px;
+  line-height:13px;
   vertical-align: middle;
   border: 1px solid #2C2670;
 }
