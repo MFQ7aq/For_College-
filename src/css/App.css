@@ -2,6 +2,15 @@
   margin: 0;
   padding: 0;
 }
+#root {
+  background-color: #fff;
+  color: #fff;
+  overflow: hidden;
+}
+.main {
+  margin: 0 auto;
+  width: 90%;
+}
 .сontents {
   height: 100%;
   overflow: auto;
@@ -15,27 +24,18 @@
   text-decoration: none;
   color: black;
 }
-#root {
-  background-color: #fff;
-  color: #fff;
-  overflow: hidden;
-}
 h5 {
   color: #FFF;
   font-family: system-ui, 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: 20px;
   font-weight: 600;
 }
-.h6, h6 {
+h6, .h6 {
   color: #2C2670;
   font-family: system-ui, 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: 20px;
   font-weight: 500;
   text-decoration: none;
-}
-.main {
-  margin: 0 auto;
-  width: 90%;
 }
 .Link {
   text-decoration: none;
