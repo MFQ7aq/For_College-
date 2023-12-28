@@ -59,6 +59,7 @@
   text-align: center;
   background-color: #2C2670;
   position: relative;
+  z-index: 1;
 }
 .menu__item {
   display: block;

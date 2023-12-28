@@ -1,10 +1,17 @@
-.title__table {
+.title__table-box {
+  position: relative;
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
   height: 100px;
   margin-top: 50px;
   margin-bottom: 30px;
+}
+.title__table {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 .title__table-un {
   display: flex;
@@ -67,9 +74,6 @@ table.table td,table.table th{
   vertical-align: middle;
   border: 1px solid #2C2670;
 }
-.for_redact {
-  margin: 0 12% 0 30%;
-}
 .redact {
   background-color: #16A767;
   padding: 14px 40px;
@@ -79,4 +83,8 @@ table.table td,table.table th{
   font-family: system-ui, 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: 16px;
   font-weight: 700;
+  position: absolute;
+  top: 64.5%;
+  right: 0;
+  transform: translateY(-50%);
 }

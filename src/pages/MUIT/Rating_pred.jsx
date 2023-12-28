@@ -8,9 +8,11 @@ function Rating_pred() {
         <NavBar/>
       </div>
       <div className="main">
-        <div className="title__table">
-          <h2 className="Edu__text-L center">Анкета</h2>
-          <p className="Edu__text-S center for_redact">рейтинговой оценки преподавателя за 2021-2022 уч.год</p>
+        <div className="title__table-box">
+          <div className="title__table">
+            <h2 className="Edu__text-L center">Анкета</h2>
+            <p className="Edu__text-S center for_redact">рейтинговой оценки преподавателя за 2021-2022 уч.год</p>
+          </div>
           <button className="redact">Редактировать</button>
         </div>
         <table className="table">

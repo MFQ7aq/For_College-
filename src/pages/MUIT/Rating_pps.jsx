@@ -12,7 +12,8 @@ function Rating_pps() {
           <h2 className="Edu__text-L">Рейтинг ППС</h2>
           <label htmlFor="" className="search__label">
             <input type="text" className="search__input-rating"/>
-            <div className="search__btn-rating"><div className="search__btn-in"></div></div>
+            <div className="search__btn-rating"><div className="search__btn-in"></div>
+          </div>
         </label>
         </div>
         <table className="table">
