@@ -12,7 +12,7 @@ function Ivtd() {
   const [category, setCategory] = useState('');
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     axios.post('http://localhost:8092/pps/awards', {
       title: String,
       total: Number,
