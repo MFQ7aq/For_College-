@@ -34,7 +34,7 @@ function AuthorizationPPS() {
         <NavBar/>
       </div>
       <div className="main">
-        <div className="title__contain"><h2 className="Edu__text-L center">Авторизация ППС</h2></div>
+        <div className="title__contain"><h2 className="Edu__text-L center">чтотто</h2></div>
         <div className="auth__contain">
           <form onSubmit={handleSubmit}>
             <input type="text" className="auth__input Montherat" value={title} onChange={e => setTitle(e.target.value)} placeholder="Title" />
