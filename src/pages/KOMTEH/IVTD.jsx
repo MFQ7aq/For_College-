@@ -5,11 +5,11 @@ import NavBar from "../../components/NavBar"
 import { Link } from "react-router-dom"
 
 function Ivtd() {
-  const [title, setTitle] = useState('');
-  const [total, setTotal] = useState('');
-  const [date, setDate] = useState('');
-  const [file, setFile] = useState('');
-  const [category, setCategory] = useState('');
+  const [title, setTitle] = useState("");
+  const [total, setTotal] = useState("");
+  const [date, setDate] = useState("");
+  const [file, setFile] = useState("");
+  const [category, setCategory] = useState("");
 
   const handleSubmit = (e) => {
     // e.preventDefault();
@@ -37,7 +37,56 @@ function Ivtd() {
       </div>
       <div className="main">
         <button className="btn" ><Link to="https://intuit.kg/questionnaire/" className="btn__link" >Инструкция по заполнению анкеты</Link></button>
-
+          <div className="Edu__logo-name">
+          <div className="Link__name Edu__text-M">Информатика, вычислительная техника и дизайна</div>
+        </div>
+        <div className="table__link">
+          <div className="row">
+            <h5>№</h5>
+          </div>
+          <div className="row">
+            <h5>ФИО</h5>
+          </div>
+          <div className="row">
+            <h5>Итого</h5>
+          </div>
+          <div className="row">
+            <h6>1</h6>
+          </div>
+          <div className="row">
+            <h6>Давлетбекова Айзада Давлетбековна</h6>
+          </div>
+          <div className="row">
+            <h6>1508</h6>
+          </div>
+          <div className="row">
+            <h6>2</h6>
+          </div>
+          <div className="row">
+            <h6>Исхакова Гульбахар Ашимжановна</h6>
+          </div>
+          <div className="row">
+            <h6>968</h6>
+          </div>
+          <div className="row">
+            <h6>3</h6>
+          </div>
+          <div className="row">
+            <h6>Абдиев Азамат Шейшенбаевич</h6>
+          </div>
+          <div className="row">
+            <h6>986</h6>
+          </div>
+          <div className="row">
+            <h6>4</h6>
+          </div>
+          <div className="row">
+            <h6>Калыков Алымбек Абдумаликович</h6>
+          </div>
+          <div className="row">
+            <h6>0</h6>
+          </div>
+        </div>
         <div className="register">
           <form onSubmit={handleSubmit}>
             <input type="text" value={title} onChange={e => setTitle(e.target.value)} placeholder="Title" />
