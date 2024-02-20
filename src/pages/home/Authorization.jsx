@@ -16,7 +16,7 @@ function Authorization() {
             <p className="input__text Montherat">Пароль</p>
             <input type="text" className="auth__input Montherat"/>
           </label>
-          <div className="remember">          
+          <div className="remember">         
             <input className="checkbox" type="checkbox" />
             <span className="checkbox__text Montherat">Запомнить меня</span>
           </div>

@@ -5,6 +5,7 @@ import Wellcome from './pages/Wellcome'
 import Home from './pages/Home'
 import LPPS from './pages/home/LPPS'
 import Authorization from './pages/home/Authorization'
+import AuthorizationPPS from './pages/home/AuthorizationPPS'
 import Questionnaire from './pages/home/Questionnaire'
 import PrivateOffice from './pages/home/PrivateOffice'
 import Muit from './pages/MUIT'
@@ -42,6 +43,7 @@ function App() {
 				<Route path="*" element={<PageNotFound/>} />
         <Route element={<PrivateRoute />}>
           <Route path='/private_office' element={<PrivateOffice />} />
+          <Route path='/AuthorizationPPS' element={<AuthorizationPPS />} />
         </Route>
 			</Routes>
     </Router>
@@ -49,4 +51,3 @@ function App() {
 }
 
 export default App
-// https://www.figma.com/file/OFgcx9OImozjqQCZBQZBpv/Untitled?node-id=60%3A35&mode=dev
