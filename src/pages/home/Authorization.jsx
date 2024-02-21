@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import axios from "axios";
 import NavBar from "../../components/NavBar"
 import { Link, useNavigate } from "react-router-dom"
@@ -8,7 +8,7 @@ function Authorization() {
   const [password, setPassword] = useState('')
   const navigate = useNavigate()
 
-  const handleSubmit = (e) => {
+  const handleSubmit = useCallback((e) => {
     e.preventDefault();
     axios.post('http://localhost:8092/pps/sign-up', {
       "username": name,
@@ -22,7 +22,8 @@ function Authorization() {
     .catch(function (error) {
       console.log(error);
     });
-  }
+  }, [name, navigate, password]);
+
   return (
     <div className="сontents">
       <div className="header">
