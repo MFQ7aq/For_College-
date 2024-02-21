@@ -11,15 +11,15 @@ function Home() {
         <button className="btn" ><Link to="https://intuit.kg/questionnaire/" className="btn__link" >Инструкция по заполнению анкеты</Link></button>
         <div className="home__cards">
           <div className="home__card">
-          <div className="card__img"></div>
+            <Link to="/KOMTEHNO"><div className="card__img"></div></Link>
             <p className="card__text">Бишкекский колледж компьютерных систем и технологий</p>
           </div>
           <div className="home__card">
-          <div className="card__img"></div>
+            <Link to="/MUIT"><div className="card__img"></div></Link>
             <p className="card__text">Международный университет инновационных технологий</p>
           </div>
           <div className="home__card">
-          <div className="card__img"></div>
+            <Link to="/KITE"><div className="card__img"></div></Link>
             <p className="card__text">Колледж инновационных технологий и экономики</p>
           </div>
         </div>

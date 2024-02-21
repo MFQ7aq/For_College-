@@ -4,8 +4,8 @@ import NavBar from "../../components/NavBar"
 
 function AuthorizationPPS() {
   const [title, setTitle] = useState("");
-  const [total, setTotal] = useState(1);
-  const [date, setDate] = useState(1);
+  const [total, setTotal] = useState("");
+  const [date, setDate] = useState("");
   const [file, setFile] = useState("");
   const [category, setCategory] = useState("");
 
@@ -13,20 +13,20 @@ function AuthorizationPPS() {
     e.preventDefault();
     axios.post('http://localhost:8092/pps/awards', {
       "title": title,
-      "total": total,
-      "date": date,
+      "total": parseInt(total),
+      "date": parseInt(date),
       "file": file,
       "category": category
     })
-      .then(function (response) {
-        if (response.status === 200 || response.status === 201 || response.status === 204) {
-          console.log("200 | 201 | 204")
-        }
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
+    .then(function (response) {
+      if (response.status === 200 || response.status === 201 || response.status === 204) {
+        console.log("Запрос Отправлен");
+      }
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+}
 
   return (
     <div className="сontents">
@@ -38,13 +38,11 @@ function AuthorizationPPS() {
         <div className="auth__contain">
           <form onSubmit={handleSubmit}>
             <input type="text" className="auth__input Montherat" value={title} onChange={e => setTitle(e.target.value)} placeholder="Title" />
-            <input type="text" className="auth__input Montherat" value={total} onChange={e => setTotal(e.target.value)} placeholder="Total" />
-            <input type="text" className="auth__input Montherat" value={date} onChange={e => setDate(e.target.value)} placeholder="Date" />
+            <input type="number" className="auth__input Montherat" value={total} onChange={e => setTotal(e.target.value)} placeholder="Total" />
+            <input type="number" className="auth__input Montherat" value={date} onChange={e => setDate(e.target.value)} placeholder="Date" />
             <input type="text" className="auth__input Montherat" value={file} onChange={e => setFile(e.target.value)} placeholder="File" />
             <input type="text" className="auth__input Montherat" value={category} onChange={e => setCategory(e.target.value)} placeholder="Category" />
           </form>
-          <div className="remember">
-          </div>
           <div className="auth__btn">
           <button onClick={handleSubmit} className="bnt__log Edu__text-S">Отправить</button>
           </div>
