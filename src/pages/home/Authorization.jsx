@@ -1,4 +1,5 @@
-import { useState, axios } from "react";
+import { useState } from "react";
+import axios from "axios";
 import NavBar from "../../components/NavBar"
 import { Link, useNavigate } from "react-router-dom"
 
@@ -9,9 +10,9 @@ function Authorization() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:8092/pps/awards', {
+    axios.post('http://localhost:8092/pps/sign-up', {
       "username": name,
-      "password": parseInt(password),
+      "password": password,
     })
     .then(function (response) {
       if (response.status === 200 || response.status === 201 || response.status === 204) {
@@ -35,7 +36,7 @@ function Authorization() {
               <p className="input__text Montherat">Имя пользователя или E-mail</p>
               <input type="text" className="auth__input Montherat" value={name} onChange={e => setName(e.target.value)} placeholder="Имя пользователя или E-mail" />
               <p className="input__text Montherat">Пароль</p>
-              <input type="number" className="auth__input Montherat" value={password} onChange={e => setPassword(e.target.value)} placeholder="Пароль" />
+              <input type="text" className="auth__input Montherat" value={password} onChange={e => setPassword(e.target.value)} placeholder="Пароль" />
             </form>
           </label>
           <div className="remember">         
