@@ -173,6 +173,17 @@
   color: #2C2670;
   margin-top: 15px;
 }
+.trued {
+  padding: 14px 20px;
+  display: flex;
+  background-color: #16A767;
+  color: white;
+  align-items: center;
+  justify-content: center;
+}
+.white {
+  color: white;
+}
 .input__text {
   color: #2C2670;
   font-size: 22px;
@@ -190,7 +201,7 @@
   width: 100%;
   display: flex;
   align-items: center;
-  margin: 10px 0 10px 0;
+  margin: 10px 0 0 0;
 }
 .checkbox__text {
   color: #2C2670;
@@ -203,7 +214,8 @@
   margin-top: 10px;
 }
 .auth__btn {
-  width: 100%;
+  margin-top: 15px;
+  width: 98%;
   display: flex;
   justify-content: space-between;
 }
