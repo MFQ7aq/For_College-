@@ -158,7 +158,6 @@
 }
 .auth__contain {
   margin: 0 auto;
-  margin-top: 25px;
   width: 530px;
   display: flex;
   flex-wrap: wrap;
