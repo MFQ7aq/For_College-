@@ -15,7 +15,7 @@ function Registration() {
       "password": password,
     })
     .then(function (response) {
-      if (response.status === 200 || response.status === 201 || response.status === 204) {
+      if (response.status >= 200 && response.status <= 204) {
         navigate(-1)
         console.log(response)
       }
@@ -38,7 +38,7 @@ function Registration() {
               <p className="input__text Montherat">Логин</p>
               <input type="text" className="auth__input Montherat" value={name} onChange={e => setName(e.target.value)} placeholder="Логин" />
               <p className="input__text Montherat">Пароль</p>
-              <input type="password" className="auth__input Montherat" value={password} onChange={e => setPassword(e.target.value)} placeholder="Пароль" />
+              <input type="password" autoComplete="on" className="auth__input Montherat" value={password} onChange={e => setPassword(e.target.value)} placeholder="Пароль" />
             </form>
           </label>
           <div className="auth__btn-center">

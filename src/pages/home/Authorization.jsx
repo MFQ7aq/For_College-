@@ -16,7 +16,7 @@ function Authorization() {
       "password": password,
     })
     .then(function (response) {
-      if (response.status === 200 || response.status === 201 || response.status === 204) {
+      if (response.status >= 200 && response.status <= 204) {
         localStorage.setItem('token', response.data.token);
         setIsLoggedIn(true);
         navigate("/private_office");
