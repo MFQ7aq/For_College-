@@ -158,7 +158,6 @@
 }
 .auth__contain {
   margin: 0 auto;
-  margin-top: 25px;
   width: 530px;
   display: flex;
   flex-wrap: wrap;
@@ -192,6 +191,9 @@
 .Montherat {
   font-family: system-ui, 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
 }
+.link_btn {
+  text-decoration: none;
+}
 .checkbox {
   width: 20px;
   height: 20px;
@@ -218,6 +220,12 @@
   width: 98%;
   display: flex;
   justify-content: space-between;
+}
+.auth__btn-center{
+  margin-top: 15px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 .bnt__log {
   padding: 14px 45px;
