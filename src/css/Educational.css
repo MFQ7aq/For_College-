@@ -222,6 +222,12 @@
   display: flex;
   justify-content: space-between;
 }
+.auth__btn-center{
+  margin-top: 15px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 .bnt__log {
   padding: 14px 45px;
   background-color: #16A767;

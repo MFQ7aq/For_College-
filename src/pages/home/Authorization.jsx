@@ -17,9 +17,9 @@ function Authorization() {
     })
     .then(function (response) {
       if (response.status === 200 || response.status === 201 || response.status === 204) {
+        localStorage.setItem('token', response.data.token);
         setIsLoggedIn(true);
         navigate("/private_office");
-        localStorage.setItem('ten', response.data.token);
       }
     })
     .catch(function (error) {
@@ -28,8 +28,8 @@ function Authorization() {
   }, [name, navigate, password]);
 
   const handleLogout = useCallback(() => {
+    localStorage.removeItem('token');
     setIsLoggedIn(false);
-    localStorage.removeItem('ten');
   }, []);
 
   return (
@@ -42,22 +42,30 @@ function Authorization() {
         <div className="auth__contain">
           <label htmlFor="" className="auth__label">
             {isLoggedIn ? (
-              <button onClick={handleLogout} className="bnt__log Edu__text-S">Выйти</button>
+              <><form>
+                  <p className="input__text Montherat">Логин</p>
+                  <input type="text" className="auth__input Montherat" value={name} onChange={e => setName(e.target.value)} placeholder="Логин" />
+                  <p className="input__text Montherat">Пароль</p>
+                  <input type="password" autoComplete="on" className="auth__input Montherat" value={password} onChange={e => setPassword(e.target.value)} placeholder="Пароль" />
+                </form>
+                <div className="auth__btn">
+                  <button onClick={handleLogout} className="bnt__log Edu__text-S">Выйти</button>
+                </div></>
             ) : (
               <form onSubmit={handleLogin}>
                 <p className="input__text Montherat">Логин</p>
                 <input type="text" className="auth__input Montherat" value={name} onChange={e => setName(e.target.value)} placeholder="Логин" />
                 <p className="input__text Montherat">Пароль</p>
-                <input type="password" className="auth__input Montherat" value={password} onChange={e => setPassword(e.target.value)} placeholder="Пароль" />
+                <input type="password" autoComplete="on" className="auth__input Montherat" value={password} onChange={e => setPassword(e.target.value)} placeholder="Пароль" />
               </form>
             )}
           </label>
-          <div className="auth__btn">
             {!isLoggedIn && (
-              <button onClick={handleLogin} className="bnt__log Edu__text-S">Войти</button>
+              <div className="auth__btn">
+                <button onClick={handleLogin} className="bnt__log Edu__text-S">Войти</button>
+                <Link to="/Registration" className="bnt__reg Edu__text-S link_btn">Регистрация</Link>
+              </div>
             )}
-            <Link to="/Registration" className="bnt__reg Edu__text-S link_btn">Регистрация</Link>
-          </div>
         </div>
       </div>
     </div>

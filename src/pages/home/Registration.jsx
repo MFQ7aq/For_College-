@@ -41,7 +41,7 @@ function Registration() {
               <input type="password" className="auth__input Montherat" value={password} onChange={e => setPassword(e.target.value)} placeholder="Пароль" />
             </form>
           </label>
-          <div className="auth__btn">
+          <div className="auth__btn-center">
             <button className="bnt__reg Edu__text-S" onClick={handleSubmit}>Зарегистрироваться</button>
           </div>
         </div>
