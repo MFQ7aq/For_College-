@@ -14,7 +14,7 @@ import Rating_pred from './pages/MUIT/Rating_pred'
 import Rating_inst from './pages/MUIT/Rating_inst'
 import Rating_pps from './pages/MUIT/Rating_pps'
 import Rating_inst_un from './pages/MUIT/Rating_inst-un'
-import Komteh from './pages/KOMTEH'
+import Comteh from './pages/COMTEH'
 import Ivtd from './pages/KOMTEH/IVTD'
 import Eubd from './pages/KOMTEH/EUBD'
 import Kite from './pages/KITE'
@@ -36,9 +36,9 @@ function App() {
         <Route path='/MUIT/rating_inst' element={<Rating_inst />} />
         <Route path='/MUIT/rating_pps-un' element={<Rating_pps />} />
         <Route path='/MUIT/rating_inst-un' element={<Rating_inst_un />} />
-        <Route path='/KOMTEHNO' element={<Komteh />}/>
-        <Route path='/KOMTEHNO/IVTD' element={<Ivtd />}/>
-        <Route path='/KOMTEHNO/EUBD' element={<Eubd />}/>
+        <Route path='/COMTEHNO' element={<Comteh />}/>
+        <Route path='/COMTEHNO/IVTD' element={<Ivtd />}/>
+        <Route path='/COMTEHNO/EUBD' element={<Eubd />}/>
         <Route path='/KITE' element={<Kite />}/>
         <Route path='/KITE/GiED' element={<GiED />} />
         <Route path='/KITE/EiTD' element={<EiTD />} />

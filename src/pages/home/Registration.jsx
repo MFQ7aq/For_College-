@@ -35,10 +35,10 @@ function Registration() {
         <div className="auth__contain">
           <label htmlFor="" className="auth__label">
             <form onSubmit={handleSubmit}>
-              <input type="text" className="auth__input Montherat" value={name} onChange={e => setName(e.target.value)} placeholder="Имя" />
-              <input type="text" className="auth__input Montherat" value={name} onChange={e => setName(e.target.value)} placeholder="Фамилия" />
+              {/* <input type="text" className="auth__input Montherat" value={name} onChange={e => setName(e.target.value)} placeholder="Имя" /> */}
+              {/* <input type="text" className="auth__input Montherat" value={name} onChange={e => setName(e.target.value)} placeholder="Фамилия" /> */}
               <input type="text" className="auth__input Montherat" value={name} onChange={e => setName(e.target.value)} placeholder="Логин" />
-              <input type="password" autoComplete="on" className="auth__input Montherat" value={password} onChange={e => setPassword(e.target.value)} placeholder="Пароль" />
+              <input type="password" autoComplete="on" className="auth__input Montherat" value={password} onChange={e => setPassword(e.target.value)} placeholder="Пароль (Не менее 7 символов)" />
             </form>
           </label>
           <div className="auth__btn-center">
