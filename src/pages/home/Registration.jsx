@@ -35,11 +35,9 @@ function Registration() {
         <div className="auth__contain">
           <label htmlFor="" className="auth__label">
             <form onSubmit={handleSubmit}>
-              <p className="input__text Montherat">Имя</p>
               <input type="text" className="auth__input Montherat" value={name} onChange={e => setName(e.target.value)} placeholder="Имя" />
-              <p className="input__text Montherat">Фамилия</p>
               <input type="text" className="auth__input Montherat" value={name} onChange={e => setName(e.target.value)} placeholder="Фамилия" />
-              <p className="input__text Montherat">Пароль</p>
+              <input type="text" className="auth__input Montherat" value={name} onChange={e => setName(e.target.value)} placeholder="Логин" />
               <input type="password" autoComplete="on" className="auth__input Montherat" value={password} onChange={e => setPassword(e.target.value)} placeholder="Пароль" />
             </form>
           </label>
