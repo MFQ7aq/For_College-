@@ -5,6 +5,7 @@ import Wellcome from './pages/Wellcome'
 import Home from './pages/Home'
 import LPPS from './pages/home/LPPS'
 import Authorization from './pages/home/Authorization'
+import Registration from './pages/home/Registration'
 import AuthorizationPPS from './pages/home/AuthorizationPPS'
 import Questionnaire from './pages/home/Questionnaire'
 import PrivateOffice from './pages/home/PrivateOffice'
@@ -28,6 +29,7 @@ function App() {
         <Route path='/home' element={<Home />}/>
         <Route path='/LPPS' element={<LPPS />} />
         <Route path='/Authorization' element={<Authorization />} />
+        <Route path='/Registration' element={<Registration/>} />
         <Route path='/Questionnaire' element={<Questionnaire />} />
         <Route path='/MUIT' element={<Muit />}/>
         <Route path='/MUIT/rating_pred' element={<Rating_pred />} />

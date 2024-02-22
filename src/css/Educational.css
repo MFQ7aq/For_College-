@@ -192,6 +192,9 @@
 .Montherat {
   font-family: system-ui, 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
 }
+.link_btn {
+  text-decoration: none;
+}
 .checkbox {
   width: 20px;
   height: 20px;
