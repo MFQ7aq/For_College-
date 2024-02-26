@@ -32,7 +32,7 @@ function Registration() {
     try {
       const response = await axios.get('http://localhost:8092/user/fill');
       setInstitutes(response.data.institutes);
-      setPositions(response.data.positons)
+      setPositions(response.data.positions)
       setDegree(response.data.degree)
       setRank(response.data.rank)
       setStateAwards(response.data.state_awards)
