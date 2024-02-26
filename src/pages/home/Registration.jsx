@@ -14,17 +14,19 @@ function Registration() {
   const [password, setPassword] = useState('');
   const [selectedValueInst, setSelectedValueInst] = useState('');
   const [selectedValuePost, setSelectedValuePost] = useState('');
+  const [selectedValueStat, setSelectedValueStat] = useState('');
+  const [selectedValueDegree, setSelectedValueDegree] = useState('');
+  const [selectedValueRank, setSelectedValueRank] = useState('');
+  const [selectedValueAwards, setSelectedValueAwards] = useState('');
   const [customInputValue, setCustomInputValue] = useState('');
 
-  const handleSelectInst = (value) => {
-    setSelectedValueInst(value);
-    console.log(value)
-  };
-  
-  const handleSelectPost = (value) => {
-    setSelectedValuePost(value);
-    console.log(value)
-  };
+  const handleSelectInst = (value) => {setSelectedValueInst(value)};
+  const handleSelectPost = (value) => {setSelectedValuePost(value)};
+  const handleSelectStat = (value) => {setSelectedValueStat(value)};
+  const handleSelectDegree = (value) => {setSelectedValueDegree(value)};
+  const handleSelectRank = (value) => {setSelectedValueRank(value)
+    console.log(value)};
+  const handleSelectAwards = (value) => {setSelectedValueAwards(value)};
 
   const fetchData = async () => {
     try {
@@ -45,13 +47,16 @@ function Registration() {
 
   const handleSubmit = useCallback((e) => {
     e.preventDefault();
-    const Post = selectedValuePost === "Другое" ? customInputValue : selectedValuePost;
-    const Inst = selectedValueInst;
+    const post = selectedValuePost === "Другое" ? customInputValue : selectedValuePost;
     axios.post('http://localhost:8092/pps/sign-up', {
       "username": name,
       "password": password,
-      "Post": Post,
-      "inst": Inst
+      "post": post,
+      "inst": selectedValueInst,
+      "stat": selectedValueStat,
+      "degree": selectedValueDegree,
+      "rank": selectedValueRank,
+      "awards": selectedValueAwards,
     })
     .then(function (response) {
       if (response.status >= 200 && response.status <= 204) {
@@ -62,7 +67,7 @@ function Registration() {
     .catch(function (error) {
       console.log(error);
     });
-  }, [name, password, selectedValueInst, selectedValuePost, customInputValue, navigate]);
+  }, [customInputValue, name, navigate, password, selectedValueAwards, selectedValueDegree, selectedValueInst, selectedValuePost, selectedValueRank, selectedValueStat]);
 
   return (
     <div className="сontents">
@@ -90,28 +95,29 @@ function Registration() {
                   </option>)}
                 <option value="Другое">Другое</option>
               </select>
-              {selectedValuePost === "Другое" && (<input type="text" className="auth__input Montherat" value={customInputValue} onChange={(e) => setCustomInputValue(e.target.value)} placeholder="Введите другую должность"/>
+              {selectedValuePost === "Другое" && (
+                <input type="text" className="auth__input Montherat" value={customInputValue} onChange={(e) => setCustomInputValue(e.target.value)} placeholder="Введите другую должность"/>
               )}
-              <select value={selectedValuePost} onChange={(e) => handleSelectPost(e.target.value)} className="auth__input auth__select Montherat">
+              <select value={selectedValueStat} onChange={(e) => handleSelectStat(e.target.value)} className="auth__input auth__select Montherat">
                 <option value="">штат/совм.</option>
                 <option value="Штат">Штат</option>
                 <option value="Совместитель">Совместитель</option>
               </select>
-              <select value={selectedValuePost} onChange={(e) => handleSelectPost(e.target.value)} className="auth__input auth__select Montherat">
+              <select value={selectedValueDegree} onChange={(e) => handleSelectDegree(e.target.value)} className="auth__input auth__select Montherat">
                 <option value="">Ученая степень</option>
                 {degree.map((degree) =>
                   <option key={degree.id} value={degree.name}>
                     {degree.name}
                   </option>)}
               </select>
-              <select value={selectedValuePost} onChange={(e) => handleSelectPost(e.target.value)} className="auth__input auth__select Montherat">
+              <select value={selectedValueRank} onChange={(e) => handleSelectRank(e.target.value)} className="auth__input auth__select Montherat">
                 <option value="">Ученое звание</option>
                 {rank.map((rank) =>
                   <option key={rank.id} value={rank.name}>
                     {rank.name}
                   </option>)}
               </select>
-              <select value={selectedValuePost} onChange={(e) => handleSelectPost(e.target.value)} className="auth__input auth__select Montherat">
+              <select value={selectedValueAwards} onChange={(e) => handleSelectAwards(e.target.value)} className="auth__input auth__select Montherat">
                 <option value="">Гос.награды</option>
                 {stateAwards.map((awards) =>
                   <option key={awards.id} value={awards.name}>
