@@ -5,9 +5,9 @@ import { useNavigate } from "react-router-dom"
 
 function Registration() {
   const navigate = useNavigate()
-  const [value, setValue] = useState('')
-  const [name, setName] = useState('')
-  const [password, setPassword] = useState('')
+  const [institutes, setInstitutes] = useState([]);
+  const [name, setName] = useState('');
+  const [password, setPassword] = useState('');
   const [selectedValueInst, setSelectedValueInst] = useState('');
   const [selectedValuePost, setSelectedValuePost] = useState('');
   const [customInputValue, setCustomInputValue] = useState('');
@@ -22,12 +22,18 @@ function Registration() {
     console.log(value)
   };
 
+  const fetchData = async () => {
+    try {
+      const response = await axios.get('http://localhost:8092/user/fill');
+      setInstitutes(response.data.institutes);
+    } catch (error) {
+      console.log(error);
+    }
+	};
+
   useEffect(() => {
-    axios.get("http://localhost:8092/user/fill").then((resp) => {
-      const response = resp.data.institutes;
-      setValue(response);
-    })
-  }, [setValue]);
+    fetchData();
+  }, []);
 
   const handleSubmit = useCallback((e) => {
     e.preventDefault();
@@ -63,44 +69,42 @@ function Registration() {
               <input type="text" className="auth__input Montherat" value={name} onChange={e => setName(e.target.value)} placeholder="ФИО (Полностью)" />
               <select value={selectedValueInst} onChange={(e) => handleSelectInst(e.target.value)} className="auth__input auth__select Montherat">
                 <option value="">Институт</option>
-                {value.map((v) =>
-                  <option key={v.id}>
-                    {v.name}
+                {institutes.map((inst) =>
+                  <option key={inst.id} value={inst.name}>
+                    {inst.name}
                   </option>)}
               </select>
               <select value={selectedValuePost} onChange={(e) => handleSelectPost(e.target.value)} className="auth__input auth__select Montherat">
                 <option value="">Должность</option>
-                <option>Директор Института / Директор структурного подразделения МУИТ</option>
-                <option>Заместитель директора</option>
-                <option>Профессор</option>
-                <option>Доцент / и.о. доцента</option>
-                <option>Старший преподаватель</option>
-                <option>Преподаватель</option>
-                <option>Другое</option>
+                <option value="Директор Института / Директор структурного подразделения МУИТ">Директор Института / Директор структурного подразделения МУИТ</option>
+                <option value="Заместитель директора">Заместитель директора</option>
+                <option value="Профессор">Профессор</option>
+                <option value="Доцент / и.о. доцента">Доцент / и.о. доцента</option>
+                <option value="Старший преподаватель">Старший преподаватель</option>
+                <option value="Преподаватель">Преподаватель</option>
+                <option value="Другое">Другое</option>
               </select>
-              {selectedValuePost === "Другое" && (<input
-                  type="text" className="auth__input Montherat" value={customInputValue} onChange={(e) => setCustomInputValue(e.target.value)} placeholder="Введите другую должность"
-                />
+              {selectedValuePost === "Другое" && (<input type="text" className="auth__input Montherat" value={customInputValue} onChange={(e) => setCustomInputValue(e.target.value)} placeholder="Введите другую должность"/>
               )}
               <select value={selectedValuePost} onChange={(e) => handleSelectPost(e.target.value)} className="auth__input auth__select Montherat">
                 <option value="">штат/совм.</option>
-                <option>Штат</option>
-                <option>Совместитель</option>
+                <option value="Штат">Штат</option>
+                <option value="Совместитель">Совместитель</option>
               </select>
               <select value={selectedValuePost} onChange={(e) => handleSelectPost(e.target.value)} className="auth__input auth__select Montherat">
                 <option value="">Ученая степень</option>
-                <option>Доктор наук</option>
-                <option>Кандидат наук</option>
-                <option>PhD</option>
-                <option>Докторант / Аспирант</option>
+                <option value="Доктор наук">Доктор наук</option>
+                <option value="Кандидат наук">Кандидат наук</option>
+                <option value="PhD">PhD</option>
+                <option value="Докторант / Аспирант">Докторант / Аспирант</option>
               </select>
               <select value={selectedValuePost} onChange={(e) => handleSelectPost(e.target.value)} className="auth__input auth__select Montherat">
                 <option value="">Ученое звание</option>
-                <option>Академик</option>
-                <option>Профессор</option>
-                <option>Профессор МУИТ</option>
-                <option>Доцент</option>
-                <option>И.о. доцента</option>
+                <option value="Академик">Академик</option>
+                <option value="Профессор">Профессор</option>
+                <option value="Профессор МУИТ">Профессор МУИТ</option>
+                <option value="Доцент">Доцент</option>
+                <option value="И.о. доцента">И.о. доцента</option>
               </select>
               <select value={selectedValuePost} onChange={(e) => handleSelectPost(e.target.value)} className="auth__input auth__select Montherat">
                 <option value="">Гос.награды</option>
