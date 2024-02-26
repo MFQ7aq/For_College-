@@ -4,8 +4,12 @@ import NavBar from "../../components/NavBar"
 import { useNavigate } from "react-router-dom"
 
 function Registration() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [institutes, setInstitutes] = useState([]);
+  const [rank, setRank] = useState([]);
+  const [degree, setDegree] = useState([]);
+  const [stateAwards, setStateAwards] = useState([]);
+  const [positions, setPositions] = useState([]);
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [selectedValueInst, setSelectedValueInst] = useState('');
@@ -26,6 +30,10 @@ function Registration() {
     try {
       const response = await axios.get('http://localhost:8092/user/fill');
       setInstitutes(response.data.institutes);
+      setPositions(response.data.positons)
+      setDegree(response.data.degree)
+      setRank(response.data.rank)
+      setStateAwards(response.data.state_awards)
     } catch (error) {
       console.log(error);
     }
@@ -76,12 +84,10 @@ function Registration() {
               </select>
               <select value={selectedValuePost} onChange={(e) => handleSelectPost(e.target.value)} className="auth__input auth__select Montherat">
                 <option value="">Должность</option>
-                <option value="Директор Института / Директор структурного подразделения МУИТ">Директор Института / Директор структурного подразделения МУИТ</option>
-                <option value="Заместитель директора">Заместитель директора</option>
-                <option value="Профессор">Профессор</option>
-                <option value="Доцент / и.о. доцента">Доцент / и.о. доцента</option>
-                <option value="Старший преподаватель">Старший преподаватель</option>
-                <option value="Преподаватель">Преподаватель</option>
+                {positions.map((post) =>
+                  <option key={post.id} value={post.name}>
+                    {post.name}
+                  </option>)}
                 <option value="Другое">Другое</option>
               </select>
               {selectedValuePost === "Другое" && (<input type="text" className="auth__input Montherat" value={customInputValue} onChange={(e) => setCustomInputValue(e.target.value)} placeholder="Введите другую должность"/>
@@ -93,25 +99,24 @@ function Registration() {
               </select>
               <select value={selectedValuePost} onChange={(e) => handleSelectPost(e.target.value)} className="auth__input auth__select Montherat">
                 <option value="">Ученая степень</option>
-                <option value="Доктор наук">Доктор наук</option>
-                <option value="Кандидат наук">Кандидат наук</option>
-                <option value="PhD">PhD</option>
-                <option value="Докторант / Аспирант">Докторант / Аспирант</option>
+                {degree.map((degree) =>
+                  <option key={degree.id} value={degree.name}>
+                    {degree.name}
+                  </option>)}
               </select>
               <select value={selectedValuePost} onChange={(e) => handleSelectPost(e.target.value)} className="auth__input auth__select Montherat">
                 <option value="">Ученое звание</option>
-                <option value="Академик">Академик</option>
-                <option value="Профессор">Профессор</option>
-                <option value="Профессор МУИТ">Профессор МУИТ</option>
-                <option value="Доцент">Доцент</option>
-                <option value="И.о. доцента">И.о. доцента</option>
+                {rank.map((rank) =>
+                  <option key={rank.id} value={rank.name}>
+                    {rank.name}
+                  </option>)}
               </select>
               <select value={selectedValuePost} onChange={(e) => handleSelectPost(e.target.value)} className="auth__input auth__select Montherat">
                 <option value="">Гос.награды</option>
-                <option>Лауреат Госпремии Кыргызской Республики в области науки и техники</option>
-                <option>Заслуженный деятель (по отраслям)</option>
-                <option>Отличник образования Кыргызской Республики</option>
-                <option>Отличник науки Кыргызской Республики</option>
+                {stateAwards.map((awards) =>
+                  <option key={awards.id} value={awards.name}>
+                    {awards.name}
+                  </option>)}
               </select>
               <input type="email" className="auth__input Montherat" value={password} onChange={e => setPassword(e.target.value)} placeholder="Email" />
             </form>
