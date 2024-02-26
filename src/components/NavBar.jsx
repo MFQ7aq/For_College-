@@ -8,7 +8,7 @@ const NavBar = () => {
           <ul className='nav__list'>
             <li><Link to="/home">Главная</Link></li>
             <li><Link to="/MUIT">МУИТ</Link></li>
-            <li><Link to="/KOMTEHNO">Комтехно</Link></li>
+            <li><Link to="/COMTEHNO">Комтехно</Link></li>
             <li><Link to="/KITE">КИТЭ</Link></li>
             <li>
             <div className="hamburger-menu">

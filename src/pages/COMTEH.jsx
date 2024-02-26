@@ -2,7 +2,7 @@ import NavBar from "../components/NavBar"
 import BackButton from "../components/Back"
 import { Link } from "react-router-dom"
 
-function Komteh() {
+function Comteh() {
   return (
     <div className="сontents">
       <div className="header">
@@ -49,4 +49,4 @@ function Komteh() {
   )
 }
 
-export default Komteh
+export default Comteh

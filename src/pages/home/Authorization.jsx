@@ -1,13 +1,13 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import axios from "axios";
 import NavBar from "../../components/NavBar";
-import { useNavigate, Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Authorization() {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token'));
+  const navigate = useNavigate()
 
   const handleLogin = useCallback((e) => {
     e.preventDefault();
@@ -18,8 +18,8 @@ function Authorization() {
     .then(function (response) {
       if (response.status >= 200 && response.status <= 204) {
         localStorage.setItem('token', response.data.token);
+        navigate("/private_office")
         setIsLoggedIn(true);
-        navigate("/private_office");
       }
     })
     .catch(function (error) {
@@ -32,6 +32,10 @@ function Authorization() {
     setIsLoggedIn(false);
   }, []);
 
+  useEffect(() => {
+    setIsLoggedIn(!!localStorage.getItem('token'));
+  }, []);
+
   return (
     <div className="сontents">
       <div className="header">
@@ -42,15 +46,17 @@ function Authorization() {
         <div className="auth__contain">
           <label htmlFor="" className="auth__label">
             {isLoggedIn ? (
-              <><form>
+              <>
+                <form>
                   <p className="input__text Montherat">Логин</p>
                   <input type="text" className="auth__input Montherat" value={name} onChange={e => setName(e.target.value)} placeholder="Логин" />
                   <p className="input__text Montherat">Пароль</p>
                   <input type="password" autoComplete="on" className="auth__input Montherat" value={password} onChange={e => setPassword(e.target.value)} placeholder="Пароль" />
                 </form>
-                <div className="auth__btn">
+                <div className="auth__btn-center">
                   <button onClick={handleLogout} className="bnt__log Edu__text-S">Выйти</button>
-                </div></>
+                </div>
+              </>
             ) : (
               <form onSubmit={handleLogin}>
                 <p className="input__text Montherat">Логин</p>
@@ -60,12 +66,12 @@ function Authorization() {
               </form>
             )}
           </label>
-            {!isLoggedIn && (
-              <div className="auth__btn">
-                <button onClick={handleLogin} className="bnt__log Edu__text-S">Войти</button>
-                <Link to="/Registration" className="bnt__reg Edu__text-S link_btn">Регистрация</Link>
-              </div>
-            )}
+          {!isLoggedIn && (
+            <div className="auth__btn">
+              <button onClick={handleLogin} className="bnt__log Edu__text-S">Войти</button>
+              <Link to="/Registration" className="bnt__reg Edu__text-S link_btn">Регистрация</Link>
+            </div>
+          )}
         </div>
       </div>
     </div>
