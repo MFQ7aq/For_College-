@@ -24,8 +24,7 @@ function Registration() {
   const handleSelectPost = (value) => {setSelectedValuePost(value)};
   const handleSelectStat = (value) => {setSelectedValueStat(value)};
   const handleSelectDegree = (value) => {setSelectedValueDegree(value)};
-  const handleSelectRank = (value) => {setSelectedValueRank(value)
-    console.log(value)};
+  const handleSelectRank = (value) => {setSelectedValueRank(value)};
   const handleSelectAwards = (value) => {setSelectedValueAwards(value)};
 
   const fetchData = async () => {
