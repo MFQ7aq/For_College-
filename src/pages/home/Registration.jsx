@@ -100,7 +100,7 @@ function Registration() {
               )}
               <select value={selectedValueStat} onChange={(e) => handleSelectStat(e.target.value)} className="auth__input auth__select Montherat">
                 <option value="">штат/совм.</option>
-                <option value="Штат">Штат</option>
+                <option value="Штат">Штат</option>  
                 <option value="Совместитель">Совместитель</option>
               </select>
               <select value={selectedValueDegree} onChange={(e) => handleSelectDegree(e.target.value)} className="auth__input auth__select Montherat">
