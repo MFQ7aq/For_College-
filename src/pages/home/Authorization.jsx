@@ -11,7 +11,7 @@ function Authorization() {
 
   const handleLogin = useCallback((e) => {
     e.preventDefault();
-    axios.post('http://localhost:8092/api/login_check', {
+    axios.post('http://localhost:8092/api/login', {
       "username": name,
       "password": password,
     })
