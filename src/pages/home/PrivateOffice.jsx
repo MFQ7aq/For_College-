@@ -1,6 +1,5 @@
 import NavBar from "../../components/NavBar"
-import { Link } from "react-router-dom"
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate  } from "react-router-dom"
 
 function PrivateOffice() {
   const navigate = useNavigate();
@@ -8,9 +7,6 @@ function PrivateOffice() {
   const Back = () => {
     navigate(-1);
   };
-  const reolad = () => {
-    window.location.reload()
-  }
 
   return (
     <div className="private-office-contents">
@@ -53,7 +49,7 @@ function PrivateOffice() {
                 <input type="text" className="input__office"/></label>
             </div>
             <div className="btn__office">
-              <button onClick={reolad} className="btn__link btn__green montherat">Обновить </button>
+              <Link to="/Personal_data" className="btn__link btn__green montherat">Данные</Link>
               <button onClick={Back} className="btn__link btn__blue montherat">Назад</button>
             </div>
           </div>

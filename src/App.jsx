@@ -20,6 +20,7 @@ import Eubd from './pages/KOMTEH/EUBD'
 import Kite from './pages/KITE'
 import GiED from './pages/KITE/GiED'
 import EiTD from './pages/KITE/EiTD'
+import Personal_Data from './pages/home/PersonalData'
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
         <Route element={<PrivateRoute />}>
           <Route path='/private_office' element={<PrivateOffice />} />
           <Route path='/AuthorizationPPS' element={<AuthorizationPPS />} />
+          <Route path='/Personal_data' element={<Personal_Data />} />
         </Route>
 			</Routes>
     </Router>
