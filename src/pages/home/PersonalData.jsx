@@ -6,72 +6,86 @@ import MultipleSelectCheckmarks from "../../components/CheckMark";
 
 function UserInfo() {
   const navigate = useNavigate();
+  let token = localStorage.getItem('token')
+
   const [institutes, setInstitutes] = useState([]);
-  const [rank, setRank] = useState([]);
-  const [degree, setDegree] = useState([]);
-  const [stateAwards, setStateAwards] = useState([]);
   const [positions, setPositions] = useState([]);
+  const [degree, setDegree] = useState([]);
+  const [rank, setRank] = useState([]);
+  const [stateAwards, setStateAwards] = useState([]);
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
-  const [selectedValueInst, setSelectedValueInst] = useState('');
-  const [selectedValuePost, setSelectedValuePost] = useState('');
-  const [selectedValueStat, setSelectedValueStat] = useState('');
-  const [selectedValueDegree, setSelectedValueDegree] = useState('');
-  const [selectedValueRank, setSelectedValueRank] = useState('');
-  const [selectedValueAwards, setSelectedValueAwards] = useState([]);
+  const [selectedValues, setSelectedValues] = useState({
+    inst: '',
+    post: '',
+    stat: '',
+    degree: '',
+    rank: '',
+    awards: [],
+    links: {}
+  });
   const [customInputValue, setCustomInputValue] = useState('');
-  const [selectedValueLinks, setSelectedValueLinks] = useState({});
 
-  const handleChangeLinks = (links) => {setSelectedValueLinks(links);};
-  const handleSelectInst = (value) => { setSelectedValueInst(value) };
-  const handleSelectPost = (value) => { setSelectedValuePost(value) };
-  const handleSelectStat = (value) => { setSelectedValueStat(value) };
-  const handleSelectDegree = (value) => { setSelectedValueDegree(value) };
-  const handleSelectRank = (value) => { setSelectedValueRank(value) };
-  const handleSelectAwards = (value) => { setSelectedValueAwards(value) };
+  const handleChangeLinks = useCallback(links => {
+    setSelectedValues(prevValues => ({
+      ...prevValues,
+      links: links
+    }));
+  }, []);
 
-  const fetchData = async () => {
+  const handleSelect = useCallback((field, value) => {
+    setSelectedValues(prevValues => ({
+      ...prevValues,
+      [field]: value
+    }));
+  }, []);
+
+  const fetchData = useCallback(async () => {
     try {
       const response = await axios.get('http://localhost:8092/user/fill');
-      setInstitutes(response.data.institutes);
-      setPositions(response.data.positions)
-      setDegree(response.data.degree)
-      setRank(response.data.rank)
-      setStateAwards(response.data.state_awards)
+      const { institutes, positions, degree, rank, state_awards } = response.data;
+      setInstitutes(institutes);
+      setPositions(positions);
+      setDegree(degree);
+      setRank(rank);
+      setStateAwards(state_awards);
     } catch (error) {
       console.log(error);
     }
-  };
+  }, []);
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [fetchData]);
 
-const handleSubmit = useCallback((e) => {
-  e.preventDefault();
-  const post = selectedValuePost === "Другое" ? customInputValue : selectedValuePost;
-  axios.post('http://localhost:8092/pps/sign-up', {
-    "username": name,
-    "password": password,
-    "post": post,
-    "inst": selectedValueInst,
-    "stat": selectedValueStat,
-    "degree": selectedValueDegree,
-    "rank": selectedValueRank,
-    "awards": selectedValueAwards,
-    "links": selectedValueLinks,
-  })
-    .then(function (response) {
-      if (response.status >= 200 && response.status <= 204) {
-        navigate(-1)
-        console.log(response)
+  const handleSubmit = useCallback((e) => {
+    e.preventDefault();
+    const post = selectedValues.post === "Другое" ? customInputValue : selectedValues.post;
+    axios.post('http://localhost:8092/pps/sign-up', {
+      "username": name,
+      "password": password,
+      "post": post,
+      "inst": selectedValues.inst,
+      "stat": selectedValues.stat,
+      "degree": selectedValues.degree,
+      "rank": selectedValues.rank,
+      "awards": selectedValues.awards,
+      "links": selectedValues.links,
+    }, {
+      headers: {
+        Authorization: `Bearer ${token}`
       }
     })
-    .catch(function (error) {
-      console.log(error);
-    });
-}, [customInputValue, name, navigate, password, selectedValueAwards, selectedValueDegree, selectedValueInst, selectedValueLinks, selectedValuePost, selectedValueRank, selectedValueStat]);
-
+      .then(function (response) {
+        if (response.status >= 200 && response.status <= 204) {
+          navigate(-1);
+          console.log(response);
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, [customInputValue, name, navigate, password, selectedValues, token]);
 
   return (
     <div className="сontents">
@@ -84,14 +98,14 @@ const handleSubmit = useCallback((e) => {
           <label htmlFor="" className="auth__label">
             <form onSubmit={handleSubmit} className="auth_auth">
               <input type="text" className="auth__input Montherat" value={name} onChange={e => setName(e.target.value)} placeholder="ФИО (Полностью)" />
-              <select value={selectedValueInst} onChange={(e) => handleSelectInst(e.target.value)} className="auth__input auth__select Montherat">
+              <select value={selectedValues.inst} onChange={(e) => handleSelect('inst', e.target.value)} className="auth__input auth__select Montherat">
                 <option value="">Институт</option>
                 {institutes.map((inst) =>
                   <option key={inst.id} value={inst.name}>
                     {inst.name}
                   </option>)}
               </select>
-              <select value={selectedValuePost} onChange={(e) => handleSelectPost(e.target.value)} className="auth__input auth__select Montherat">
+              <select value={selectedValues.post} onChange={(e) => handleSelect('post', e.target.value)} className="auth__input auth__select Montherat">
                 <option value="">Должность</option>
                 {positions.map((post) =>
                   <option key={post.id} value={post.name}>
@@ -99,22 +113,22 @@ const handleSubmit = useCallback((e) => {
                   </option>)}
                 <option value="Другое">Другое</option>
               </select>
-              {selectedValuePost === "Другое" && (
+              {selectedValues.post === "Другое" && (
                 <input type="text" className="auth__input Montherat" value={customInputValue} onChange={(e) => setCustomInputValue(e.target.value)} placeholder="Введите другую должность" />
               )}
-              <select value={selectedValueStat} onChange={(e) => handleSelectStat(e.target.value)} className="auth__input auth__select Montherat">
+              <select value={selectedValues.stat} onChange={(e) => handleSelect('stat', e.target.value)} className="auth__input auth__select Montherat">
                 <option value="">штат/совм.</option>
                 <option value="Штат">Штат</option>
                 <option value="Совместитель">Совместитель</option>
               </select>
-              <select value={selectedValueDegree} onChange={(e) => handleSelectDegree(e.target.value)} className="auth__input auth__select Montherat">
+              <select value={selectedValues.degree} onChange={(e) => handleSelect('degree', e.target.value)} className="auth__input auth__select Montherat">
                 <option value="">Ученая степень</option>
                 {degree.map((degree) =>
                   <option key={degree.id} value={degree.name}>
                     {degree.name}
                   </option>)}
               </select>
-              <select value={selectedValueRank} onChange={(e) => handleSelectRank(e.target.value)} className="auth__input auth__select Montherat">
+              <select value={selectedValues.rank} onChange={(e) => handleSelect('rank', e.target.value)} className="auth__input auth__select Montherat">
                 <option value="">Ученое звание</option>
                 {rank.map((rank) =>
                   <option key={rank.id} value={rank.name}>
@@ -123,10 +137,9 @@ const handleSubmit = useCallback((e) => {
               </select>
               <MultipleSelectCheckmarks
                 data={stateAwards}
-                value={selectedValueAwards}
-                onChange={handleSelectAwards}
-                links={selectedValueLinks}
-                onChangeLinks={handleChangeLinks}
+                value={selectedValues.awards}
+                onChange={(value) => handleSelect('awards', value)}
+                links={selectedValues.links} onChangeLinks={handleChangeLinks}
               />
               <input type="email" className="auth__input Montherat" value={password} onChange={e => setPassword(e.target.value)} placeholder="Email" />
             </form>
@@ -140,4 +153,4 @@ const handleSubmit = useCallback((e) => {
   )
 }
 
-export default UserInfo
+export default UserInfo;
