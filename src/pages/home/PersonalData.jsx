@@ -42,7 +42,10 @@ function UserInfo() {
 
   const fetchData = useCallback(async () => {
     try {
-      const response = await axios.get('http://localhost:8092/api/user/fill');
+      const response = await axios.get('http://localhost:8092/api/user/fill',
+      {
+        headers: { Authorization: `Bearer ${token}` }
+      });
       const { institutes, positions, degree, rank, state_awards } = response.data;
       setInstitutes(institutes);
       setPositions(positions);
@@ -52,7 +55,7 @@ function UserInfo() {
     } catch (error) {
       console.log(error);
     }
-  }, []);
+  }, [token]);
 
   useEffect(() => {
     fetchData();
@@ -71,10 +74,6 @@ function UserInfo() {
       "rank": selectedValues.rank,
       "awards": selectedValues.awards,
       "links": selectedValues.links,
-    }, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
     })
       .then(function (response) {
         if (response.status >= 200 && response.status <= 204) {
