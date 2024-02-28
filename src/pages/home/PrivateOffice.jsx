@@ -28,7 +28,7 @@ function PrivateOffice() {
           <div className="avatar__container"><div className="avatar"></div></div>
           <h4 className="user__name">Test</h4>
           <ul className="config__list">
-          <li className="config__items-li"><Link to="/Personal_data" className="config__items">Редактировать профиль</Link></li>
+          <li className="config__items-li"><Link to="/Personal_data" className="config__items">Персональные данные</Link></li>
             <li className="config__items-li"><Link to="" className="config__items">Моя учётная запись</Link></li>
             <li className="config__items-li"><Link to="/Authorization"  onClick={handleLogout} className="config__items">Выйти</Link></li>
           </ul>
@@ -57,7 +57,7 @@ function PrivateOffice() {
                 <input type="text" className="input__office"/></label>
             </div>
             <div className="btn__office">
-              <button onClick={reolad} className="btn__link btn__green montherat">Данные</button>
+              <button onClick={reolad} className="btn__link btn__green montherat">Обновить</button>
               <button onClick={Back} className="btn__link btn__blue montherat">Назад</button>
             </div>
           </div>
