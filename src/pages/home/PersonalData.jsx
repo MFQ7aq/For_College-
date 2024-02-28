@@ -42,7 +42,7 @@ function UserInfo() {
 
   const fetchData = useCallback(async () => {
     try {
-      const response = await axios.get('http://localhost:8092/user/fill');
+      const response = await axios.get('http://localhost:8092/api/user/fill');
       const { institutes, positions, degree, rank, state_awards } = response.data;
       setInstitutes(institutes);
       setPositions(positions);
