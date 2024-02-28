@@ -17,7 +17,6 @@ const handleSubmit = useCallback((e) => {
     .then(function (response) {
       if (response.status >= 200 && response.status <= 204) {
         navigate(-1)
-        console.log(response)
       }
     })
     .catch(function (error) {
