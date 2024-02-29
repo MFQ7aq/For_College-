@@ -23,7 +23,7 @@ function UserInfo() {
 
   const fetchData = useCallback(async () => {
     try {
-      const response = await axios.get('http://localhost:8092/api/user/fill');
+      const response = await axios.get('http://localhost:8092/api/user/progress');
       const { degree, rank, state_awards } = response.data;
       setDegree(degree);
       setRank(rank);
@@ -42,21 +42,17 @@ function UserInfo() {
     const formData = {
       degree: selectedValues.degree,
       rank: selectedValues.rank,
-      awards: {
-        "a": { id: 1, link: "" },
-        "b": { id: 2, link: "" },
-        "c": { id: 3, link: "" },
-        "d": { id: 4, link: "" },
-      },
+      awards: [],
     };
     stateAwards.forEach((award) => {
       const checkbox = document.querySelector(`input[name="${award.name}"]:checked`);
-      const linkInput = document.querySelector(`input[name="${award.name}_link"]`);
       if (checkbox) {
-        formData.awards[award.name] = {
+        const linkInput = document.querySelector(`input[name="${award.name}_link"]`);
+        formData.awards.push({
           id: award.id,
-          link: linkInput.value
-        };
+          name: award.name,
+          link: linkInput.value,
+        });
       }
     });
     try {
@@ -87,26 +83,27 @@ function UserInfo() {
               <select value={selectedValues.degree} onChange={(e) => handleSelect('degree', e.target.value)} className="auth__input auth__select Montherat">
                 <option value="">Ученая степень</option>
                 {degree.map((degree) =>
-                  <option key={degree.id} value={degree.name}>
+                  <option key={degree.id} value={degree.id}>
                     {degree.name}
                   </option>)}
               </select>
               <select value={selectedValues.rank} onChange={(e) => handleSelect('rank', e.target.value)} className="auth__input auth__select Montherat">
                 <option value="">Ученое звание</option>
                 {rank.map((rank) =>
-                  <option key={rank.id} value={rank.name}>
+                  <option key={rank.id} value={rank.id}>
                     {rank.name}
                   </option>)}
               </select>
               <div className="awards">
-              {stateAwards.map((awards) =>
-                <div className="awards__block" key={awards.id} value={awards.name}>
-                  <div className="auth__input awards__select Montherat">
-                    <input type="checkbox" className="checkbox" name={awards.name} id="" />
-                    {awards.name}
+                {stateAwards.map((award) => (
+                  <div className="awards__block" key={award.id}>
+                    <div className="auth__input awards__select Montherat">
+                      <input type="checkbox" className="checkbox" name={award.name} id={award.name} />
+                      <label htmlFor={award.name}>{award.name}</label>
+                    </div>
+                    <input type="text" className="auth__input awards__select Montherat" name={`${award.name}_link`} placeholder="Введите ссылку" />
                   </div>
-                  <input type="text" className="auth__input awards__select Montherat" name={`${awards.name}_link`} placeholder="Введите ссылку" />
-                </div>)}
+                ))}
               </div>
             </form>
           </label>

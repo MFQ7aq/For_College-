@@ -6,6 +6,8 @@ import axios from "axios";
 
 function PrivateOffice() {
   const navigate = useNavigate();
+  const token = localStorage.getItem('token');
+  const [name, setName] = useState([])
   const [inst, setInst] = useState([]);
   const [post, setPost] = useState([]);
   const [selectedValues, setSelectedValues] = useState({
@@ -27,9 +29,26 @@ function PrivateOffice() {
     }
   }, []);
 
+  const userName = useCallback(async () => {
+    try {
+      const response = await axios.get('http://localhost:8092/api/user/name', {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      const { name } = response.data.user;
+      setName(name);
+      console.log(response)
+    } catch (error) {
+      console.log(error);
+    }
+  }, [token]);
+  
+
   useEffect(() => {
     fetchData();
-  }, [fetchData]);
+    userName();
+  }, [fetchData, userName]);
 
   const handleLogout = useCallback(() => {
     localStorage.removeItem('token');
@@ -48,7 +67,7 @@ function PrivateOffice() {
 
   const handleSubmit = useCallback((e) => {
     e.preventDefault();
-    const token = localStorage.getItem('token');
+
     axios.post('http://localhost:8092/api/user/info/add', {
       "name": selectedValues.name,
       "institut": selectedValues.inst,
@@ -66,7 +85,7 @@ function PrivateOffice() {
     .catch(function (error) {
       console.log(error);
     });
-  }, [selectedValues]);
+  }, [selectedValues, token]);
 
   return (
     <div className="private-office-contents">
@@ -77,7 +96,7 @@ function PrivateOffice() {
       <div className="private-office__main">
         <div className="account__config">
           <div className="avatar__container"><div className="avatar"></div></div>
-          <h4 className="user__name">A</h4>
+          <h4 className="user__name">{name}</h4>
           <ul className="config__list">
           <li className="config__items-li"><Link to="/Personal_data" className="config__items">Персональные данные</Link></li>
             <li className="config__items-li"><Link to="" className="config__items">Моя учётная записьывап</Link></li>
