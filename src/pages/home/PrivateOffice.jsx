@@ -77,7 +77,7 @@ function PrivateOffice() {
       <div className="private-office__main">
         <div className="account__config">
           <div className="avatar__container"><div className="avatar"></div></div>
-          <h4 className="user__name">Test</h4>
+          <h4 className="user__name">A</h4>
           <ul className="config__list">
           <li className="config__items-li"><Link to="/Personal_data" className="config__items">Персональные данные</Link></li>
             <li className="config__items-li"><Link to="" className="config__items">Моя учётная записьывап</Link></li>

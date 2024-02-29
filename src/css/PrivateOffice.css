@@ -29,7 +29,7 @@
   width: 175px;
   height: 175px;
   border-radius: 100%;
-  background: url('../img/user.png') no-repeat;
+  background: url('../img/avatar.jpg') no-repeat;
   background-size: 175px 175px;
 }
 .user__name {
