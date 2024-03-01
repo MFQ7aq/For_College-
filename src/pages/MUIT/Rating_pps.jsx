@@ -1,7 +1,26 @@
 import NavBar from "../../components/NavBar"
 import BackButton from "../../components/Back"
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
 function Rating_pps() {
+  const [userData, setUserData] = useState([]);
+
+  useEffect(() => {
+    const userInfo = async () => {
+      try {
+        const resp = await axios.get('http://localhost:8092/api/rating/pps');
+        setUserData(resp.data.pps);
+        console.log(resp)
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    userInfo();
+  }, []);
+
   return (
     <div className="сontents">
       <div className="header">
@@ -25,45 +44,25 @@ function Rating_pps() {
               <th>I.Личные достижения</th>
               <th>II. Научно-исследовательская и инновационная деятельность</th>
               <th>III. Учебная и методическая работа</th>
-              <th>IV. Участие в мероприятиях, повышаюших имидж МУИТ</th>
+              <th>IV. Участие в мероприятиях, повышающих имидж МУИТ</th>
               <th>V. Электронная загрузка материалов в MOODLE</th>
               <th>Итого (Анкеты)</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>Жамалова Венера Жумашбековна</td>
-              <td>Институт цифровой трансформации и программирования</td>
-              <td>330</td>
-              <td>875</td>
-              <td>130</td>
-              <td>30</td>
-              <td>104</td>
-              <td>1469</td>
+          {userData.map((data) => (
+            <tr key={data.id}>
+              <td>{data.id}</td>
+              <td><Link to={`http://localhost:5173/office/?id=${data.id}`}>{data.name}</Link></td>
+              <td>{data.institut}</td>
+              <td>{data.total}</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>{data.total}</td>
             </tr>
-            <tr>
-              <td>1</td>
-              <td>Жамалова Венера Жумашбековна</td>
-              <td>Институт цифровой трансформации и программирования</td>
-              <td>330</td>
-              <td>875</td>
-              <td>130</td>
-              <td>30</td>
-              <td>104</td>
-              <td>1469</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Жамалова Венера Жумашбековна</td>
-              <td>Институт цифровой трансформации и программирования</td>
-              <td>330</td>
-              <td>875</td>
-              <td>130</td>
-              <td>30</td>
-              <td>104</td>
-              <td>1469</td>
-            </tr>
+          ))}
           </tbody>
         </table>
         <BackButton/>
