@@ -33,7 +33,7 @@ const handleSubmit = useCallback((e) => {
         <div className="title__contain"><h2 className="Edu__text-L center">Регистрация</h2></div>
         <div className="auth__contain">
           <label htmlFor="" className="auth__label">
-            <form onSubmit={handleSubmit} className="auth_auth">
+            <form onSubmit={handleSubmit} className="auth_auth-center">
               <input type="text" className="auth__input Montherat" value={name} onChange={e => setName(e.target.value)} placeholder="Логин" />
               <input type="password" autoComplete="" className="auth__input Montherat" value={password} onChange={e => setPassword(e.target.value)} placeholder="Пароль" />
             </form>

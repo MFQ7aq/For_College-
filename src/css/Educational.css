@@ -173,7 +173,10 @@
   margin-top: 15px;
 }
 .auth_auth {
-  width: 1100px;
+  margin: 0 auto;
+  display: flex;
+}
+.auth_auth-c {
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
