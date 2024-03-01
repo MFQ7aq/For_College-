@@ -3,6 +3,7 @@ import NavBar from "../../components/NavBar"
 import { Link } from "react-router-dom"
 
 function Ivtd() {
+
   return (
     <div className="сontents">
       <div className="header">
@@ -27,7 +28,7 @@ function Ivtd() {
             <h6>1</h6>
           </div>
           <div className="row">
-            <h6>Давлетбекова Айзада Давлетбековна</h6>
+            <h6></h6>
           </div>
           <div className="row">
             <h6>1508</h6>
