@@ -71,23 +71,23 @@ function PrivateOffice() {
     checkAuthentication();
   }, [token]);
 
-  const handleLogout = () => {
+  const handleLogout = useCallback(() => {
     localStorage.removeItem('token');
     setIsAuthenticated(false);
-  };
-
-  const handleSelect = (field, value) => {
+  }, []);
+  
+  const handleSelect = useCallback((field, value) => {
     setSelectedValues(prevValues => ({
       ...prevValues,
       [field]: value
     }));
-  };
-
-  const Back = () => {
+  }, []);
+  
+  const Back = useCallback(() => {
     navigate(-1);
-  };
-
-  const handleSubmit = (e) => {
+  }, [navigate]);
+  
+  const handleSubmit = useCallback((e) => {
     e.preventDefault();
     axios.post('http://localhost:8092/api/user/info/add', {
       "name": selectedValues.name,
@@ -107,7 +107,7 @@ function PrivateOffice() {
     .catch(function (error) {
       console.log(error);
     });
-  };
+  }, [selectedValues, token]);
 
   return (
     <div className="private-office-contents">
