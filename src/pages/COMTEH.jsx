@@ -25,7 +25,7 @@ function Comteh() {
             <h5>Итого</h5>
           </div>
           <div className="row">
-          <Link to="/KOMTEHNO/IVTD" className="h6">Информатика, вычислительная техника и дизайна</Link>
+          <Link to="/COMTEHNO/IVTD" className="h6">Информатика, вычислительная техника и дизайна</Link>
           </div>
           <div className="row">
             <h6 className="h6">865</h6>
@@ -34,7 +34,7 @@ function Comteh() {
             <h6 className="h6">865</h6>
           </div>
           <div className="row">
-            <Link to="/KOMTEHNO/EUBD" className="h6">Экономика, управление и банковское дело</Link>
+            <Link to="/COMTEHNO/EUBD" className="h6">Экономика, управление и банковское дело</Link>
           </div>
           <div className="row">
             <h6 className="h6">504</h6>

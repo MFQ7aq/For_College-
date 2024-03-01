@@ -40,8 +40,8 @@ function UserInfo() {
   const handleSubmit = useCallback(async (e) => {
     e.preventDefault();
     const formData = {
-      degree: selectedValues.degree,
-      rank: selectedValues.rank,
+      degree: selectedValues.degree || null,
+      rank: selectedValues.rank || null,
       awards: [],
     };
     stateAwards.forEach((award) => {
