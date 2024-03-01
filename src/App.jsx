@@ -33,7 +33,7 @@ function App() {
         <Route path='/Authorization' element={<Authorization />} />
         <Route path='/Registration' element={<Registration/>} />
         <Route path='/Questionnaire' element={<Questionnaire />} />
-        <Route path='/office' element={<Office />} />
+        <Route path="/Office/:id" element={<Office />} />
         <Route path='/MUIT' element={<Muit />}/>
         <Route path='/MUIT/rating_pred' element={<Rating_pred />} />
         <Route path='/MUIT/rating_inst' element={<Rating_inst />} />
