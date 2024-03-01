@@ -14,19 +14,19 @@ function PrivateOffice() {
     regular: '',
     email: ''
   });
-
+  
   useEffect(() => {
     const userInfo = async () => {
       try {
         const resp = await axios.get(`http://localhost:8092/api/user/us/${id}`);
-        const { name, institut, position, regular, email } = resp.data.user;
+        const { name, institut, position, regular, email } = resp.data.id;
         setUserData({ name, institut, position, regular, email });
       } catch (error) {
         console.log(error);
       }
     };
 
-    userInfo();
+  userInfo();
   }, [id]);
 
   const Back = useCallback(() => {
