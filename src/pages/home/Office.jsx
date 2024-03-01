@@ -18,9 +18,7 @@ function PrivateOffice() {
   useEffect(() => {
     const userInfo = async () => {
       try {
-        const resp = await axios.get('http://localhost:8092/api/user/us', {
-          params: id
-        });
+        const resp = await axios.get(`http://localhost:8092/api/user/us/${id}`);
         const { name, institut, position, regular, email } = resp.data.user;
         setUserData({ name, institut, position, regular, email });
       } catch (error) {
