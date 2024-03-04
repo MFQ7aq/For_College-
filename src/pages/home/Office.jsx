@@ -45,7 +45,7 @@ function PrivateOffice() {
           <h4 className="user__name">{userData.name}</h4>
           <ul className="config__list">
             <li className="config__items-li"><Link to="/Personal_data" className="config__items">Персональные данные</Link></li>
-            <li className="config__items-li"><Link to="" className="config__items">Моя учётная записьывап</Link></li>
+            <li className="config__items-li"><Link to="" className="config__items">Моя учётная запись</Link></li>
             <li className="config__items-li"><Link to="/Authorization"  onClick={Back} className="config__items">Выйти</Link></li>
           </ul>
         </div>
