@@ -113,7 +113,17 @@ function PrivateOffice() {
     <div className="private-office-contents">
       <div className="header">
         <NavBar/>
-        <div className="private-office-bg"></div>
+        <div className="private-office-bg">
+          <div className="header__menu">
+            <Link className="head__item Montherat">Личные данные и достижения</Link>
+            <Link className="head__item Montherat">Научно-исследовательская деятельность</Link>
+            <Link className="head__item Montherat">Инновационно-образовательная деятельность</Link>
+            <Link className="head__item Montherat">Воспетательная, общественная деятельность</Link>
+            <Link className="head__item Montherat">Проф. деятельность</Link>
+            <Link className="head__item Montherat">Взаимодействие со стейкхолдерами</Link>
+            <Link className="head__item Montherat">Дополнительные данные</Link>
+          </div>
+        </div>
       </div>
       <div className="private-office__main">
         <div className="account__config">
@@ -151,8 +161,6 @@ function PrivateOffice() {
                   <div className="input__office Montherat">
                     <p className="input__text-s">{userData.email}</p>
                   </div>
-                </div>
-                <div className="btn__office">
                   <button onClick={Back} className="btn__link btn__blue montherat">Назад</button>
                 </div>
               </>
@@ -184,8 +192,6 @@ function PrivateOffice() {
                   </select>
                   <p className="input__text-s">Email</p>
                   <input type="email" value={selectedValues.email} onChange={(e) => handleSelect('email', e.target.value)} className="input__office Montherat" />
-                </div>
-                <div className="btn__office">
                   <button onClick={handleSubmit} className="btn__link btn__green montherat">Отправить</button>
                   <button onClick={Back} className="btn__link btn__blue montherat">Назад</button>
                 </div>

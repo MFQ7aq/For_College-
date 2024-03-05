@@ -1,18 +1,14 @@
 .private-office-bg {
   width: 100%;
-  height: 34vh;
-  background: url('../img/private-office-bg.jpeg') no-repeat center center;
   background-size: cover;
 }
 .private-office__main {
-  width: 100%;
   display: flex;
-  flex-direction: row;
 }
 .account__config {
   background-color: #2C2670;
   padding: 0 0 12px 0;
-  height: 70vh;
+  height: 100vh;
   width: 32%;
 }
 .avatar__container {
@@ -63,9 +59,6 @@
 .config__items:hover {
   border-bottom: 2px #fff solid;
 }
-.office {
-  width: 62%;
-}
 .office h3 {
   display: block;
   text-align: center;
@@ -111,10 +104,31 @@
   padding: 10px 42px;
   border: none;
   cursor: pointer;
+  margin: 15px 15px 0 0;
 }
 .btn__blue {
   background-color: #2C2670;
 }
 .btn__green {
   background-color: #16A767;
+}
+
+.header__menu {
+  margin: 0 0 0 19.1%;
+  height: 120px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.head__item {
+  text-align: center;
+  justify-content: center;
+  background-image: url(../img/Rectangle.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 165px;
+  height: 70px;
+  text-decoration: none;
+  color: white;
 }
