@@ -73,7 +73,7 @@ function UserInfo() {
         <NavBar />
       </div>
       <div className="main">
-        <div className="title__contain"><h2 className="Edu__text-L center">Персональные данные</h2></div>
+        <div className="title__contain"><h2 className="Edu__text-L center">Личные данные</h2></div>
         <div className="auth__contain-doble">
           <label htmlFor="" className="auth__label">
             <form onSubmit={handleSubmit} className="auth_auth">

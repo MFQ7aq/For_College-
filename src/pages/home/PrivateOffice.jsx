@@ -115,7 +115,7 @@ function PrivateOffice() {
         <NavBar/>
         <div className="private-office-bg">
           <div className="header__menu">
-            <Link className="head__item Montherat">Личные данные и достижения</Link>
+            <Link to="/Personal_data" className="head__item Montherat">Личные данные и достижения</Link>
             <Link className="head__item Montherat">Научно-исследовательская деятельность</Link>
             <Link className="head__item Montherat">Инновационно-образовательная деятельность</Link>
             <Link className="head__item Montherat">Воспетательная, общественная деятельность</Link>
@@ -130,7 +130,6 @@ function PrivateOffice() {
           <div className="avatar__container"><div className="avatar"></div></div>
           <h4 className="user__name">{userData.name}</h4>
           <ul className="config__list">
-            <li className="config__items-li"><Link to="/Personal_data" className="config__items">Персональные данные</Link></li>
             <li className="config__items-li"><Link to="" className="config__items">Моя учётная запись</Link></li>
             <li className="config__items-li"><Link to="/Authorization"  onClick={handleLogout} className="config__items">Выйти</Link></li>
           </ul>

@@ -37,14 +37,23 @@ function PrivateOffice() {
     <div className="private-office-contents">
       <div className="header">
         <NavBar/>
-        <div className="private-office-bg"></div>
+        <div className="private-office-bg">
+          <div className="header__menu">
+            <Link to="/Personal_data" className="head__item Montherat">Личные данные и достижения</Link>
+            <Link className="head__item Montherat">Научно-исследовательская деятельность</Link>
+            <Link className="head__item Montherat">Инновационно-образовательная деятельность</Link>
+            <Link className="head__item Montherat">Воспетательная, общественная деятельность</Link>
+            <Link className="head__item Montherat">Проф. деятельность</Link>
+            <Link className="head__item Montherat">Взаимодействие со стейкхолдерами</Link>
+            <Link className="head__item Montherat">Дополнительные данные</Link>
+          </div>
+        </div>
       </div>
       <div className="private-office__main">
         <div className="account__config">
           <div className="avatar__container"><div className="avatar"></div></div>
           <h4 className="user__name">{userData.name}</h4>
           <ul className="config__list">
-            <li className="config__items-li"><Link to="/Personal_data" className="config__items">Персональные данные</Link></li>
             <li className="config__items-li"><Link to="" className="config__items">Моя учётная запись</Link></li>
             <li className="config__items-li"><Link to="/Authorization"  onClick={Back} className="config__items">Выйти</Link></li>
           </ul>
@@ -73,8 +82,6 @@ function PrivateOffice() {
               <div className="input__office Montherat">
                 <p className="input__text-s">{userData.email}</p>
               </div>
-            </div>
-            <div className="btn__office">
               <button onClick={Back} className="btn__link btn__blue montherat">Назад</button>
             </div>
           </div>
