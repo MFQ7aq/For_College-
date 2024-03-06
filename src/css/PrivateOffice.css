@@ -9,7 +9,7 @@
   background-color: #2C2670;
   padding: 0 0 12px 0;
   height: 100vh;
-  width: 32%;
+  width: 28%;
 }
 .avatar__container {
   background-color: #fff;
@@ -76,7 +76,7 @@
   height: 30px;
   border: none;
   box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.1);
-  outline: none
+  outline: none;
 }
 .input__text-s {
   color: #2C2670;
@@ -112,9 +112,8 @@
 .btn__green {
   background-color: #16A767;
 }
-
 .header__menu {
-  margin: 0 0 0 28.6%;
+  margin: 0 0 0 20.5%;
   height: 120px;
   display: flex;
   flex-direction: row;

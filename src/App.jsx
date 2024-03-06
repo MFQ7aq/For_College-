@@ -22,6 +22,7 @@ import Kite from './pages/KITE'
 import GiED from './pages/KITE/GiED'
 import EiTD from './pages/KITE/EiTD'
 import Personal_Data from './pages/home/PersonalData'
+import Test from './pages/home/test'
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
         <Route path='/KITE/GiED' element={<GiED />} />
         <Route path='/KITE/EiTD' element={<EiTD />} />
 				<Route path="*" element={<PageNotFound/>} />
+        <Route path='/test' element={<Test />} />
         <Route element={<PrivateRoute />}>
           <Route path='/private_office' element={<PrivateOffice />} />
           <Route path='/AuthorizationPPS' element={<AuthorizationPPS />} />
