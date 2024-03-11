@@ -16,10 +16,13 @@ function Ural() {
     links: {}
   });
 
-  const handleSelect = useCallback((field, value) => {
+  const handleSelect = useCallback((field, value, index) => {
     setSelectedValues(prevValues => ({
       ...prevValues,
-      [field]: value
+      [field]: {
+        ...prevValues[field],
+        [index]: value
+      }
     }));
   }, []);
 
@@ -71,7 +74,7 @@ function Ural() {
         </div>
         <div className="auth_auth">
           {data.length > 0 && data.map((item, index) => (
-            <select key={index} value={selectedValues.subtitle} onChange={(e) => handleSelect('subtitle', e.target.value)} className="input__office input__text-s Montherat">
+            <select key={index} value={selectedValues.degree[index] || ''} onChange={(e) => handleSelect('degree', e.target.value, index)} className="input__office input__text-s Montherat">
               <option value="">{item}</option>
               {subData[index] && subData[index].map((subItem, subIndex) => (
                 <option key={subIndex} value={subItem.id}>
