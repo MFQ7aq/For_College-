@@ -1,7 +1,7 @@
 import { useCallback, useState, useEffect } from "react";
 import NavBar from "../../components/NavBar";
 import RegNav from "../../components/RegNav"
-import { Link } from "react-router-dom";
+import AccountConf from "../../components/AccountConf";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -71,11 +71,6 @@ function PrivateOffice() {
     userInfo();
     checkAuthentication();
   }, [token]);
-
-  const handleLogout = useCallback(() => {
-    localStorage.removeItem('token');
-    setIsAuthenticated(false);
-  }, []);
   
   const handleSelect = useCallback((field, value) => {
     setSelectedValues(prevValues => ({
@@ -119,14 +114,7 @@ function PrivateOffice() {
         </div>
       </div>
       <div className="private-office__main">
-        <div className="account__config">
-          <div className="avatar__container"><div className="avatar"></div></div>
-          <h4 className="user__name">{userData.name}</h4>
-          <ul className="config__list">
-            <li className="config__items-li"><Link to="" className="config__items">Моя учётная запись</Link></li>
-            <li className="config__items-li"><Link to="/Authorization"  onClick={handleLogout} className="config__items">Выйти</Link></li>
-          </ul>
-        </div>
+        <AccountConf />
         <div className="office">
           <h3 className="Edu__text-L">Личный кабинет</h3>
           <div className="office__in">

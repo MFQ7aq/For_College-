@@ -2,7 +2,8 @@ import { useState, useCallback, useEffect } from "react";
 import axios from "axios";
 import NavBar from "../../components/NavBar";
 import RegNav from "../../components/RegNav"
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import AccountConf from "../../components/AccountConf";
 
 function UserInfo() {
   const token = localStorage.getItem("token")
@@ -17,13 +18,6 @@ function UserInfo() {
     links: {}
   });
   const [customInputValue, setCustomInputValue] = useState('');
-  const [userData, setUserData] = useState({
-    name: '',
-    institut: '',
-    position: '',
-    regular: '',
-    email: ''
-  });
 
   const handleSelect = useCallback((field, value) => {
     setSelectedValues(prevValues => ({
@@ -106,14 +100,7 @@ function UserInfo() {
       </div>
     </div>
     <div className="private-office__main">
-      <div className="account__config">
-        <div className="avatar__container"><div className="avatar"></div></div>
-        <h4 className="user__name">{userData.name}</h4>
-        <ul className="config__list">
-          <li className="config__items-li"><Link to="" className="config__items">Моя учётная запись</Link></li>
-          <li className="config__items-li"><Link to="/Authorization"  onClick={Back} className="config__items">Выйти</Link></li>
-        </ul>
-      </div>
+    <AccountConf />
       <div className="auth__contain-doble">
         <label htmlFor="" className="auth__label">
           <form onSubmit={handleSubmit}>

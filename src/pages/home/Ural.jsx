@@ -2,13 +2,12 @@ import { useState, useCallback, useEffect } from "react";
 import axios from "axios";
 import NavBar from "../../components/NavBar";
 import RegNav from "../../components/RegNav"
-import { Link, useNavigate } from "react-router-dom";
+import AccountConf from "../../components/AccountConf";
 
 function Ural() {
   const token = localStorage.getItem("token");
   const [data, setData] = useState([]);
   const [subData, setSubData] = useState([]);
-  const navigate = useNavigate();
   const [selectedValues, setSelectedValues] = useState({
     degree: '',
     rank: '',
@@ -51,10 +50,6 @@ function Ural() {
     userInfo();
   }, [token]);
 
-  const Back = useCallback(() => {
-    navigate(-1);
-  }, [navigate]);
-
   return (
     <div className="private-office-contents">
       <div className="header">
@@ -64,15 +59,8 @@ function Ural() {
         </div>
       </div>
       <div className="private-office__main">
-        <div className="account__config">
-          <div className="avatar__container"><div className="avatar"></div></div>
-          <h4 className="user__name"></h4>
-          <ul className="config__list">
-            <li className="config__items-li"><Link to="" className="config__items">Моя учётная запись</Link></li>
-            <li className="config__items-li"><Link to="/Authorization" onClick={Back} className="config__items">Выйти</Link></li>
-          </ul>
-        </div>
-        <div className="auth_auth">
+      <AccountConf />
+        <div>
           {data.length > 0 && data.map((item, index) => (
             <select key={index} value={selectedValues.degree[index] || ''} onChange={(e) => handleSelect('degree', e.target.value, index)} className="input__office input__text-s Montherat">
               <option value="">{item}</option>
