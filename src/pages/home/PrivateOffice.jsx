@@ -1,5 +1,6 @@
 import { useCallback, useState, useEffect } from "react";
 import NavBar from "../../components/NavBar";
+import RegNav from "../../components/RegNav"
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -114,15 +115,7 @@ function PrivateOffice() {
       <div className="header">
         <NavBar/>
         <div className="private-office-bg">
-          <div className="header__menu">
-            <Link to="/Personal_data" className="head__item Montherat">Личные данные и достижения</Link>
-            <Link className="head__item Montherat">Научно-исследовательская деятельность</Link>
-            <Link className="head__item Montherat">Инновационно-образовательная деятельность</Link>
-            <Link className="head__item Montherat">Воспетательная, общественная деятельность</Link>
-            <Link className="head__item Montherat">Проф. деятельность</Link>
-            <Link className="head__item Montherat">Взаимодействие со стейкхолдерами</Link>
-            <Link className="head__item Montherat">Дополнительные данные</Link>
-          </div>
+          <RegNav/>
         </div>
       </div>
       <div className="private-office__main">

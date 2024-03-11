@@ -22,6 +22,7 @@ import Kite from './pages/KITE'
 import GiED from './pages/KITE/GiED'
 import EiTD from './pages/KITE/EiTD'
 import Personal_Data from './pages/home/PersonalData'
+import Ural from './pages/home/Ural'
 import Test from './pages/home/test'
 
 function App() {
@@ -51,7 +52,8 @@ function App() {
         <Route element={<PrivateRoute />}>
           <Route path='/private_office' element={<PrivateOffice />} />
           <Route path='/AuthorizationPPS' element={<AuthorizationPPS />} />
-          <Route path='/Personal_data' element={<Personal_Data />} />
+          <Route path='/Personal_Data' element={<Personal_Data />} />
+          <Route path='/User_Activity' element={<Ural />} />
         </Route>
 			</Routes>
     </Router>

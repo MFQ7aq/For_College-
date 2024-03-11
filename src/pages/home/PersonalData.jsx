@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect } from "react";
 import axios from "axios";
 import NavBar from "../../components/NavBar";
+import RegNav from "../../components/RegNav"
 import { Link, useNavigate } from "react-router-dom";
 
 function UserInfo() {
@@ -10,8 +11,8 @@ function UserInfo() {
   const [rank, setRank] = useState([]);
   const [stateAwards, setStateAwards] = useState([]);
   const [selectedValues, setSelectedValues] = useState({
-    degree: '',
-    rank: '',
+    degree: "",
+    rank: "",
     awards: [],
     links: {}
   });
@@ -65,8 +66,8 @@ function UserInfo() {
   const handleSubmit = useCallback(async (e) => {
     e.preventDefault();
     const formData = {
-      degree: selectedValues.degree || null,
-      rank: selectedValues.rank || null,
+      degree: parseInt(selectedValues.degree, 10) || null,
+      rank: parseInt(selectedValues.rank, 10) || null,
       awards: [],
     };
     stateAwards.forEach((award) => {
@@ -101,15 +102,7 @@ function UserInfo() {
     <div className="header">
       <NavBar/>
       <div className="private-office-bg">
-        <div className="header__menu">
-          <Link to="/Personal_data" className="head__item Montherat">Личные данные и достижения</Link>
-          <Link className="head__item Montherat">Научно-исследовательская деятельность</Link>
-          <Link className="head__item Montherat">Инновационно-образовательная деятельность</Link>
-          <Link className="head__item Montherat">Воспетательная, общественная деятельность</Link>
-          <Link className="head__item Montherat">Проф. деятельность</Link>
-          <Link className="head__item Montherat">Взаимодействие со стейкхолдерами</Link>
-          <Link className="head__item Montherat">Дополнительные данные</Link>
-        </div>
+      <RegNav/>
       </div>
     </div>
     <div className="private-office__main">
@@ -128,7 +121,7 @@ function UserInfo() {
               {selectedValues.post === "Другое" && (
                 <input type="text" className="input__office input__text-s Montherat" value={customInputValue} onChange={(e) => setCustomInputValue(e.target.value)} placeholder="Введите другую должность" />
               )}
-              <select value={selectedValues.degree} onChange={(e) => handleSelect('degree', e.target.value)} className="input__office input__text-s Montherat">
+            <select value={selectedValues.degree} onChange={(e) => handleSelect('degree', e.target.value)} className="input__office input__text-s Montherat">
               <option value="">Ученая степень</option>
               {degree.map((degree) =>
                 <option key={degree.id} value={degree.id}>
