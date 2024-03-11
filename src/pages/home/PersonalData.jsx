@@ -39,21 +39,6 @@ function UserInfo() {
   }, [setDegree, setRank, setStateAwards]);
   
   useEffect(() => {
-    const userInfo = async () => {
-      try {
-        const resp = await axios.get('http://localhost:8092/api/user/name', {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        });
-        const { name } = resp.data.user;
-        setUserData({ name });
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    userInfo();
     fetchData();
   }, [fetchData, token]);
 
