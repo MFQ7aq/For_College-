@@ -29,15 +29,19 @@ function UserInfo() {
   const fetchData = useCallback(async () => {
     try {
       const response = await axios.get('http://localhost:8092/api/user/progress');
-      const { degree, rank, state_awards } = response.data;
-      setDegree(degree);
-      setRank(rank);
-      setStateAwards(state_awards);
+      const data = response.data[0];
+      const degrees = data.find(item => item.name === 'Ученая степень');
+      const ranks = data.find(item => item.name === 'Ученое звание');
+      const stateAwards = data.find(item => item.name === 'Гос.награды');
+  
+      setDegree(degrees ? degrees.personalAwardsSubtitles : []);
+      setRank(ranks ? ranks.personalAwardsSubtitles : []);
+      setStateAwards(stateAwards ? stateAwards.personalAwardsSubtitles.map(award => ({ id: award.id, name: award.name, link: '' })) : []);
     } catch (error) {
       console.log(error);
     }
-  }, [setDegree, setRank, setStateAwards]);
-  
+  }, [setDegree, setRank, setStateAwards]);  
+
   useEffect(() => {
     fetchData();
   }, [fetchData, token]);
@@ -45,8 +49,8 @@ function UserInfo() {
   const handleSubmit = useCallback(async (e) => {
     e.preventDefault();
     const formData = {
-      degree: parseInt(selectedValues.degree, 10) || null,
-      rank: parseInt(selectedValues.rank, 10) || null,
+      degree: parseInt(selectedValues.degree) || null,
+      rank: parseInt(selectedValues.rank) || null,
       awards: [],
     };
     stateAwards.forEach((award) => {
@@ -67,6 +71,7 @@ function UserInfo() {
           Authorization: `Bearer ${token}`
         }
       });
+      console.log(formData);
     } catch (error) {
       console.error(error);
     }
@@ -93,31 +98,33 @@ function UserInfo() {
               {selectedValues.post === "Другое" && (
                 <input type="text" className="input__office input__text-s Montherat" value={customInputValue} onChange={(e) => setCustomInputValue(e.target.value)} placeholder="Введите другую должность" />
               )}
-            <select value={selectedValues.degree} onChange={(e) => handleSelect('degree', e.target.value)} className="input__office input__text-s Montherat">
-              <option value="">Ученая степень</option>
-              {degree.map((degree) =>
-                <option key={degree.id} value={degree.id}>
-                  {degree.name}
-                </option>)}
-            </select>
-            <select value={selectedValues.rank} onChange={(e) => handleSelect('rank', e.target.value)} className="input__office input__text-s Montherat">
-              <option value="">Ученое звание</option>
-              {rank.map((rank) =>
-                <option key={rank.id} value={rank.id}>
-                  {rank.name}
-              </option>)}
-            </select>
-            </div>
-            <div className="awards">
-              {stateAwards.map((award) => (
-                <div className="awards__block" key={award.id}>
-                  <div className="input__office input__text-s Montherat">
-                    <input type="checkbox" className="checkbox" name={award.name} id={award.name} />
-                    <label htmlFor={award.name}>{award.name}</label>
+              <select value={selectedValues.degree} onChange={(e) => handleSelect('degree', e.target.value)} className="input__office input__text-s Montherat">
+                <option value="">Ученая степень</option>
+                {degree.map((degree) =>
+                  <option key={degree.id} value={degree.id}>
+                    {degree.name}
+                  </option>
+                )}
+              </select>
+              <select value={selectedValues.rank} onChange={(e) => handleSelect('rank', e.target.value)} className="input__office input__text-s Montherat">
+                <option value="">Ученое звание</option>
+                {rank.map((rank) =>
+                  <option key={rank.id} value={rank.id}>
+                    {rank.name}
+                  </option>
+                )}
+              </select>
+              <div className="awards">
+                {stateAwards.map((award) => (
+                  <div className="awards__block" key={award.id}>
+                    <div className="input__office input__text-s Montherat">
+                      <input type="checkbox" className="checkbox" name={award.name} id={award.name} />
+                      <label htmlFor={award.name}>{award.name}</label>
+                    </div>
+                    <input type="text" className="input__office input__text-s Montherat" name={`${award.name}_link`} placeholder="Введите ссылку" />
                   </div>
-                  <input type="text" className="input__office input__text-s Montherat" name={`${award.name}_link`} placeholder="Введите ссылку" />
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
             <button className="bnt__reg btn__green btn__link" onClick={handleSubmit}>Отправить</button>
             <button onClick={Back} className="btn__link btn__blue montherat">Назад</button>
