@@ -50,7 +50,7 @@ export default function MultipleSelectCheckmarks({ data }) {
                 <div>
                   <TextField
                     id={`link-input-${item.id}`}
-                    label={`Link for ${item.name}`}
+                    label={`${item.name}`}
                     value={linkInputs[`link-input-${item.id}`] || ''}
                     onChange={handleLinkChange(`link-input-${item.id}`)}
                     onClick={handleLinkClick}
