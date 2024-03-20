@@ -10,7 +10,6 @@ function Ural() {
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
   const [data, setData] = useState([]);
-  const [selectedValues, setSelectedValues] = useState({});
 
   const fetchData = useCallback(async () => {
     try {
@@ -21,7 +20,6 @@ function Ural() {
       userData.forEach((research) => {
         initialSelectedValues[research.id] = "";
       });
-      setSelectedValues(initialSelectedValues);
     } catch (error) {
       console.log(error);
     }
@@ -31,19 +29,24 @@ function Ural() {
     fetchData();
   }, [fetchData, token]);
 
-  // const handleSelect = useCallback((field, value) => {
-  //   setSelectedValues((prevValues) => ({
-  //     ...prevValues,
-  //     [field]: { subId: value, link: "" },
-  //   }));
-  // }, []);
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e, selectedOptions) => {
     e.preventDefault();
     try {
       const payload = {
-        ural: selectedValues,
+        ural: {}
       };
+      if (Array.isArray(selectedOptions)) {
+        selectedOptions.forEach((optionName) => {
+          const option = data.researchActivitiesSubtitles.find((item) => item.name === optionName);
+          const links = linkInputs[option.id] || [];
+          links.forEach((linkData, index) => {
+            payload.ural[`${option.name}-${index}`] = {
+              subId: option.id,
+              link: linkData.link
+            };
+          });
+        });
+      }
       const response = await axios.post("http://localhost:8092/api/user/research/add", payload, {
         headers: {
           Authorization: `Bearer ${token}`
@@ -71,7 +74,7 @@ function Ural() {
         <AccountConf />
         <div className="auth__contain-doble">
           <label htmlFor="" className="auth__label">
-            <form>
+            <form onSubmit={(e) => handleSubmit(e, selectedOptions)}>
               <div className="auth_auth-c">
               {data.map((research) => (
                 <Select data={research} key={research.id}></Select>

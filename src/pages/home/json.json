@@ -1,0 +1,8 @@
+{
+  "awards":{
+    "a": {"subId": 2},
+    "b": {"subId": 6},
+    "c": {"subId": 2, "link": ""},
+    "d": {"subId": 2, "link": ""}
+  }
+}

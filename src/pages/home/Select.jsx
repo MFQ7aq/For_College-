@@ -19,14 +19,14 @@ export default function MultipleSelectCheckmarks({ data }) {
 
   const handleLinkChange = (optionId, index) => (event) => {
     const newLinks = { ...linkInputs };
-    newLinks[optionId][index] = event.target.value;
+    newLinks[optionId][index] = { link: event.target.value };
     setLinkInputs(newLinks);
   };
 
   const handleAddLinkClick = (optionId) => {
     setLinkInputs({
       ...linkInputs,
-      [optionId]: [...(linkInputs[optionId] || []), ''],
+      [optionId]: [...(linkInputs[optionId] || []), { link: '' }],
     });
   };
 
@@ -38,21 +38,22 @@ export default function MultipleSelectCheckmarks({ data }) {
     const optionId = option.id;
     return selectedOptions.includes(option.name) && (
       <div key={optionId} className='input__links'>
-        {linkInputs[optionId]?.map((link, index) => (
-          <TextField
-            key={`link-input-${optionId}-${index}`}
-            id={`link-input-${optionId}-${index}`}
-            label={`${option.name} ${index + 1}`}
-            value={link || ''}
-            onChange={handleLinkChange(optionId, index)}
-            onClick={handleLinkClick}
-            margin="normal"
-            variant="outlined"
-          />
+        {linkInputs[optionId]?.map((linkData, index) => (
+          <div key={`link-input-${optionId}-${index}`}>
+            <TextField
+              id={`link-input-${optionId}-${index}`}
+              label={`${option.name}`}
+              value={linkData.link}
+              onChange={handleLinkChange(optionId, index)}
+              onClick={handleLinkClick}
+              margin="normal"
+              variant="outlined"
+            />
+          </div>
         ))}
         <Button
           onClick={(event) => {
-            event.stopPropagation(); // Предотвращаем распространение события
+            event.stopPropagation();
             handleAddLinkClick(optionId);
           }}
           variant="outlined"
