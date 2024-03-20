@@ -57,7 +57,7 @@ function UserInfo() {
       if (checkbox) {
         const awardKey = String.fromCharCode(99 + index);
         awards[awardKey] = { subId: award.id };
-        awards[awardKey].link = linkInput ? linkInput.value.trim() : '';
+        awards[awardKey].link = linkInput ? linkInput.value.trim() : 'Нет ссылки';
       }
     });
     try {
