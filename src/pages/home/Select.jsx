@@ -17,16 +17,52 @@ export default function MultipleSelectCheckmarks({ data }) {
     setSelectedOptions(event.target.value);
   };
 
-  const handleLinkChange = (id) => (event) => {
-    setLinkInputs({ ...linkInputs, [id]: event.target.value });
+  const handleLinkChange = (optionId, index) => (event) => {
+    const newLinks = { ...linkInputs };
+    newLinks[optionId][index] = event.target.value;
+    setLinkInputs(newLinks);
   };
 
-  const handleAddLinkClick = (id) => {
-    setLinkInputs({ ...linkInputs, [id]: '' });
+  const handleAddLinkClick = (optionId) => {
+    setLinkInputs({
+      ...linkInputs,
+      [optionId]: [...(linkInputs[optionId] || []), ''],
+    });
   };
 
   const handleLinkClick = (event) => {
-    event.stopPropagation(); // Предотвращаем всплытие события клика
+    event.stopPropagation();
+  };
+
+  const renderLinksForOption = (option) => {
+    const optionId = option.id;
+    return selectedOptions.includes(option.name) && (
+      <div key={optionId} className='input__links'>
+        {linkInputs[optionId]?.map((link, index) => (
+          <TextField
+            key={`link-input-${optionId}-${index}`}
+            id={`link-input-${optionId}-${index}`}
+            label={`${option.name} ${index + 1}`}
+            value={link || ''}
+            onChange={handleLinkChange(optionId, index)}
+            onClick={handleLinkClick}
+            margin="normal"
+            variant="outlined"
+          />
+        ))}
+        <Button
+          onClick={(event) => {
+            event.stopPropagation(); // Предотвращаем распространение события
+            handleAddLinkClick(optionId);
+          }}
+          variant="outlined"
+          size="small"
+          sx={{ marginLeft: '10px' }}
+        >
+          Добавить
+        </Button>
+      </div>
+    );
   };
 
   return (
@@ -46,30 +82,7 @@ export default function MultipleSelectCheckmarks({ data }) {
             <MenuItem key={item.id} value={item.name}>
               <Checkbox checked={selectedOptions.indexOf(item.name) > -1} />
               <ListItemText primary={item.name} />
-              {selectedOptions.includes(item.name) && (
-                <div>
-                  <TextField
-                    id={`link-input-${item.id}`}
-                    label={`${item.name}`}
-                    value={linkInputs[`link-input-${item.id}`] || ''}
-                    onChange={handleLinkChange(`link-input-${item.id}`)}
-                    onClick={handleLinkClick}
-                    margin="normal"
-                    variant="outlined"
-                  />
-                  <Button
-                    onClick={(e) => {
-                      handleAddLinkClick(`link-input-${item.id}`);
-                      e.stopPropagation();
-                    }}
-                    variant="outlined"
-                    size="small"
-                    sx={{ marginLeft: '10px' }}
-                  >
-                    Добавить
-                  </Button>
-                </div>
-              )}
+              {renderLinksForOption(item)}
             </MenuItem>
           ))}
         </Select>
