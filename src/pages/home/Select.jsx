@@ -68,15 +68,14 @@ export default function MultipleSelectCheckmarks({ data }) {
 
   return (
     <div>
-      <FormControl sx={{ m: 1, width: 300 }}>
-        <InputLabel id="demo-multiple-checkbox-label">{data.name}</InputLabel>
+      <InputLabel id="demo-multiple-checkbox-label" sx={{width: 454, paddingLeft: 1.1, color: 'black'}}>{data.name}</InputLabel>
+      <FormControl sx={{ m: 1, width: 454 }}>
         <Select
           labelId="demo-multiple-checkbox-label"
           id="demo-multiple-checkbox"
           multiple
           value={selectedOptions}
           onChange={handleOptionChange}
-          input={<OutlinedInput label={data.name} />}
           renderValue={(selected) => selected.join(', ')}
         >
           {(data.researchActivitiesSubtitles || data.innovativeEducationSubtitles || data.socialActivitiesSubtitles).map((item) => (
