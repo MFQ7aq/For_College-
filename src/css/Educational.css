@@ -175,6 +175,9 @@
 .auth_auth {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
+  width: 900px;
+  gap: 5px;
 }
 .auth_auth-c {
   width: 1000px;
@@ -190,6 +193,8 @@
 .awards__block {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
+  width: 900px;
 }
 .awards__select{
   width: 500px;

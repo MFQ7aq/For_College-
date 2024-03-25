@@ -6,7 +6,7 @@ import AccountConf from "../../components/AccountConf";
 import { useNavigate } from "react-router-dom";
 import Select from "./Select";
 
-function Ural() {
+function Test3() {
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
   const [data, setData] = useState([]);
@@ -15,7 +15,7 @@ function Ural() {
 
   const fetchData = useCallback(async () => {
     try {
-      const response = await axios.get("http://localhost:8092/api/user/research");
+      const response = await axios.get("http://localhost:8092/api/user/education");
       const userData = response.data[0];
       setData(userData);
       const initialSelectedValues = {};
@@ -54,7 +54,7 @@ function Ural() {
           });
         });
       }      
-      const response = await axios.post("http://localhost:8092/api/user/research/add", payload, {
+      const response = await axios.post("http://localhost:8092/api/user/education/add", payload, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -102,4 +102,4 @@ function Ural() {
   );
 }
 
-export default Ural;
+export default Test3;

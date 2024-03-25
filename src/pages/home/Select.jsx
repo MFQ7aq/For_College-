@@ -79,7 +79,7 @@ export default function MultipleSelectCheckmarks({ data }) {
           input={<OutlinedInput label={data.name} />}
           renderValue={(selected) => selected.join(', ')}
         >
-          {data.researchActivitiesSubtitles.map((item) => (
+          {(data.researchActivitiesSubtitles || data.innovativeEducationSubtitles || data.socialActivitiesSubtitles).map((item) => (
             <MenuItem key={item.id} value={item.name}>
               <Checkbox checked={selectedOptions.indexOf(item.name) > -1} />
               <ListItemText primary={item.name} />
