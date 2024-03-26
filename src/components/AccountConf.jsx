@@ -9,20 +9,6 @@ const AccountConf = () => {
   });
   
   useEffect(() => {
-    const userInfo = async () => {
-      try {
-        const resp = await axios.get('http://localhost:8092/api/user/name', {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        });
-        const { name} = resp.data.user;
-        setUserData({ name });
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
     const checkAuthentication = async () => {
       try {
         const resp = await axios.get('http://localhost:8092/api/user/name', {
@@ -38,7 +24,6 @@ const AccountConf = () => {
       }
     };
 
-    userInfo();
     checkAuthentication();
   }, [token]);
 

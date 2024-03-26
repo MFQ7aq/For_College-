@@ -71,7 +71,7 @@ function UserInfo() {
     } catch (error) {
       console.error(error);
     }
-  }, [selectedValues, stateAwards]);  
+  }, [selectedValues, stateAwards]);
 
   const Back = useCallback(() => {
     navigate(-1);

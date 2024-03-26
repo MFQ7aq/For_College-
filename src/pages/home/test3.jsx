@@ -19,8 +19,8 @@ function Test3() {
       const userData = response.data[0];
       setData(userData);
       const initialSelectedValues = {};
-      userData.forEach((research) => {
-        initialSelectedValues[research.id] = "";
+      userData.forEach((educations) => {
+        initialSelectedValues[educations.id] = "";
       });
       setSelectedValues(initialSelectedValues);
     } catch (error) {
@@ -40,14 +40,14 @@ function Test3() {
     e.preventDefault();
     try {
       const payload = {
-        ural: {}
+        educations: {}
       };
       if (Array.isArray(selectedOptions)) {
         selectedOptions.forEach((optionName) => {
           const option = data.researchActivitiesSubtitles.find((item) => item.name === optionName);
           const links = Array.isArray(linkInputs[option.id]) ? linkInputs[option.id] : []; // Проверяем, является ли linkInputs[option.id] массивом
           links.forEach((linkData, index) => {
-            payload.ural[`${option.name}-${index}`] = {
+            payload.educations[`${option.name}-${index}`] = {
               subId: option.id,
               link: linkData.link
             };
@@ -84,8 +84,8 @@ function Test3() {
           <label htmlFor="" className="auth__label">
             <form onSubmit={(e) => handleSubmit(e, selectedOptions)}>
               <div className="auth_auth-c">
-              {data.map((research) => (
-                <Select data={research} key={research.id}></Select>
+              {data.map((educations) => (
+                <Select data={educations} key={educations.id}></Select>
               ))}
               </div>
               <button className="bnt__reg btn__green btn__link" onClick={handleSubmit}>

@@ -11,16 +11,15 @@ function Test4() {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [selectedValues, setSelectedValues] = useState({});
-  const [linkInputs, setLinkInputs] = useState({}); // Добавляем состояние для linkInputs
 
   const fetchData = useCallback(async () => {
     try {
       const response = await axios.get("http://localhost:8092/api/user/social");
-      const userData = response.data[0];
+      const userData = response.data[0] || []; // Проверяем наличие данных в ответе
       setData(userData);
       const initialSelectedValues = {};
       userData.forEach((research) => {
-        initialSelectedValues[research.id] = "";
+        initialSelectedValues[research.id] = null; // Используем null для инициализации
       });
       setSelectedValues(initialSelectedValues);
     } catch (error) {
@@ -32,29 +31,33 @@ function Test4() {
     fetchData();
   }, [fetchData, token]);
 
-  const updateLinkInputs = useCallback((newLinkInputs) => {
-    setLinkInputs(newLinkInputs);
-  }, []);
+  const handleSelectChange = (optionId, value) => {
+    setSelectedValues(prevValues => ({
+      ...prevValues,
+      [optionId]: value
+    }));
+  };
 
   const handleSubmit = async (e, selectedOptions) => {
     e.preventDefault();
     try {
+      const token = localStorage.getItem('token'); // Assuming token is defined somewhere
       const payload = {
-        ural: {}
+        educations: []
       };
       if (Array.isArray(selectedOptions)) {
         selectedOptions.forEach((optionName) => {
           const option = data.researchActivitiesSubtitles.find((item) => item.name === optionName);
-          const links = Array.isArray(linkInputs[option.id]) ? linkInputs[option.id] : []; // Проверяем, является ли linkInputs[option.id] массивом
-          links.forEach((linkData, index) => {
-            payload.ural[`${option.name}-${index}`] = {
+          const links = Array.isArray(linkInputs[option.id]) ? linkInputs[option.id] : [];
+          links.forEach((linkData) => {
+            payload.educations.push({
               subId: option.id,
-              link: linkData.link
-            };
+              link: linkData.link.trim() // Assuming you want to trim the link
+            });
           });
         });
-      }      
-      const response = await axios.post("http://localhost:8092/api/user/social/add", payload, {
+      }    
+      const response = await axios.post("http://localhost:8092/api/user/education/add", payload, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -64,7 +67,7 @@ function Test4() {
     } catch (error) {
       console.error(error);
     }
-  };
+  };  
 
   const Back = useCallback(() => {
     navigate(-1);
@@ -82,13 +85,18 @@ function Test4() {
         <AccountConf />
         <div className="auth__contain-doble">
           <label htmlFor="" className="auth__label">
-            <form onSubmit={(e) => handleSubmit(e, selectedOptions)}>
+            <form onSubmit={(e) => handleSubmit(e, Object.keys(selectedValues).filter(key => selectedValues[key]))}>
               <div className="auth_auth-c">
               {data.map((research) => (
-                <Select data={research} key={research.id}></Select>
+                <Select 
+                  data={research} 
+                  key={research.id} 
+                  selectedValue={selectedValues[research.id]} 
+                  setSelectedValue={(value) => setSelectedValues(prevState => ({ ...prevState, [research.id]: value }))} 
+                />
               ))}
               </div>
-              <button className="bnt__reg btn__green btn__link" onClick={handleSubmit}>
+              <button type="submit" className="bnt__reg btn__green btn__link">
                 Отправить
               </button>
               <button onClick={Back} className="btn__link btn__blue montherat">
@@ -101,5 +109,4 @@ function Test4() {
     </div>
   );
 }
-
 export default Test4;
