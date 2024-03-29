@@ -112,7 +112,7 @@ const Education = () => {
             {options.map((optionGroup, optionIndex) => (
               <div className="custom-select-container" key={optionIndex}>
                 <div className="selected-option" onClick={() => toggleDropdown(optionIndex)}>
-                  {selectedOptions[optionIndex] ? selectedOptions[optionIndex].name : selectNames[optionIndex]}
+                  {selectNames[optionIndex]}
                 </div>
                 {isOpen[optionIndex] && (
                   <div className="options">

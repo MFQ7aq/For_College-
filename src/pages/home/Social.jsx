@@ -57,7 +57,7 @@ const Social = () => {
 
       const response = await axios.post(
         "http://localhost:8092/api/user/social/add",
-        { socials: socialsData },
+        { social: socialsData },
         {
           headers: {
             Authorization: `Bearer ${token}`
@@ -112,7 +112,7 @@ const Social = () => {
             {options.map((optionGroup, optionIndex) => (
               <div className="custom-select-container" key={optionIndex}>
                 <div className="selected-option" onClick={() => toggleDropdown(optionIndex)}>
-                  {selectedOptions[optionIndex] ? selectedOptions[optionIndex].name : selectNames[optionIndex]}
+                  {selectNames[optionIndex]}
                 </div>
                 {isOpen[optionIndex] && (
                   <div className="options">
