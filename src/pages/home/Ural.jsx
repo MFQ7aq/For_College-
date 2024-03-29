@@ -119,6 +119,7 @@ function Research() {
                     {optionGroup.subtitles.map((subtitle, subtitleIndex) => (
                       <div key={subtitleIndex} className="option">
                         <div onClick={() => handleOptionClick(optionIndex, subtitle)}>{subtitle.name}</div>
+                        <div className="option__link">
                         {inputValues[optionIndex]?.[subtitleIndex]?.map((value, inputIndex) => (
                           <input
                             key={inputIndex}
@@ -131,7 +132,8 @@ function Research() {
                             }}
                           />
                         ))}
-                        <button onClick={() => addInput(optionIndex, subtitleIndex)}>Добавить</button>
+                        </div>
+                        <button onClick={() => addInput(optionIndex, subtitleIndex)} className='add__link'>Добавить</button>
                       </div>
                     ))}
                   </div>
