@@ -26,25 +26,25 @@ function UserInfo() {
     }));
   }, []);
 
-  useEffect(() => {
-    const fetchData = useCallback(async () => {
-      try {
-        const response = await axios.get('http://localhost:8092/api/user/progress');
-        const data = response.data[0];
-        const degrees = data.find(item => item.name === 'Ученая степень');
-        const ranks = data.find(item => item.name === 'Ученое звание');
-        const stateAwards = data.find(item => item.name === 'Гос.награды');
-  
-        setDegree(degrees ? degrees.personalAwardsSubtitles : []);
-        setRank(ranks ? ranks.personalAwardsSubtitles : []);
-        setStateAwards(stateAwards ? stateAwards.personalAwardsSubtitles.map(award => ({ id: award.id, name: award.name, link: '' })) : []);
-      } catch (error) {
-        console.log(error);
-      }
-    }, [setDegree, setRank, setStateAwards]);
+  const fetchData = useCallback(async () => {
+    try {
+      const response = await axios.get('http://localhost:8092/api/user/progress');
+      const data = response.data[0];
+      const degrees = data.find(item => item.name === 'Ученая степень');
+      const ranks = data.find(item => item.name === 'Ученое звание');
+      const stateAwards = data.find(item => item.name === 'Гос.награды');
 
-    fetchData()
-  }, [token]);
+      setDegree(degrees ? degrees.personalAwardsSubtitles : []);
+      setRank(ranks ? ranks.personalAwardsSubtitles : []);
+      setStateAwards(stateAwards ? stateAwards.personalAwardsSubtitles.map(award => ({ id: award.id, name: award.name, link: '' })) : []);
+    } catch (error) {
+      console.log(error);
+    }
+  }, [setDegree, setRank, setStateAwards]);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData, token]);
 
   const handleSubmit = useCallback(async (e) => {
     e.preventDefault();
@@ -57,7 +57,7 @@ function UserInfo() {
       if (checkbox) {
         const awardKey = String.fromCharCode(99 + index);
         awards[awardKey] = { subId: award.id };
-        awards[awardKey].link = linkInput ? linkInput.value.trim() : 'Нет ссылки';
+        awards[awardKey].link = linkInput ? linkInput.value.trim() : '';
       }
     });
     try {

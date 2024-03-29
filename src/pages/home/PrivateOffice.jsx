@@ -152,7 +152,7 @@ function PrivateOffice() {
                   <p className="input__text-s">Институт</p>
                   <select value={selectedValues.inst} onChange={(e) => handleSelect('inst', e.target.value)} className="input__office Montherat">
                     <option value=""></option>
-                    {inst.map((inst) => <option key={inst.id} value={inst.name}>
+                    {inst.map((inst) => <option key={inst.id} value={inst.id}>
                       {inst.name}
                     </option>)}
                   </select>

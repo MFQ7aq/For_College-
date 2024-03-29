@@ -21,10 +21,10 @@ import Eubd from './pages/COMTEH/EUBD'
 import Kite from './pages/KITE'
 import GiED from './pages/KITE/GiED'
 import EiTD from './pages/KITE/EiTD'
-import Personal_Data from './pages/home/PersonalData'
+import Personal_Data from './pages/home/Progress'
 import Ural from './pages/home/Ural'
-import Test3 from './pages/home/test3'
-import Test4 from './pages/home/test4'
+import Education from './pages/home/Education'
+import Social from './pages/home/Social'
 function App() {
   return (
     <Router>
@@ -52,9 +52,9 @@ function App() {
           <Route path='/private_office' element={<PrivateOffice />} />
           <Route path='/AuthorizationPPS' element={<AuthorizationPPS />} />
           <Route path='/Personal_Data' element={<Personal_Data />} />
-          <Route path='/User_Activity' element={<Ural />} />
-          <Route path='/test3' element={<Test3 />} />
-          <Route path='/test4' element={<Test4 />} />
+          <Route path='/Ural' element={<Ural />} />
+          <Route path='/Education' element={<Education />} />
+          <Route path='/Social' element={<Social />} />
         </Route>
 			</Routes>
     </Router>

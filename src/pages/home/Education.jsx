@@ -5,7 +5,7 @@ import NavBar from '../../components/NavBar';
 import RegNav from '../../components/RegNav';
 import { useNavigate } from 'react-router-dom';
 
-function Research() {
+const Education = () => {
   const [isOpen, setIsOpen] = useState([]);
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [options, setOptions] = useState([]);
@@ -41,13 +41,13 @@ function Research() {
 
   const sendDataToAPI = async () => {
     try {
-      const uralsData = {};
+      const educationsData = {};
       options.forEach((optionGroup, optionIndex) => {
         optionGroup.subtitles.forEach((subtitle, subtitleIndex) => {
           const subData = inputValues[optionIndex]?.[subtitleIndex] || [];
           const subId = subtitle.id;
           subData.forEach((link, linkIndex) => {
-            uralsData[`${optionIndex}_${subtitleIndex}_${linkIndex}`] = {
+            educationsData[`${optionIndex}_${subtitleIndex}_${linkIndex}`] = {
               subId: subId,
               link: link
             };
@@ -56,8 +56,8 @@ function Research() {
       });
 
       const response = await axios.post(
-        "http://localhost:8092/api/user/research/add",
-        { ural: uralsData },
+        "http://localhost:8092/api/user/education/add",
+        { educations: educationsData },
         {
           headers: {
             Authorization: `Bearer ${token}`
@@ -72,11 +72,11 @@ function Research() {
 
   const fetchData = useCallback(async () => {
     try {
-      const response = await axios.get("http://localhost:8092/api/user/research");
+      const response = await axios.get("http://localhost:8092/api/user/education");
       const data = response.data[0];
       const newOptions = data.map(item => ({
         ...item,
-        subtitles: item.researchActivitiesSubtitles.map(subtitle => ({
+        subtitles: item.innovativeEducationSubtitles.map(subtitle => ({
           id: subtitle.id,
           name: subtitle.name
         }))
@@ -149,6 +149,6 @@ function Research() {
       </div>
     </div>
   );
-}
+};
 
-export default Research;
+export default Education;
