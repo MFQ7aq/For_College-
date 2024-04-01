@@ -11,6 +11,7 @@ function Research() {
   const [options, setOptions] = useState([]);
   const [selectNames, setSelectNames] = useState([]);
   const [inputValues, setInputValues] = useState({});
+  const [sent, setSent] = useState("Отправить")
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
 
@@ -65,8 +66,10 @@ function Research() {
         }
       );
       console.log("Data sent successfully:", response.data);
+      setSent("Отправлено")
     } catch (error) {
       console.error("Error sending data:", error);
+      setSent("Ошибка")
     }
   };
 
@@ -142,7 +145,7 @@ function Research() {
             ))}
           </div>
           <button type="submit" onClick={sendDataToAPI} className="bnt__reg btn__green btn__link">
-            Отправить
+            {sent}
           </button>
           <button onClick={Back} className="btn__link btn__blue montherat">
             Назад
