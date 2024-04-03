@@ -173,9 +173,9 @@ function PrivateOffice() {
                   </select>
                   <p className="input__text-s bold">Email</p>
                   <input type="email" value={selectedValues.email} onChange={(e) => handleSelect('email', e.target.value)} className="input__office Montherat" />
+                  <button onClick={handleSubmit} className="btn__link btn__green-a montherat">Отправить</button>
+                  <button onClick={Back} className="btn__link btn__blue montherat">Назад</button>
                 </div>
-                <button onClick={handleSubmit} className="btn__link btn__green montherat">Отправить</button>
-                <button onClick={Back} className="btn__link btn__blue montherat">Назад</button>
               </>
             )}
           </div>
