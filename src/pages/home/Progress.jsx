@@ -111,7 +111,7 @@ function UserInfo() {
                     </option>
                   )}
                 </select>
-                <h2 className='Edu__text-S Edu__text-S-office'>ГОООООООС.Награды</h2>
+                <h2 className='Edu__text-S Edu__text-S-office'>Государственные награды</h2>
                 <div className="awards">
                   {stateAwards.map((award) => (
                     <div className="awards__block" key={award.id}>
