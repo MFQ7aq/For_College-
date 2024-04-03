@@ -88,6 +88,7 @@ function UserInfo() {
       <div className="private-office__main">
         <AccountConf />
         <div className="auth__contain-doble">
+          <h2 className='Edu__text-M Edu__text-M-office'>Личные достижения</h2>
           <label htmlFor="" className="auth__label">
             <form onSubmit={handleSubmit}>
               <div className="auth_auth">
@@ -110,6 +111,7 @@ function UserInfo() {
                     </option>
                   )}
                 </select>
+                <h2 className='Edu__text-S Edu__text-S-office'>ГОООООООС.Награды</h2>
                 <div className="awards">
                   {stateAwards.map((award) => (
                     <div className="awards__block" key={award.id}>

@@ -6,7 +6,6 @@ import Home from './pages/Home'
 import LPPS from './pages/home/LPPS'
 import Authorization from './pages/home/Authorization'
 import Registration from './pages/home/Registration'
-import AuthorizationPPS from './pages/home/AuthorizationPPS'
 import Questionnaire from './pages/home/Questionnaire'
 import Office from './pages/home/Office'
 import PrivateOffice from './pages/home/PrivateOffice'
@@ -25,6 +24,7 @@ import Progress from './pages/home/Progress'
 import Ural from './pages/home/Ural'
 import Education from './pages/home/Education'
 import Social from './pages/home/Social'
+import AdminPanel from './pages/home/AdminPanel'
 function App() {
   return (
     <Router>
@@ -50,11 +50,11 @@ function App() {
 				<Route path="*" element={<PageNotFound/>} />
         <Route element={<PrivateRoute />}>
           <Route path='/private_office' element={<PrivateOffice />} />
-          <Route path='/AuthorizationPPS' element={<AuthorizationPPS />} />
           <Route path='/Progress' element={<Progress />} />
           <Route path='/Ural' element={<Ural />} />
           <Route path='/Education' element={<Education />} />
           <Route path='/Social' element={<Social />} />
+          <Route path='/AdminPanel' element={<AdminPanel />} />
         </Route>
 			</Routes>
     </Router>

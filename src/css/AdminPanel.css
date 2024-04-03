@@ -1,0 +1,19 @@
+.search__label-admin {
+  display: flex;
+  align-items: center;
+  margin: 20px 0 10px 10px;
+}
+.admin-panel__main {
+  display: flex;
+  flex-direction: column;
+}
+.users {
+  width: 98%;
+  margin: 0 auto;
+}
+.user {
+  font-family: system-ui, 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: black;
+  padding: 4px;
+  font-size: 22px;
+}

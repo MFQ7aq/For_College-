@@ -111,6 +111,7 @@ function Research() {
       <div className="private-office__main">
         <AccountConf />
         <div className="auth__contain-doble">
+        <h2 className='Edu__text-M Edu__text-M-office'>Научно-исследовательская деятельность</h2>
           <div className="auth-auth-c">
             {options.map((optionGroup, optionIndex) => (
               <div className="custom-select-container" key={optionIndex}>

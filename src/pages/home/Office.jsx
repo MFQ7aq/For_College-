@@ -55,23 +55,23 @@ function PrivateOffice() {
           <h3 className="Edu__text-L">Личный кабинет</h3>
           <div className="office__in">
             <div className="form">
-              <p className="input__text-s">ФИО</p>
+              <p className="input__text-s bold">ФИО</p>
               <div className="input__office Montherat">
                 <p className="input__text-s">{userData.name}</p>
               </div>
-              <p className="input__text-s">Институт</p>
+              <p className="input__text-s bold">Институт</p>
               <div className="input__office Montherat">
                 <p className="input__text-s">{userData.institut}</p>
               </div>
-              <p className="input__text-s">Должность</p>
+              <p className="input__text-s bold">Должность</p>
               <div className="input__office Montherat">
                 <p className="input__text-s">{userData.position}</p>
               </div>
-              <p className="input__text-s">Штат/Совм.</p>
+              <p className="input__text-s bold">Штат/Совм.</p>
               <div className="input__office Montherat">
                 <p className="input__text-s">{userData.regular}</p>
               </div>
-              <p className="input__text-s">Email</p>
+              <p className="input__text-s bold">Email</p>
               <div className="input__office Montherat">
                 <p className="input__text-s">{userData.email}</p>
               </div>
