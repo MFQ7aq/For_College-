@@ -7,6 +7,7 @@
 }
 .account__config {
   background-color: #2C2670;
+  margin-top: 17px;
   padding: 0 0 12px 0;
   height: 100vh;
   width: 28%;
@@ -16,10 +17,11 @@
   border-radius: 100%;
   width: 200px;
   height: 200px;
-  margin: -75px auto 0 auto;
+  margin: 17px auto 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
+  /* box-shadow: 0px 0px 10px 20px rgba(255, 255, 255, .1) */
 }
 .avatar {
   width: 175px;
@@ -33,7 +35,7 @@
   font-family: system-ui, 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: 26px;
   font-weight: 500;
-  padding: 12.5px 0 6px 0;
+  padding: 12.5px 0 10px 0;
   text-align: center;
 }
 .config__list {
@@ -62,6 +64,9 @@
 .office h3 {
   display: block;
   margin: 0 0 8px 15px;
+}
+.office {
+  margin-top: 17px;
 }
 .office__in {
   display: flex;
@@ -115,12 +120,12 @@
   background-color: #16A767;
 }
 .header__menu {
-  margin: 0 0 0 20.5%;
-  height: 120px;
+  margin: 0 0 30px 0;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  width: 870px;
 }
 .head__item {
   text-align: center;
@@ -133,4 +138,16 @@
   text-decoration: none;
   color: white;
   font-size: small;
+}
+.head__item:first-child {
+  text-align: center;
+  justify-content: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 141.43px;
+  height: 60px;
+  text-decoration: none;
+  color: white;
+  font-size: small;
+  background-image: url(../img/Rectangle38.png);
 }

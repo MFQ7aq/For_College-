@@ -61,7 +61,7 @@ function PrivateOffice() {
           }
         });
         if (!resp.data.user === null)
-        setIsAuthenticated(true);
+          setIsAuthenticated(true);
       } catch (error) {
         setIsAuthenticated(false);
       }
@@ -71,18 +71,18 @@ function PrivateOffice() {
     userInfo();
     checkAuthentication();
   }, [token]);
-  
+
   const handleSelect = useCallback((field, value) => {
     setSelectedValues(prevValues => ({
       ...prevValues,
       [field]: value
     }));
   }, []);
-  
+
   const Back = useCallback(() => {
     navigate(-1);
   }, [navigate]);
-  
+
   const handleSubmit = useCallback((e) => {
     e.preventDefault();
     axios.post('http://localhost:8092/api/user/info/add', {
@@ -96,27 +96,25 @@ function PrivateOffice() {
         Authorization: `Bearer ${token}`
       }
     })
-    .then(function (response) {
-      console.log(response);
-      setIsAuthenticated(true)
-      window.location.reload()
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+      .then(function (response) {
+        console.log(response);
+        setIsAuthenticated(true)
+        window.location.reload()
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }, [selectedValues, token]);
 
   return (
     <div className="private-office-contents">
       <div className="header">
-        <NavBar/>
-        <div className="private-office-bg">
-          <RegNav/>
-        </div>
+        <NavBar />
       </div>
       <div className="private-office__main">
         <AccountConf />
         <div className="office">
+          <RegNav />
           <h3 className="Edu__text-M Edu__text-M-office">Личный данные</h3>
           <div className="office__in">
             {isAuthenticated ? (

@@ -104,14 +104,12 @@ function Research() {
     <div className="private-office-contents">
       <div className="header">
         <NavBar />
-        <div className="private-office-bg">
-          <RegNav />
-        </div>
       </div>
       <div className="private-office__main">
         <AccountConf />
         <div className="auth__contain-doble">
-        <h2 className='Edu__text-M Edu__text-M-office'>Научно-исследовательская деятельность</h2>
+          <RegNav />
+          <h2 className='Edu__text-M Edu__text-M-office'>Научно-исследовательская деятельность</h2>
           <div className="auth-auth-c">
             {options.map((optionGroup, optionIndex) => (
               <div className="custom-select-container" key={optionIndex}>
@@ -124,18 +122,18 @@ function Research() {
                       <div key={subtitleIndex} className="option">
                         <div onClick={() => handleOptionClick(optionIndex, subtitle)}>{subtitle.name}</div>
                         <div className="option__link">
-                        {inputValues[optionIndex]?.[subtitleIndex]?.map((value, inputIndex) => (
-                          <input
-                            key={inputIndex}
-                            type="text"
-                            value={value}
-                            onChange={(e) => {
-                              const newInputValues = { ...inputValues };
-                              newInputValues[optionIndex][subtitleIndex][inputIndex] = e.target.value;
-                              setInputValues(newInputValues);
-                            }}
-                          />
-                        ))}
+                          {inputValues[optionIndex]?.[subtitleIndex]?.map((value, inputIndex) => (
+                            <input
+                              key={inputIndex}
+                              type="text"
+                              value={value}
+                              onChange={(e) => {
+                                const newInputValues = { ...inputValues };
+                                newInputValues[optionIndex][subtitleIndex][inputIndex] = e.target.value;
+                                setInputValues(newInputValues);
+                              }}
+                            />
+                          ))}
                         </div>
                         <button onClick={() => addInput(optionIndex, subtitleIndex)} className='add__link'>Добавить</button>
                       </div>

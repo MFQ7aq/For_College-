@@ -25,6 +25,7 @@ import Ural from './pages/home/Ural'
 import Education from './pages/home/Education'
 import Social from './pages/home/Social'
 import AdminPanel from './pages/home/AdminPanel'
+import UserInfo from './pages/home/UserInfo'
 function App() {
   return (
     <Router>
@@ -55,6 +56,7 @@ function App() {
           <Route path='/Education' element={<Education />} />
           <Route path='/Social' element={<Social />} />
           <Route path='/AdminPanel' element={<AdminPanel />} />
+          <Route path="/user/:id" element={<UserInfo />} />
         </Route>
 			</Routes>
     </Router>

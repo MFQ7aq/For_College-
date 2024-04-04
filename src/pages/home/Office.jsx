@@ -1,33 +1,35 @@
 import { useCallback, useState, useEffect } from "react";
 import NavBar from "../../components/NavBar";
 import RegNav from "../../components/RegNav"
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import AccountConf from "../../components/AccountConf";
 
 function PrivateOffice() {
   const navigate = useNavigate();
   const { id } = useParams()
   const [userData, setUserData] = useState({
     name: '',
-    institut: '',
+    institutions: '',
     position: '',
     regular: '',
     email: ''
   });
-  
+
   useEffect(() => {
     const userInfo = async () => {
       try {
         const resp = await axios.get(`http://localhost:8092/api/user/us/${id}`);
-        const { name, institut, position, regular, email } = resp.data.id;
-        setUserData({ name, institut, position, regular, email });
+        const { name, institutions, position, regular, email } = resp.data.id;
+        setUserData({ name, institutions, position, regular, email });
+        console.log(institutions.name);
       } catch (error) {
         console.log(error);
       }
     };
 
-  userInfo();
+    userInfo();
   }, [id]);
 
   const Back = useCallback(() => {
@@ -37,21 +39,12 @@ function PrivateOffice() {
   return (
     <div className="private-office-contents">
       <div className="header">
-        <NavBar/>
-        <div className="private-office-bg">
-        <RegNav/>
-        </div>
+        <NavBar />
       </div>
       <div className="private-office__main">
-        <div className="account__config">
-          <div className="avatar__container"><div className="avatar"></div></div>
-          <h4 className="user__name">{userData.name}</h4>
-          <ul className="config__list">
-            <li className="config__items-li"><Link to="" className="config__items">Моя учётная запись</Link></li>
-            <li className="config__items-li"><Link to="/Authorization"  onClick={Back} className="config__items">Выйти</Link></li>
-          </ul>
-        </div>
+        <AccountConf />
         <div className="office">
+          <RegNav />
           <h3 className="Edu__text-L">Личный кабинет</h3>
           <div className="office__in">
             <div className="form">
@@ -61,7 +54,7 @@ function PrivateOffice() {
               </div>
               <p className="input__text-s bold">Институт</p>
               <div className="input__office Montherat">
-                <p className="input__text-s">{userData.institut}</p>
+                <p className="input__text-s">{userData.institutions.name}</p>
               </div>
               <p className="input__text-s bold">Должность</p>
               <div className="input__office Montherat">

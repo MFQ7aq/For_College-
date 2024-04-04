@@ -5,7 +5,7 @@ import RegNav from "../../components/RegNav"
 import { useNavigate } from "react-router-dom";
 import AccountConf from "../../components/AccountConf";
 
-function UserInfo() {
+function Prodress() {
   const token = localStorage.getItem("token")
   const navigate = useNavigate();
   const [degree, setDegree] = useState([]);
@@ -49,8 +49,8 @@ function UserInfo() {
   const handleSubmit = useCallback(async (e) => {
     e.preventDefault();
     const awards = {};
-    if (selectedValues.degree) { awards.a = { subId: Number(selectedValues.degree)} }
-    if (selectedValues.rank) { awards.b = { subId: Number(selectedValues.rank)} }
+    if (selectedValues.degree) { awards.a = { subId: Number(selectedValues.degree) } }
+    if (selectedValues.rank) { awards.b = { subId: Number(selectedValues.rank) } }
     stateAwards.forEach((award, index) => {
       const checkbox = document.querySelector(`input[name="${award.name}"]:checked`);
       const linkInput = document.querySelector(`input[name="${award.name}_link"]`);
@@ -82,12 +82,12 @@ function UserInfo() {
       <div className="header">
         <NavBar />
         <div className="private-office-bg">
-          <RegNav />
         </div>
       </div>
       <div className="private-office__main">
         <AccountConf />
         <div className="auth__contain-doble">
+          <RegNav />
           <h2 className='Edu__text-M Edu__text-M-office'>Личные достижения</h2>
           <label htmlFor="" className="auth__label">
             <form onSubmit={handleSubmit}>
@@ -134,4 +134,4 @@ function UserInfo() {
   );
 }
 
-export default UserInfo;
+export default Prodress;
