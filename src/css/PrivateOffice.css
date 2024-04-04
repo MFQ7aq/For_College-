@@ -121,6 +121,7 @@
 }
 .header__menu {
   margin: 0 0 30px 17px;
+  width: 848.58px;
   display: flex;
   flex-direction: row;
   align-items: center;
