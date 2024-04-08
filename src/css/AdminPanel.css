@@ -8,12 +8,37 @@
   flex-direction: column;
 }
 .users {
-  width: 98%;
+  width: 96%;
   margin: 0 auto;
 }
 .user {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
   font-family: system-ui, 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
   color: black;
   padding: 4px;
   font-size: 22px;
+  display: flex;
+  justify-content: space-between;
+}
+.custom-select {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.user__offences {
+  display: flex;
+  justify-content: space-between;
+}
+.options-container {
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+  width: 436px;
+  box-sizing: border-box;
+}
+.admin__btn {
+  width: 200px;
+  margin: 2px auto;
 }

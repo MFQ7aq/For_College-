@@ -23,7 +23,6 @@ function PrivateOffice() {
         const resp = await axios.get(`http://localhost:8092/api/user/us/${id}`);
         const { name, institutions, position, regular, email } = resp.data.id;
         setUserData({ name, institutions, position, regular, email });
-        console.log(institutions.name);
       } catch (error) {
         console.log(error);
       }

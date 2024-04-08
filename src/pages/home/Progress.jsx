@@ -8,6 +8,7 @@ import AccountConf from "../../components/AccountConf";
 function Prodress() {
   const token = localStorage.getItem("token")
   const navigate = useNavigate();
+  const [send, setSend] = useState("Отправить")
   const [degree, setDegree] = useState([]);
   const [rank, setRank] = useState([]);
   const [stateAwards, setStateAwards] = useState([]);
@@ -67,6 +68,7 @@ function Prodress() {
           Authorization: `Bearer ${token}`
         }
       });
+      setSend("Отправлено")
       console.log(awards);
     } catch (error) {
       console.error(error);
@@ -124,7 +126,7 @@ function Prodress() {
                   ))}
                 </div>
               </div>
-              <button className="bnt__reg btn__green btn__link" onClick={handleSubmit}>Отправить</button>
+              <button className="bnt__reg btn__green btn__link" onClick={handleSubmit}>{send}</button>
               <button onClick={Back} className="btn__link btn__blue montherat">Назад</button>
             </form>
           </label>
