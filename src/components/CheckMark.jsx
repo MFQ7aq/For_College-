@@ -32,7 +32,7 @@ export default function MultipleSelectCheckmarks({ data, value, onChange, links,
               {personName.indexOf(item.name) > -1 && (
                 <TextField
                   label="Ссылка"
-                  onClick={(e) => e.stopPropagation()} // Предотвращаем всплытие события
+                  onClick={(e) => e.stopPropagation()}
                   onChange={(e) => handleLinkChange(item.name, e.target.value)}
                   value={links[item.name] || ''}
                 />
