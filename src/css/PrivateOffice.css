@@ -9,7 +9,7 @@
   background-color: #2C2670;
   margin-top: 17px;
   padding: 0 0 12px 0;
-  height: 100vh;
+  height: revert-layer;
   width: 28%;
 }
 .avatar__container {
@@ -21,7 +21,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* box-shadow: 0px 0px 10px 20px rgba(255, 255, 255, .1) */
 }
 .avatar {
   width: 175px;
@@ -41,8 +40,7 @@
 .config__list {
   list-style: none;
   text-align: center;
-  margin: 0 auto;
-  display: table;
+  height: 100vh;
 }
 .config__items-li {
   padding: 12.5px 0 12.5px 0;

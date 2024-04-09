@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import NavBar from "../../components/NavBar";
 
@@ -23,37 +23,64 @@ function UserInfo() {
   }, [id]);
 
   return (
-    <div className="private-office-contents">
-      <div className="header">
-        <NavBar />
-      </div>
-      <div className="userData">
-        <h2 className="Edu__text-M">User Info</h2>
-        <p className="Edu__text-S">Name: {userData.userInfo && userData.userInfo.name}</p>
-        <p className="Edu__text-S">Institut: {userData.userInfo && userData.userInfo.institut}</p>
-        <p className="Edu__text-S">Position: {userData.userInfo && userData.userInfo.position}</p>
-        <p className="Edu__text-S">Regular: {userData.userInfo && userData.userInfo.regular}</p>
-        <p className="Edu__text-S">Email: {userData.userInfo && userData.userInfo.email}</p>
-        <h2 className="Edu__text-M">User Awards</h2>
-        {userData.userAwards &&
-          userData.userAwards.map((award) => (
-            <p className="Edu__text-S" key={award.id}>{award.name}</p>
-          ))}
-        <h2 className="Edu__text-M">User Research</h2>
-        {userData.userResearch &&
-          userData.userResearch.map((research) => (
-            <p className="Edu__text-S" key={research.id}>{research.name}</p>
-          ))}
-        <h2 className="Edu__text-M">User Innovative</h2>
-        {userData.userInnovative &&
-          userData.userInnovative.map((innovative) => (
-            <p className="Edu__text-S" key={innovative.id}>{innovative.name}</p>
-          ))}
-        <h2 className="Edu__text-M">User Social</h2>
-        {userData.userSocial &&
-          userData.userSocial.map((social) => (
-            <p className="Edu__text-S" key={social.id}>{social.name}</p>
-          ))}
+    <div className="сontents">
+      <div className="private-office-contents">
+        <div className="header">
+          <NavBar />
+        </div>
+        <div className="userData">
+          <div className="userInfo">
+            <div className="userInfo-right">
+              <p className="userInfo__name">ФИО: {userData.userInfo && userData.userInfo.name}</p>
+              <p className="userInfo__text">{userData.userInfo && userData.userInfo.institut}</p>
+              <p className="userInfo__text">{userData.userInfo && userData.userInfo.regular}</p>
+            </div>
+            <div className="userInfo-left">
+              <p className="userInfo__text">{userData.userInfo && userData.userInfo.position}</p>
+              <p className="userInfo__text">{userData.userInfo && userData.userInfo.email}</p>
+            </div>
+          </div>
+          <div className="userAwards bline">
+            <h2 className="userInfo__title">Личные достижения:</h2>
+            {userData.userAwards &&
+              userData.userAwards.map((award, i) => (
+                <div className="userInfo-in userInfo__text-S" key={award.id} style={{ backgroundColor: i % 2 == 0 ? '#0047FF4D' : '#33FF001A' }}>
+                  {award.name}
+                  <Link to={award.link}>Link</Link>
+                </div>
+              ))}
+          </div>
+          <div className="userResearch bline">
+            <h2 className="userInfo__title">Государственные награды:</h2>
+            {userData.userResearch &&
+              userData.userResearch.map((research, i) => (
+                <div className="userInfo-in userInfo__text-S" key={research.id} style={{ backgroundColor: i % 2 == 0 ? '#0047FF4D' : '#33FF001A' }}>
+                  {research.name}
+                  <Link to={research.link}>Link</Link>
+                </div>
+              ))}
+          </div>
+          <div className="userInnovative bline">
+            <h2 className="userInfo__title">Научно-исследовательсская деятельность:</h2>
+            {userData.userInnovative &&
+              userData.userInnovative.map((innovative, i) => (
+                <div className="userInfo-in userInfo__text-S" key={innovative.id} style={{ backgroundColor: i % 2 == 0 ? '#0047FF4D' : '#33FF001A' }}>
+                  {innovative.name}
+                  <Link to={innovative.link}>Link</Link>
+                </div>
+              ))}
+          </div>
+          <div className="userSocial bline">
+            <h2 className="userInfo__title">Инновационно-образовательная деятальность:</h2>
+            {userData.userSocial &&
+              userData.userSocial.map((social, i) => (
+                <div className="userInfo-in userInfo__text-S" key={social.id} style={{ backgroundColor: i % 2 == 0 ? '#0047FF4D' : '#33FF001A' }}>
+                  {social.name}
+                  <Link to={social.link}>Link</Link>
+                </div>
+              ))}
+          </div>
+        </div>
       </div>
     </div>
   );

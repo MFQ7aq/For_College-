@@ -41,3 +41,7 @@
   background-color: white;
   border: gray 1px solid;
 }
+.input__links {
+  display: flex;
+  flex-direction: column;
+}

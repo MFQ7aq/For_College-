@@ -6,7 +6,7 @@ function Kite() {
   return (
     <div className="сontents">
       <div className="header">
-        <NavBar/>
+        <NavBar />
       </div>
       <div className="main">
         <button className="btn" ><Link to="/" className="btn__link" >Инструкция по заполнению анкеты</Link></button>
@@ -34,7 +34,7 @@ function Kite() {
             <h6>383</h6>
           </div>
           <div className="row">
-            <Link to="/KITE/EiTD"  className="h6">Естественных и технических дисциплин</Link>
+            <Link to="/KITE/EiTD" className="h6">Естественных и технических дисциплин</Link>
           </div>
           <div className="row">
             <h6>186</h6>
@@ -43,7 +43,7 @@ function Kite() {
             <h6>186</h6>
           </div>
         </div>
-        <BackButton/>
+        <BackButton />
       </div>
     </div>
   )

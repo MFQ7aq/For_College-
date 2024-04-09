@@ -1,0 +1,54 @@
+.сontents {
+  height: 100%;
+  overflow: auto;
+  overflow-x: hidden;
+}
+.userData {
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+.userInfo {
+  display: flex;
+  justify-content: space-between;
+}
+.userInfo-in {
+  display: flex;
+  justify-content: space-between;
+}
+.userInfo__name {
+  color: #2C2670;
+  display: flex;
+  align-items: center;
+  font-family: system-ui, 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+}
+.userInfo__title {
+  color: #2C2670;
+  display: flex;
+  align-items: center;
+  font-family: system-ui, 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 27px;
+  font-weight: 700;
+}
+.userInfo__text {
+  color: black;
+  display: flex;
+  align-items: center;
+  font-family: system-ui, 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 27px;
+  font-weight: 700;
+}
+.userInfo__text-S {
+  color: black;
+  display: flex;
+  align-items: center;
+  font-family: system-ui, 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  margin: 10px 0 10px 0;
+}
+.bline {
+  border-bottom: #2C2670 2px solid;
+}
