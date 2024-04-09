@@ -8,11 +8,7 @@
   margin: 0 auto;
   margin-bottom: 20px;
 }
-.userInfo {
-  display: flex;
-  justify-content: space-between;
-}
-.userInfo-in {
+.userInfo, .userInfo-in  {
   display: flex;
   justify-content: space-between;
 }
