@@ -42,3 +42,20 @@
   width: 200px;
   margin: 2px auto;
 }
+.admin__link {
+  display: flex;
+  align-items: center;
+}
+.trash_can {
+  border: none;
+  width: 20px;
+  height: 25px;
+  background-color: rgba(0,0,0,0);
+  background-image: url(../img/trash_can.svg);
+  background-size: 20px 25px;
+  cursor: pointer;
+  margin: 0 10px;
+}
+@media screen {
+  
+}

@@ -24,8 +24,9 @@ import Progress from './pages/home/Progress'
 import Ural from './pages/home/Ural'
 import Education from './pages/home/Education'
 import Social from './pages/home/Social'
-import AdminPanel from './pages/home/AdminPanel'
+import Offence from './pages/home/Admin/Offence'
 import UserInfo from './pages/home/UserInfo'
+import UserInfoA from './pages/home/Admin/UserInfoA'
 function App() {
   return (
     <Router>
@@ -55,8 +56,9 @@ function App() {
           <Route path='/Ural' element={<Ural />} />
           <Route path='/Education' element={<Education />} />
           <Route path='/Social' element={<Social />} />
-          <Route path='/AdminPanel' element={<AdminPanel />} />
+          <Route path='/Offence' element={<Offence />} />
           <Route path="/user/:id" element={<UserInfo />} />
+          <Route path='/userAdmin/:id' element={<UserInfoA/>} />
         </Route>
 			</Routes>
     </Router>

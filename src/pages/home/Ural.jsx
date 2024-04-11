@@ -65,10 +65,10 @@ function Research() {
           }
         }
       );
-      console.log("Data sent successfully:", response.data);
+      console.log(response.data);
       setSent("Отправлено")
     } catch (error) {
-      console.error("Error sending data:", error);
+      console.error(error);
       setSent("Ошибка")
     }
   };

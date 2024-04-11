@@ -33,7 +33,7 @@ function Lpps() {
         </label>
         <div className="users">
           {users.map((user, i) => (
-            <div key={user.id} className="user" style={{ backgroundColor: i % 2 == 0 ? '#2c26701b' : '' }}>
+            <div key={user.id} className="user" style={{ backgroundColor: i % 2 == 0 ? '#0047FF4D' : '#33FF001A' }}>
               <Link to={`http://localhost:5173/user/${user.id}`}>{user.name}</Link>
             </div>
           ))}

@@ -8,7 +8,7 @@ const NavBar = () => {
       <Link to="/Ural" className="head__item Montherat">Научно-исследовательская деятельность</Link>
       <Link to="/Education" className="head__item Montherat">Инновационно-образовательная деятельность</Link>
       <Link to="/Social" className="head__item Montherat">Воспитательная, общественная деятельность</Link>
-      <Link to="/AdminPanel" className="head__item Montherat">Дополнительные данные</Link>
+      <Link to="/Offence" className="head__item Montherat">Дополнительные данные</Link>
     </div>  
   );
 }

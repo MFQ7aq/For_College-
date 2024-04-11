@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
-import NavBar from "../../components/NavBar";
+import NavBar from "../../../components/NavBar";
 import axios from "axios";
 
-function AdminPanel() {
+function Offence() {
   const [users, setUsers] = useState([]);
   const [selectedOptions, setSelectedOptions] = useState({});
   const [openStates, setOpenStates] = useState({});
@@ -57,9 +57,9 @@ function AdminPanel() {
       }
       const response = await axios.post("http://localhost:8092/api/admin/offence/add", formattedData);
       setSelectedOptions({});
-      console.log("Данные успешно отправлены:", response.data);
+      console.log(response.data);
     } catch (error) {
-      console.error("Ошибка при отправке данных:", error);
+      console.error(error);
     }
   };
 
@@ -117,4 +117,4 @@ function AdminPanel() {
   );
 }
 
-export default AdminPanel;
+export default Offence;
