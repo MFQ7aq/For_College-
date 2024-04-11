@@ -45,8 +45,10 @@ function UserInfo() {
             {userData.userAwards &&
               userData.userAwards.map((award, i) => (
                 <div className="userInfo-in userInfo__text-S" key={award.id} style={{ backgroundColor: i % 2 == 0 ? '#0047FF4D' : '#33FF001A' }}>
-                  {award.name}
-                  <Link to={award.link}>Link</Link>
+                  <p className="userInfo-in-text">{award.name}</p>
+                  <div className="admin__link">
+                    <Link to={award.link}>Link</Link>
+                  </div>
                 </div>
               ))}
           </div>
@@ -55,8 +57,10 @@ function UserInfo() {
             {userData.userResearch &&
               userData.userResearch.map((research, i) => (
                 <div className="userInfo-in userInfo__text-S" key={research.id} style={{ backgroundColor: i % 2 == 0 ? '#0047FF4D' : '#33FF001A' }}>
-                  {research.name}
-                  <Link to={research.link}>Link</Link>
+                  <p className="userInfo-in-text">{research.name}</p>
+                  <div className="admin__link">
+                    <Link to={research.link}>Link</Link>
+                  </div>
                 </div>
               ))}
           </div>
@@ -65,8 +69,10 @@ function UserInfo() {
             {userData.userInnovative &&
               userData.userInnovative.map((innovative, i) => (
                 <div className="userInfo-in userInfo__text-S" key={innovative.id} style={{ backgroundColor: i % 2 == 0 ? '#0047FF4D' : '#33FF001A' }}>
-                  {innovative.name}
-                  <Link to={innovative.link}>Link</Link>
+                  <p className="userInfo-in-text">{innovative.name}</p>
+                  <div className="admin__link">
+                    <Link to={innovative.link}>Link</Link>
+                  </div>
                 </div>
               ))}
           </div>
@@ -75,8 +81,10 @@ function UserInfo() {
             {userData.userSocial &&
               userData.userSocial.map((social, i) => (
                 <div className="userInfo-in userInfo__text-S" key={social.id} style={{ backgroundColor: i % 2 == 0 ? '#0047FF4D' : '#33FF001A' }}>
-                  {social.name}
-                  <Link to={social.link}>Link</Link>
+                  <p className="userInfo-in-text">{social.name}</p>
+                  <div className="admin__link">
+                    <Link to={social.link}>Link</Link>
+                  </div>
                 </div>
               ))}
           </div>
@@ -85,5 +93,6 @@ function UserInfo() {
     </div>
   );
 }
+
 
 export default UserInfo;
