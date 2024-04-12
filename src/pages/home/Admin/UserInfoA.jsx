@@ -46,10 +46,15 @@ function UserInfoA() {
               userData.userAwards.map((award, i) => (
                 <div className="userInfo-in userInfo__text-S" key={award.id} style={{ backgroundColor: i % 2 == 0 ? '#0047FF4D' : '#33FF001A' }}>
                   <p className="userInfo-in-text">{award.name}</p>
-                  <div className="admin__link">
-                    <Link to={award.link}>Link</Link>
-                    <button className="trash_can"></button>
-                  </div>
+                  {award.link != "Нет ссылки" ?
+                    (
+                      <div className="admin__link">
+                        <Link to={award.link}>Link</Link>
+                        <button className="trash_can"></button>
+                      </div>
+                    ) : (
+                      <></>
+                    )}
                 </div>
               ))}
           </div>
