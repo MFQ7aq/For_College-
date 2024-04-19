@@ -180,6 +180,7 @@
   font-size: 16px;
   color: #2C2670;
   margin-top: 15px;
+  outline: none;
 }
 .auth_auth {
   display: flex;

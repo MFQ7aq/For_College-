@@ -80,13 +80,17 @@
   box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.1);
   outline: none;
   margin: 5px 0 5px 0;
+  border: 1px solid blue;
+  border-radius: 10px;
+}
+.input__office>.input__text-s{
+  padding: 10px;
 }
 .input__text-s {
   color: #2C2670;
   font-family: system-ui, 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: 16px;
   font-style: normal;
-  font-weight: 1200;
   line-height: normal;
 }
 .btn__office {
