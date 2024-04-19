@@ -22,6 +22,16 @@ function UserInfoA() {
     fetchUserData();
   }, [id]);
 
+  const handleFreezeAccount = async (id, stage) => {
+    try {
+      const resp = await axios.put(`http://localhost:8092/api/admin/${stage}/freeze/${id}`);
+      console.log(resp);
+      location.reload();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="сontents">
       <div className="private-office-contents">
@@ -45,12 +55,12 @@ function UserInfoA() {
             {userData.userAwards &&
               userData.userAwards.map((award, i) => (
                 <div className="userInfo-in userInfo__text-S" key={award.id} style={{ backgroundColor: i % 2 == 0 ? '#0047FF4D' : '#33FF001A' }}>
-                  <p className="userInfo-in-text">{award.name}</p>
+                  <p className={`userInfo-in-text ${award.status === 'freeze' ? 'crossed-out' : ''}`}>{award.name}</p>
                   {award.link != "Нет ссылки" ?
                     (
                       <div className="admin__link">
                         <Link to={award.link}>Link</Link>
-                        <button className="trash_can"></button>
+                        <button className="trash_can" onClick={() => handleFreezeAccount(award.id, award.stage)}></button>
                       </div>
                     ) : (
                       <></>
@@ -59,40 +69,40 @@ function UserInfoA() {
               ))}
           </div>
           <div className="userResearch bline">
-            <h2 className="userInfo__title">Государственные награды:</h2>
+            <h2 className="userInfo__title">Научно-исследовательская деятельность:</h2>
             {userData.userResearch &&
               userData.userResearch.map((research, i) => (
                 <div className="userInfo-in userInfo__text-S" key={research.id} style={{ backgroundColor: i % 2 == 0 ? '#0047FF4D' : '#33FF001A' }}>
-                  <p className="userInfo-in-text">{research.name}</p>
+                  <p className={`userInfo-in-text ${research.status === 'freeze' ? 'crossed-out' : ''}`}>{research.name}</p>
                   <div className="admin__link">
                     <Link to={research.link}>Link</Link>
-                    <button className="trash_can"></button>
+                    <button className="trash_can" onClick={() => handleFreezeAccount(research.id, research.stage)}></button>
                   </div>
                 </div>
               ))}
           </div>
           <div className="userInnovative bline">
-            <h2 className="userInfo__title">Научно-исследовательсская деятельность:</h2>
+            <h2 className="userInfo__title">Инновационно-образовательная деятельность:</h2>
             {userData.userInnovative &&
               userData.userInnovative.map((innovative, i) => (
                 <div className="userInfo-in userInfo__text-S" key={innovative.id} style={{ backgroundColor: i % 2 == 0 ? '#0047FF4D' : '#33FF001A' }}>
-                  <p className="userInfo-in-text">{innovative.name}</p>
+                  <p className={`userInfo-in-text ${innovative.status === 'freeze' ? 'crossed-out' : ''}`}>{innovative.name}</p>
                   <div className="admin__link">
                     <Link to={innovative.link}>Link</Link>
-                    <button className="trash_can"></button>
+                    <button className="trash_can" onClick={() => handleFreezeAccount(innovative.id, innovative.stage)}></button>
                   </div>
                 </div>
               ))}
           </div>
           <div className="userSocial bline">
-            <h2 className="userInfo__title">Инновационно-образовательная деятальность:</h2>
+            <h2 className="userInfo__title">Воспитательная, общественная деятельность:</h2>
             {userData.userSocial &&
               userData.userSocial.map((social, i) => (
                 <div className="userInfo-in userInfo__text-S" key={social.id} style={{ backgroundColor: i % 2 == 0 ? '#0047FF4D' : '#33FF001A' }}>
-                  <p className="userInfo-in-text">{social.name}</p>
+                  <p className={`userInfo-in-text ${social.status === 'freeze' ? 'crossed-out' : ''}`}>{social.name}</p>
                   <div className="admin__link">
                     <Link to={social.link}>Link</Link>
-                    <button className="trash_can"></button>
+                    <button className="trash_can" onClick={() => handleFreezeAccount(social.id, social.stage)}></button>
                   </div>
                 </div>
               ))}

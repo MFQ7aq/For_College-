@@ -56,3 +56,6 @@
   cursor: pointer;
   margin: 0 10px;
 }
+.crossed-out {
+  text-decoration: line-through;
+}

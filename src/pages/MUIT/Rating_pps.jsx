@@ -11,8 +11,8 @@ function Rating_pps() {
     const userInfo = async () => {
       try {
         const resp = await axios.get('http://localhost:8092/api/rating/pps');
-        setUserData(resp.data.pps);
-        console.log(resp)
+        setUserData(Object.values(resp.data.pps));
+        console.log(resp.data.pps);
       } catch (error) {
         console.log(error);
       }
@@ -42,11 +42,10 @@ function Rating_pps() {
               <th>ФИО</th>
               <th>Институты</th>
               <th>I.Личные достижения</th>
-              <th>II. Научно-исследовательская и инновационная деятельность</th>
-              <th>III. Учебная и методическая работа</th>
-              <th>IV. Участие в мероприятиях, повышающих имидж МУИТ</th>
-              <th>V. Электронная загрузка материалов в MOODLE</th>
-              <th>Итого (Анкеты)</th>
+              <th>II. Научно-исследовательская деятельность</th>
+              <th>III. Инновационно-образовательная деятельность</th>
+              <th>IV. Воспитательная, общественная деятельность</th>
+              <th>Итого</th>
             </tr>
           </thead>
           <tbody>
@@ -54,13 +53,12 @@ function Rating_pps() {
             <tr key={data.id}>
               <td>{data.id}</td>
               <td><Link to={`http://localhost:5173/Office/${data.id}`}>{data.name}</Link></td>
-              <td>{data.institut}</td>
-              <td>{data.total}</td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td>{data.total}</td>
+              <td>{data.institute}</td>
+              <td>{data.awardPoints}</td>
+              <td>{data.researchPoints}</td>
+              <td>{data.innovativePoints}</td>
+              <td>{data.socialPoints}</td>
+              <td>{data.sum}</td>
             </tr>
           ))}
           </tbody>

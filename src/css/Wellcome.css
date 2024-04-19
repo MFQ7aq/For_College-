@@ -30,3 +30,8 @@ html, body {
   font-weight: 700;
   line-height: normal;
 }
+.сontents {
+  height: 100%;
+  overflow: auto;
+  overflow-x: hidden;
+}
