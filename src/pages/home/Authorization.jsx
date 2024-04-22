@@ -52,7 +52,7 @@ function Authorization() {
               <input type="text" className={'auth__input Montherat'} value={name} onChange={e => setName(e.target.value)} placeholder="Логин" />
               <p className="input__text Montherat">Пароль</p>
               <input type="password" autoComplete="on" className={'auth__input Montherat'} value={password} onChange={e => setPassword(e.target.value)} placeholder="Пароль" />
-              {error && <p className="input__text Montherat">Не правильный логин или пароль</p>}
+              {error && <p className="input__text Montherat">Неправильный логин или пароль</p>}
             </form>
             {isLoggedIn ? (
               <>
