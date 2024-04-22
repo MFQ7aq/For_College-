@@ -1,10 +1,11 @@
 import { useCallback, useEffect, useState } from "react";
-import NavBar from "../../components/NavBar"
+import NavBar from "../../components/NavBar";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
 function Lpps() {
   const [users, setUsers] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const fetchData = useCallback(async () => {
     try {
@@ -14,12 +15,19 @@ function Lpps() {
     } catch (error) {
       console.log(error);
     }
-    
   }, []);
 
   useEffect(() => {
     fetchData();
   }, [fetchData]);
+
+  const handleSearchInputChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+  const filteredUsers = users.filter((user) =>
+    user.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <div className="private-office-contents">
@@ -28,12 +36,25 @@ function Lpps() {
       </div>
       <div className="admin-panel__main">
         <label htmlFor="" className="search__label-admin">
-          <input type="text" className="search__input" />
-          <div className="search__btn"><div className="search__btn-in"></div></div>
+          <input
+            type="text"
+            className="search__input Montherat"
+            value={searchQuery}
+            onChange={handleSearchInputChange}
+          />
+          <div className="search__btn">
+            <div className="search__btn-in"></div>
+          </div>
         </label>
         <div className="users">
-          {users.map((user, i) => (
-            <div key={user.id} className="user" style={{ backgroundColor: i % 2 == 0 ? '#0047FF4D' : '#33FF001A' }}>
+          {filteredUsers.map((user, i) => (
+            <div
+              key={user.id}
+              className="user"
+              style={{
+                backgroundColor: i % 2 === 0 ? "#0047FF4D" : "#33FF001A",
+              }}
+            >
               <Link to={`http://localhost:5173/user/${user.id}`}>{user.name}</Link>
             </div>
           ))}
@@ -42,4 +63,5 @@ function Lpps() {
     </div>
   );
 }
-export default Lpps
+
+export default Lpps;

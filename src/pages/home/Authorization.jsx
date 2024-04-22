@@ -7,6 +7,7 @@ function Authorization() {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token'));
+  const [error, setError] = useState(false);
   const navigate = useNavigate()
 
   const handleLogin = useCallback((e) => {
@@ -15,16 +16,17 @@ function Authorization() {
       "username": name,
       "password": password,
     })
-    .then(function (response) {
-      if (response.status >= 200 && response.status <= 204) {
-        localStorage.setItem('token', response.data.token);
-        navigate("/private_office")
-        setIsLoggedIn(true);
-      }
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+      .then(function (response) {
+        if (response.status >= 200 && response.status <= 204) {
+          localStorage.setItem('token', response.data.token);
+          navigate("/private_office")
+          setIsLoggedIn(true);
+        }
+      })
+      .catch(function (error) {
+        setError(true);
+        console.log(error);
+      });
   }, [name, navigate, password]);
 
   const handleLogout = useCallback(() => {
@@ -39,39 +41,34 @@ function Authorization() {
   return (
     <div className="сontents">
       <div className="header">
-        <NavBar/>
+        <NavBar />
       </div>
       <div className="main">
         <div className="title__contain"><h2 className="Edu__text-L center">Авторизация</h2></div>
         <div className="auth__contain">
           <label htmlFor="" className="auth__label">
+            <form onSubmit={handleLogin}>
+              <p className="input__text Montherat">Логин</p>
+              <input type="text" className={'auth__input Montherat'} value={name} onChange={e => setName(e.target.value)} placeholder="Логин" />
+              <p className="input__text Montherat">Пароль</p>
+              <input type="password" autoComplete="on" className={'auth__input Montherat'} value={password} onChange={e => setPassword(e.target.value)} placeholder="Пароль" />
+              {error && <p className="input__text Montherat">Не правильный логин или пароль</p>}
+            </form>
             {isLoggedIn ? (
               <>
-                <form>
-                  <p className="input__text Montherat">Логин</p>
-                  <input type="text" className="auth__input Montherat" value={name} onChange={e => setName(e.target.value)} placeholder="Логин" />
-                  <p className="input__text Montherat">Пароль</p>
-                  <input type="password" autoComplete="on" className="auth__input Montherat" value={password} onChange={e => setPassword(e.target.value)} placeholder="Пароль" />
-                </form>
                 <div className="auth__btn-center">
                   <button onClick={handleLogout} className="bnt__log Edu__text-S">Выйти</button>
                 </div>
               </>
             ) : (
-              <form onSubmit={handleLogin}>
-                <p className="input__text Montherat">Логин</p>
-                <input type="text" className="auth__input Montherat" value={name} onChange={e => setName(e.target.value)} placeholder="Логин" />
-                <p className="input__text Montherat">Пароль</p>
-                <input type="password" autoComplete="on" className="auth__input Montherat" value={password} onChange={e => setPassword(e.target.value)} placeholder="Пароль" />
-              </form>
+              <>
+                <div className="auth__btn">
+                  <button onClick={handleLogin} className="bnt__log Edu__text-S">Войти</button>
+                  <Link to="/Registration" className="bnt__reg Edu__text-S link_btn">Регистрация</Link>
+                </div>
+              </>
             )}
           </label>
-          {!isLoggedIn && (
-            <div className="auth__btn">
-              <button onClick={handleLogin} className="bnt__log Edu__text-S">Войти</button>
-              <Link to="/Registration" className="bnt__reg Edu__text-S link_btn">Регистрация</Link>
-            </div>
-          )}
         </div>
       </div>
     </div>

@@ -130,7 +130,8 @@
   border-radius: 40px 0 0 40px;
   padding: 5px 10px 5px 10px;
   box-sizing: border-box;
-  outline: none
+  outline: none;
+  font-size: 20px;
 }
 .search__input-rating {
   width: 300px;
