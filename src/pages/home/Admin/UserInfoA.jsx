@@ -6,7 +6,8 @@ import NavBar from "../../../components/NavBar";
 function UserInfoA() {
   const { id } = useParams();
   const [userData, setUserData] = useState({});
-  const [selected, setSelected] = useState([]);
+  const [selectedItems, setSelectedItems] = useState([]);
+  const [selectedStage, setSelectedStage] = useState('');
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -14,7 +15,6 @@ function UserInfoA() {
         const resp = await axios.get(`http://localhost:8092/api/user/account/${id}`);
         const data = resp.data;
         setUserData(data);
-        console.log(data);
       } catch (error) {
         console.log(error);
       }
@@ -23,20 +23,19 @@ function UserInfoA() {
     fetchUserData();
   }, [id]);
 
-  const toggleSelected = (id) => {
-    if (selected.includes(id)) {
-      setSelected(selected.filter((awardId) => awardId !== id));
+  const toggleItemSelection = (itemId, stage) => {
+    const isSelected = selectedItems.includes(itemId);
+    if (isSelected) {
+      setSelectedItems(selectedItems.filter(item => item !== itemId));
     } else {
-      setSelected([...selected, id]);
+      setSelectedItems([...selectedItems, itemId]);
     }
+    setSelectedStage(stage);
   };
 
   const handleFreezeSelected = async () => {
     try {
-      const resp = await axios.put(`http://localhost:8092/api/admin/freeze`, {
-        ids: selected,
-      });
-      console.log(resp);
+      await axios.put(`http://localhost:8092/api/admin/${selectedStage}/freeze`, { ids: selectedItems });
       location.reload();
     } catch (error) {
       console.log(error);
@@ -51,15 +50,11 @@ function UserInfoA() {
         </div>
         <div className="userData">
           <div className="userInfo">
-            <div className="userInfo-right">
-              <p className="userInfo__name">ФИО: {userData.userInfo && userData.userInfo.name}</p>
-              <p className="userInfo__text">{userData.userInfo && userData.userInfo.institut}</p>
-              <p className="userInfo__text">{userData.userInfo && userData.userInfo.regular}</p>
-            </div>
-            <div className="userInfo-left">
-              <p className="userInfo__text">{userData.userInfo && userData.userInfo.position}</p>
-              <p className="userInfo__text">{userData.userInfo && userData.userInfo.email}</p>
-            </div>
+            <p className="userInfo__name">ФИО: {userData.userInfo && userData.userInfo.name}</p>
+            <p className="userInfo__text">{userData.userInfo && userData.userInfo.institut}</p>
+            <p className="userInfo__text">{userData.userInfo && userData.userInfo.regular}</p>
+            <p className="userInfo__text">{userData.userInfo && userData.userInfo.position}</p>
+            <p className="userInfo__text">{userData.userInfo && userData.userInfo.email}</p>
           </div>
           <div className="userAwards bline">
             <h2 className="userInfo__title">Личные достижения:</h2>
@@ -67,19 +62,14 @@ function UserInfoA() {
               userData.userAwards.map((award, i) => (
                 <div className="userInfo-in userInfo__text-S" key={award.id} style={{ backgroundColor: i % 2 == 0 ? '#0047FF4D' : '#33FF001A' }}>
                   <p className={`userInfo-in-text ${award.status === 'freeze' ? 'crossed-out' : ''}`}>{award.name}</p>
-                  {award.link != "Нет ссылки" ?
-                    (
-                      <div className="admin__link">
-                        <Link to={award.link}>Link</Link>
-                        <input
-                          type="checkbox"
-                          checked={selected.includes(award.id)}
-                          onChange={() => toggleSelected(award.id)}
-                        />
-                      </div>
-                    ) : (
-                      <></>
-                    )}
+                  <div className="admin__link">
+                    <Link to={award.link}>Link</Link>
+                    <input
+                      type="checkbox"
+                      checked={selectedItems.includes(award.id)}
+                      onChange={() => toggleItemSelection(award.id, award.stage)}
+                    />
+                  </div>
                 </div>
               ))}
           </div>
@@ -93,8 +83,8 @@ function UserInfoA() {
                     <Link to={research.link}>Link</Link>
                     <input
                       type="checkbox"
-                      checked={selected.includes(research.id)}
-                      onChange={() => toggleSelected(research.id)}
+                      checked={selectedItems.includes(research.id)}
+                      onChange={() => toggleItemSelection(research.id, research.stage)}
                     />
                   </div>
                 </div>
@@ -110,8 +100,8 @@ function UserInfoA() {
                     <Link to={innovative.link}>Link</Link>
                     <input
                       type="checkbox"
-                      checked={selected.includes(innovative.id)}
-                      onChange={() => toggleSelected(innovative.id)}
+                      checked={selectedItems.includes(innovative.id)}
+                      onChange={() => toggleItemSelection(innovative.id, innovative.stage)}
                     />
                   </div>
                 </div>
@@ -127,16 +117,14 @@ function UserInfoA() {
                     <Link to={social.link}>Link</Link>
                     <input
                       type="checkbox"
-                      checked={selected.includes(social.id)}
-                      onChange={() => toggleSelected(social.id)}
+                      checked={selectedItems.includes(social.id)}
+                      onChange={() => toggleItemSelection(social.id, social.stage)}
                     />
                   </div>
                 </div>
               ))}
           </div>
-          <button className="btn__link" onClick={handleFreezeSelected}>
-            Заморозить
-          </button>
+          <button className="bnt__log" onClick={handleFreezeSelected}>Заморозить</button>
         </div>
       </div>
     </div>
