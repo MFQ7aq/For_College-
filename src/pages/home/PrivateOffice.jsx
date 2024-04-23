@@ -24,52 +24,44 @@ function PrivateOffice() {
     post: '',
     email: ''
   });
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isRole, setIsRole] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:8092/api/user/info');
-        const { institutes, position } = response.data;
-        setInst(institutes);
-        setPost(position);
-      } catch (error) {
-        console.log(error);
-      }
-    };
+        const [userInfoResponse, institutesResponse] = await Promise.all([
+          axios.get('http://localhost:8092/api/user/name', {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          }),
+          axios.get('http://localhost:8092/api/user/info')
+        ]);
 
-    const userInfo = async () => {
-      try {
-        const resp = await axios.get('http://localhost:8092/api/user/name', {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        });
-        const { name, institut, position, regular, email } = resp.data.user;
+        const { name, institut, position, regular, email } = userInfoResponse.data.user;
         setUserData({ name, institut, position, regular, email });
-        setIsAuthenticated(true);
+        const { institutes, position: userPosition } = institutesResponse.data;
+        setInst(institutes);
+        setPost(userPosition);
       } catch (error) {
         console.log(error);
       }
     };
 
-    const checkAuthentication = async () => {
+    const isRole = async () => {
       try {
-        const resp = await axios.get('http://localhost:8092/api/user/name', {
+        const response = await axios.get("http://localhost:8092/api/get/role", {
           headers: {
             Authorization: `Bearer ${token}`
           }
         });
-        if (!resp.data.user === null)
-          setIsAuthenticated(true);
+        setIsRole(response.data.role)
       } catch (error) {
-        setIsAuthenticated(false);
+        console.error(error);
       }
-    };
+    }
 
     fetchData();
-    userInfo();
-    checkAuthentication();
   }, [token]);
 
   const handleSelect = useCallback((field, value) => {
@@ -98,7 +90,6 @@ function PrivateOffice() {
     })
       .then(function (response) {
         console.log(response);
-        setIsAuthenticated(true)
         window.location.reload()
       })
       .catch(function (error) {
@@ -117,7 +108,7 @@ function PrivateOffice() {
           <RegNav />
           <h3 className="Edu__text-M Edu__text-M-office">Личный данные</h3>
           <div className="office__in">
-            {isAuthenticated ? (
+            {isRole ? (
               <>
                 <div className="form">
                   <p className="input__text-s bold">ФИО</p>

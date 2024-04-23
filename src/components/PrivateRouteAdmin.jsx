@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 
-const PrivateRoute = () => {
+const PrivateRouteAdmin = () => {
   const token = localStorage.getItem('token');
   const [userRole, setUserRole] = useState(null);
 
@@ -28,7 +28,7 @@ const PrivateRoute = () => {
     }
   }, [token]);
 
-  if (userRole === 'user') {
+  if (userRole === 'admin') {
     return <Outlet />;
   } else if (userRole === null) {
     return <div className="Edu__text-L center">Loading...</div>;
@@ -37,4 +37,4 @@ const PrivateRoute = () => {
   }
 };
 
-export default PrivateRoute;
+export default PrivateRouteAdmin;

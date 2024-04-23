@@ -27,40 +27,44 @@ import Social from './pages/home/Social'
 import Offence from './pages/home/Admin/Offence'
 import UserInfo from './pages/home/UserInfo'
 import UserInfoA from './pages/home/Admin/UserInfoA'
+import PrivateRouteAdmin from './components/PrivateRouteAdmin'
+
 function App() {
   return (
     <Router>
-			<Routes>
-				<Route path='/' element={<Wellcome />}/>
-        <Route path='/home' element={<Home />}/>
+      <Routes>
+        <Route path='/' element={<Wellcome />} />
+        <Route path='/home' element={<Home />} />
         <Route path='/LPPS' element={<LPPS />} />
         <Route path='/Authorization' element={<Authorization />} />
-        <Route path='/Registration' element={<Registration/>} />
+        <Route path='/Registration' element={<Registration />} />
         <Route path='/Questionnaire' element={<Questionnaire />} />
         <Route path="/Office/:id" element={<Office />} />
-        <Route path='/MUIT' element={<Muit />}/>
+        <Route path='/MUIT' element={<Muit />} />
         <Route path='/MUIT/rating_pred' element={<Rating_pred />} />
         <Route path='/MUIT/rating_inst' element={<Rating_inst />} />
         <Route path='/MUIT/rating_pps-un' element={<Rating_pps />} />
         <Route path='/MUIT/rating_inst-un' element={<Rating_inst_un />} />
-        <Route path='/COMTEHNO' element={<Comteh />}/>
-        <Route path='/COMTEHNO/IVTD' element={<Ivtd />}/>
-        <Route path='/COMTEHNO/EUBD' element={<Eubd />}/>
-        <Route path='/KITE' element={<Kite />}/>
+        <Route path='/COMTEHNO' element={<Comteh />} />
+        <Route path='/COMTEHNO/IVTD' element={<Ivtd />} />
+        <Route path='/COMTEHNO/EUBD' element={<Eubd />} />
+        <Route path='/KITE' element={<Kite />} />
         <Route path='/KITE/GiED' element={<GiED />} />
         <Route path='/KITE/EiTD' element={<EiTD />} />
-				<Route path="*" element={<PageNotFound/>} />
+        <Route path="*" element={<PageNotFound />} />
         <Route element={<PrivateRoute />}>
           <Route path='/private_office' element={<PrivateOffice />} />
           <Route path='/Progress' element={<Progress />} />
           <Route path='/Ural' element={<Ural />} />
           <Route path='/Education' element={<Education />} />
           <Route path='/Social' element={<Social />} />
-          <Route path='/Offence' element={<Offence />} />
           <Route path="/user/:id" element={<UserInfo />} />
-          <Route path='/userAdmin/:id' element={<UserInfoA/>} />
         </Route>
-			</Routes>
+        <Route element={<PrivateRouteAdmin />}>
+          <Route path='/userAdmin/:id' element={<UserInfoA />} />
+          <Route path='/Offence' element={<Offence />} />
+        </Route>
+      </Routes>
     </Router>
   )
 }
