@@ -6,6 +6,7 @@ import NavBar from "../../../components/NavBar";
 function UserInfoA() {
   const { id } = useParams();
   const [userData, setUserData] = useState({});
+  const [selected, setSelected] = useState([]);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -22,9 +23,19 @@ function UserInfoA() {
     fetchUserData();
   }, [id]);
 
-  const handleFreezeAccount = async (id, stage) => {
+  const toggleSelected = (id) => {
+    if (selected.includes(id)) {
+      setSelected(selected.filter((awardId) => awardId !== id));
+    } else {
+      setSelected([...selected, id]);
+    }
+  };
+
+  const handleFreezeSelected = async () => {
     try {
-      const resp = await axios.put(`http://localhost:8092/api/admin/${stage}/freeze/${id}`);
+      const resp = await axios.put(`http://localhost:8092/api/admin/freeze`, {
+        ids: selected,
+      });
       console.log(resp);
       location.reload();
     } catch (error) {
@@ -60,7 +71,11 @@ function UserInfoA() {
                     (
                       <div className="admin__link">
                         <Link to={award.link}>Link</Link>
-                        <button className="trash_can" onClick={() => handleFreezeAccount(award.id, award.stage)}></button>
+                        <input
+                          type="checkbox"
+                          checked={selected.includes(award.id)}
+                          onChange={() => toggleSelected(award.id)}
+                        />
                       </div>
                     ) : (
                       <></>
@@ -76,7 +91,11 @@ function UserInfoA() {
                   <p className={`userInfo-in-text ${research.status === 'freeze' ? 'crossed-out' : ''}`}>{research.name}</p>
                   <div className="admin__link">
                     <Link to={research.link}>Link</Link>
-                    <button className="trash_can" onClick={() => handleFreezeAccount(research.id, research.stage)}></button>
+                    <input
+                      type="checkbox"
+                      checked={selected.includes(research.id)}
+                      onChange={() => toggleSelected(research.id)}
+                    />
                   </div>
                 </div>
               ))}
@@ -89,7 +108,11 @@ function UserInfoA() {
                   <p className={`userInfo-in-text ${innovative.status === 'freeze' ? 'crossed-out' : ''}`}>{innovative.name}</p>
                   <div className="admin__link">
                     <Link to={innovative.link}>Link</Link>
-                    <button className="trash_can" onClick={() => handleFreezeAccount(innovative.id, innovative.stage)}></button>
+                    <input
+                      type="checkbox"
+                      checked={selected.includes(innovative.id)}
+                      onChange={() => toggleSelected(innovative.id)}
+                    />
                   </div>
                 </div>
               ))}
@@ -102,11 +125,18 @@ function UserInfoA() {
                   <p className={`userInfo-in-text ${social.status === 'freeze' ? 'crossed-out' : ''}`}>{social.name}</p>
                   <div className="admin__link">
                     <Link to={social.link}>Link</Link>
-                    <button className="trash_can" onClick={() => handleFreezeAccount(social.id, social.stage)}></button>
+                    <input
+                      type="checkbox"
+                      checked={selected.includes(social.id)}
+                      onChange={() => toggleSelected(social.id)}
+                    />
                   </div>
                 </div>
               ))}
           </div>
+          <button className="btn__link" onClick={handleFreezeSelected}>
+            Заморозить
+          </button>
         </div>
       </div>
     </div>
