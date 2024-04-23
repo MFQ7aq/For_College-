@@ -24,7 +24,7 @@ function PrivateOffice() {
     post: '',
     email: ''
   });
-  const [isRole, setIsRole] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,29 +37,17 @@ function PrivateOffice() {
           }),
           axios.get('http://localhost:8092/api/user/info')
         ]);
-
         const { name, institut, position, regular, email } = userInfoResponse.data.user;
         setUserData({ name, institut, position, regular, email });
         const { institutes, position: userPosition } = institutesResponse.data;
         setInst(institutes);
         setPost(userPosition);
+        setIsAuthenticated(true);
       } catch (error) {
         console.log(error);
+        setIsAuthenticated(false);
       }
     };
-
-    const isRole = async () => {
-      try {
-        const response = await axios.get("http://localhost:8092/api/get/role", {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        });
-        setIsRole(response.data.role)
-      } catch (error) {
-        console.error(error);
-      }
-    }
 
     fetchData();
   }, [token]);
@@ -90,6 +78,7 @@ function PrivateOffice() {
     })
       .then(function (response) {
         console.log(response);
+        setIsAuthenticated(true)
         window.location.reload()
       })
       .catch(function (error) {
@@ -108,7 +97,7 @@ function PrivateOffice() {
           <RegNav />
           <h3 className="Edu__text-M Edu__text-M-office">Личный данные</h3>
           <div className="office__in">
-            {isRole ? (
+            {isAuthenticated ? (
               <>
                 <div className="form">
                   <p className="input__text-s bold">ФИО</p>

@@ -28,8 +28,38 @@ import Offence from './pages/home/Admin/Offence'
 import UserInfo from './pages/home/UserInfo'
 import UserInfoA from './pages/home/Admin/UserInfoA'
 import PrivateRouteAdmin from './components/PrivateRouteAdmin'
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 
 function App() {
+  const [isAdmin, setIsAdmin] = useState(false)
+  const token = localStorage.getItem('token');
+
+  useEffect(() => {
+    const getUserRole = async () => {
+      try {
+        const response = await axios.get("http://localhost:8092/api/get/role", {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+        if (response.data.role === 'admin') {
+        setIsAdmin(response.data.role);
+          
+        }
+      } catch (error) {
+        console.log(error);
+        setUserRole(false);
+      }
+    };
+
+    if (token) {
+      getUserRole();
+    } else {
+      setUserRole(null);
+    }
+  }, [token]);
+
   return (
     <Router>
       <Routes>
@@ -52,18 +82,27 @@ function App() {
         <Route path='/KITE/GiED' element={<GiED />} />
         <Route path='/KITE/EiTD' element={<EiTD />} />
         <Route path="*" element={<PageNotFound />} />
-        <Route element={<PrivateRoute />}>
-          <Route path='/private_office' element={<PrivateOffice />} />
-          <Route path='/Progress' element={<Progress />} />
-          <Route path='/Ural' element={<Ural />} />
-          <Route path='/Education' element={<Education />} />
-          <Route path='/Social' element={<Social />} />
-          <Route path="/user/:id" element={<UserInfo />} />
-        </Route>
-        <Route element={<PrivateRouteAdmin />}>
-          <Route path='/userAdmin/:id' element={<UserInfoA />} />
-          <Route path='/Offence' element={<Offence />} />
-        </Route>
+        {isAdmin === 'admin' ? (
+          <Route element={<PrivateRouteAdmin />}>
+            <Route path='/private_office' element={<PrivateOffice />} />
+            <Route path='/Progress' element={<Progress />} />
+            <Route path='/Ural' element={<Ural />} />
+            <Route path='/Education' element={<Education />} />
+            <Route path='/Social' element={<Social />} />
+            <Route path="/user/:id" element={<UserInfo />} />
+            <Route path='/userAdmin/:id' element={<UserInfoA />} />
+            <Route path='/Offence' element={<Offence />} />
+          </Route>
+        ) : (
+          <Route element={<PrivateRoute />}>
+            <Route path='/private_office' element={<PrivateOffice />} />
+            <Route path='/Progress' element={<Progress />} />
+            <Route path='/Ural' element={<Ural />} />
+            <Route path='/Education' element={<Education />} />
+            <Route path='/Social' element={<Social />} />
+            <Route path="/user/:id" element={<UserInfo />} />
+          </Route>
+        )}
       </Routes>
     </Router>
   )

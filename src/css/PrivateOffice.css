@@ -129,6 +129,14 @@
   align-items: center;
   justify-content: center;
 }
+.header__menu-s {
+  margin: 0 0 30px 17px;
+  width: 707.15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
 .head__item {
   text-align: center;
   justify-content: center;
