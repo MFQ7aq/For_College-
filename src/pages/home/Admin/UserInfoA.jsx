@@ -28,7 +28,7 @@ function UserInfoA() {
     if (isSelected) {
       setSelectedItems(selectedItems.filter(item => item !== itemId));
     } else {
-      setSelectedItems({...selectedItems, itemId});
+      setSelectedItems([...selectedItems, itemId]);
     }
     setSelectedStage(stage);
   };
