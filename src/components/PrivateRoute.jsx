@@ -1,11 +1,40 @@
-import { Navigate, Outlet } from "react-router-dom"
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { Navigate, Outlet } from "react-router-dom";
 
 const PrivateRoute = () => {
-	let userLogged = localStorage.getItem('token')
+  const token = localStorage.getItem('token');
+  const [userRole, setUserRole] = useState(null);
 
-  return (
-    userLogged ? <Outlet /> : <Navigate to="/Authorization"/>
-  )
-}
+  useEffect(() => {
+    const getUserRole = async () => {
+      try {
+        const response = await axios.get("http://localhost:8092/api/get/role", {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+        setUserRole(response.data.role);
+      } catch (error) {
+        console.log(error);
+        setUserRole(null);
+      }
+    };
 
-export default PrivateRoute
+    if (token) {
+      getUserRole();
+    } else {
+      setUserRole(null);
+    }
+  }, [token]);
+
+  if (userRole === 'user' || userRole === 'admin') {
+    return <Outlet />;
+  } else if (userRole === null) {
+    return <div className="Edu__text-L center">Loading...</div>;
+  } else {
+    return <Navigate to="/Authorization" />;
+  }
+};
+
+export default PrivateRoute;
