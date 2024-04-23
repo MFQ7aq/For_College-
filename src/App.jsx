@@ -84,7 +84,7 @@ function App() {
             <Route path='/Education' element={<Education />} />
             <Route path='/Social' element={<Social />} />
             <Route path="/user/:id" element={<UserInfo />} />
-            <Route path='/userAdmin/:id' element={<UserInfoA />} />
+            <Route path='/user/admin/:id' element={<UserInfoA />} />
             <Route path='/Offence' element={<Offence />} />
           </Route>)}
         {isAdmin === 'user' && (
