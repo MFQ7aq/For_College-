@@ -43,20 +43,14 @@ function App() {
             Authorization: `Bearer ${token}`
           }
         });
-        if (response.data.role === 'admin') {
         setIsAdmin(response.data.role);
-          
-        }
       } catch (error) {
         console.log(error);
-        setUserRole(false);
       }
     };
 
     if (token) {
       getUserRole();
-    } else {
-      setUserRole(null);
     }
   }, [token]);
 
@@ -82,7 +76,7 @@ function App() {
         <Route path='/KITE/GiED' element={<GiED />} />
         <Route path='/KITE/EiTD' element={<EiTD />} />
         <Route path="*" element={<PageNotFound />} />
-        {isAdmin === 'admin' ? (
+        {isAdmin === 'admin' && (
           <Route element={<PrivateRouteAdmin />}>
             <Route path='/private_office' element={<PrivateOffice />} />
             <Route path='/Progress' element={<Progress />} />
@@ -92,8 +86,8 @@ function App() {
             <Route path="/user/:id" element={<UserInfo />} />
             <Route path='/userAdmin/:id' element={<UserInfoA />} />
             <Route path='/Offence' element={<Offence />} />
-          </Route>
-        ) : (
+          </Route>)}
+        {isAdmin === 'user' && (
           <Route element={<PrivateRoute />}>
             <Route path='/private_office' element={<PrivateOffice />} />
             <Route path='/Progress' element={<Progress />} />
