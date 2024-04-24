@@ -82,6 +82,7 @@ function UserInfoA() {
                   <div className="admin__link">
                     <Link to={award.link}>Link</Link>
                     <input
+                      className="check"
                       type="checkbox"
                       checked={selectedItems.includes(award.id)}
                       onChange={() => toggleItemSelection(award.id, award.stage)}
@@ -99,6 +100,7 @@ function UserInfoA() {
                   <div className="admin__link">
                     <Link to={research.link}>Link</Link>
                     <input
+                      className="check"
                       type="checkbox"
                       checked={selectedItems.includes(research.id)}
                       onChange={() => toggleItemSelection(research.id, research.stage)}
@@ -116,6 +118,7 @@ function UserInfoA() {
                   <div className="admin__link">
                     <Link to={innovative.link}>Link</Link>
                     <input
+                      className="check"
                       type="checkbox"
                       checked={selectedItems.includes(innovative.id)}
                       onChange={() => toggleItemSelection(innovative.id, innovative.stage)}
@@ -133,6 +136,7 @@ function UserInfoA() {
                   <div className="admin__link">
                     <Link to={social.link}>Link</Link>
                     <input
+                      className="check"
                       type="checkbox"
                       checked={selectedItems.includes(social.id)}
                       onChange={() => toggleItemSelection(social.id, social.stage)}

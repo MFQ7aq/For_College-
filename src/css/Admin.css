@@ -54,3 +54,8 @@
   justify-content: space-between;
   width: 350px;
 }
+.check {
+  width: 20px;
+  height: 20px;
+  margin-left: 10px;
+}
