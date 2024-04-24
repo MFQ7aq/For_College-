@@ -63,11 +63,15 @@ function UserInfoA() {
         </div>
         <div className="userData">
           <div className="userInfo">
-            <p className="userInfo__name">ФИО: {userData.userInfo && userData.userInfo.name}</p>
-            <p className="userInfo__text">{userData.userInfo && userData.userInfo.institut}</p>
-            <p className="userInfo__text">{userData.userInfo && userData.userInfo.regular}</p>
-            <p className="userInfo__text">{userData.userInfo && userData.userInfo.position}</p>
-            <p className="userInfo__text">{userData.userInfo && userData.userInfo.email}</p>
+            <div className="userInfo__right">
+              <p className="userInfo__name">ФИО: {userData.userInfo && userData.userInfo.name}</p>
+              <p className="userInfo__text">{userData.userInfo && userData.userInfo.institut}</p>
+              <p className="userInfo__text">{userData.userInfo && userData.userInfo.regular}</p>
+            </div>
+            <div className="userInfo__left">
+              <p className="userInfo__text">{userData.userInfo && userData.userInfo.position}</p>
+              <p className="userInfo__text">{userData.userInfo && userData.userInfo.email}</p>
+            </div>
           </div>
           <div className="userAwards bline">
             <h2 className="userInfo__title">Личные достижения:</h2>
