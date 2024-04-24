@@ -36,7 +36,8 @@ function UserInfoA() {
   const handleFreezeSelected = async () => {
     try {
       const idBag = selectedItems.map(itemId => ({ id: itemId }));
-      await axios.put(`http://localhost:8092/api/admin/${selectedStage}/freeze`, { idBag });
+      const requestData = { "idBag": idBag };
+      await axios.put(`http://localhost:8092/api/admin/${selectedStage}/freeze`, requestData);
       location.reload();
     } catch (error) {
       console.log(error);
