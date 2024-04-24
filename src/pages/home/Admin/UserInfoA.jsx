@@ -44,6 +44,17 @@ function UserInfoA() {
     }
   };
 
+  const handleActiveSelected = async () => {
+    try {
+      const idBag = selectedItems.map(itemId => ({ id: itemId }));
+      const requestData = { "idBag": idBag };
+      await axios.put(`http://localhost:8092/api/admin/${selectedStage}/active`, requestData);
+      location.reload();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="сontents">
       <div className="private-office-contents">
@@ -126,7 +137,10 @@ function UserInfoA() {
                 </div>
               ))}
           </div>
-          <button className="bnt__log" onClick={handleFreezeSelected}>Заморозить</button>
+          <div className="auth__btn-center jc-sb">
+            <button className="bnt__log" onClick={handleFreezeSelected}>Заморозить</button>
+            <button className="bnt__log" onClick={handleActiveSelected}>Разморозить</button>
+          </div>
         </div>
       </div>
     </div>
