@@ -30,6 +30,7 @@ import UserInfoA from './pages/home/Admin/UserInfoA'
 import PrivateRouteAdmin from './components/PrivateRouteAdmin'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+import Admin from './pages/home/Admin/Admin'
 
 function App() {
   const [isAdmin, setIsAdmin] = useState(false)
@@ -84,6 +85,7 @@ function App() {
             <Route path='/Education' element={<Education />} />
             <Route path='/Social' element={<Social />} />
             <Route path="/user/:id" element={<UserInfo />} />
+            <Route path='/admin' element={<Admin/>} />
             <Route path='/user/admin/:id' element={<UserInfoA />} />
             <Route path='/Offence' element={<Offence />} />
           </Route>)}
