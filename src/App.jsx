@@ -31,6 +31,7 @@ import PrivateRouteAdmin from './components/PrivateRouteAdmin'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Admin from './pages/home/Admin/Admin'
+import Lppsa from './pages/home/Admin/LPPSA'
 
 function App() {
   const [isAdmin, setIsAdmin] = useState(false)
@@ -88,6 +89,7 @@ function App() {
             <Route path='/admin' element={<Admin/>} />
             <Route path='/user/admin/:id' element={<UserInfoA />} />
             <Route path='/Offence' element={<Offence />} />
+            <Route path='/admin_list' element={<Lppsa />} />
           </Route>)}
         {isAdmin === 'user' && (
           <Route element={<PrivateRoute />}>
