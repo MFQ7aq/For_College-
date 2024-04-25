@@ -44,7 +44,7 @@ const NavBar = () => {
                     <li><Link to="/Authorization" className="menu__item">Авторизация</Link></li>
                     <li><Link to="/Questionnaire" className="menu__item">Анкета институтов</Link></li>
                     <li><Link to="/private_office" className="menu__item">Личный кабинет</Link></li>
-                    <li><Link to="/admine" className="menu__item">Админ Панель</Link></li>
+                    <li><Link to="/admin" className="menu__item">Админ Панель</Link></li>
                   </ul>
                 </>
               )}
