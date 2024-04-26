@@ -60,6 +60,7 @@ function PrivateUserInfo() {
     try {
       const idBag = selectedItems.map(itemId => ({ id: itemId }));
       const requestData = { "idBag": idBag };
+      console.log(requestData);
       await axios.delete(`http://localhost:8092/api/user/account/${selectedStage}/delete`, {
         headers: {
           Authorization: `Bearer ${token}`
