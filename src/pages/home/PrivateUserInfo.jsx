@@ -37,10 +37,11 @@ function PrivateUserInfo() {
 
   const handleFreezeSelected = async () => {
     try {
-      const idBag = selectedItems.map(itemId => ({ id: itemId }));
-      const requestData = { "idBag": idBag };
-      const stages = selectedStages.join(',');
-      await axios.put(`http://localhost:8092/api/admin/${stages}/freeze`, requestData);
+      for (const stage of selectedStages) {
+        const idBag = selectedItems.map(itemId => ({ id: itemId }));
+        const requestData = { "idBag": idBag };
+        await axios.put(`http://localhost:8092/api/admin/${stage}/freeze`, requestData);
+      }
       location.reload();
     } catch (error) {
       console.log(error);
@@ -49,10 +50,11 @@ function PrivateUserInfo() {
 
   const handleActiveSelected = async () => {
     try {
-      const idBag = selectedItems.map(itemId => ({ id: itemId }));
-      const requestData = { "idBag": idBag };
-      const stages = selectedStages.join(',');
-      await axios.put(`http://localhost:8092/api/admin/${stages}/active`, requestData);
+      for (const stage of selectedStages) {
+        const idBag = selectedItems.map(itemId => ({ id: itemId }));
+        const requestData = { "idBag": idBag };
+        await axios.put(`http://localhost:8092/api/admin/${stage}/active`, requestData);
+      }
       location.reload();
     } catch (error) {
       console.log(error);
@@ -61,15 +63,16 @@ function PrivateUserInfo() {
 
   const handleDeleteSelected = async () => {
     try {
-      const idBag = selectedItems.map(itemId => ({ id: itemId }));
-      const requestData = { "idBag": idBag };
-      const stages = selectedStages.join(',');
-      await axios.delete(`http://localhost:8092/api/user/account/${stages}/delete`, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        },
-        data: requestData
-      });
+      for (const stage of selectedStages) {
+        const idBag = selectedItems.map(itemId => ({ id: itemId }));
+        const requestData = { "idBag": idBag };
+        await axios.delete(`http://localhost:8092/api/user/account/${stage}/delete`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          },
+          data: requestData
+        });
+      }
       location.reload();
     } catch (error) {
       console.log(error);
