@@ -41,8 +41,8 @@ function PrivateUserInfo() {
         const idBag = selectedItems.map(itemId => ({ id: itemId }));
         const requestData = { "idBag": idBag };
         await axios.put(`http://localhost:8092/api/admin/${stage}/freeze`, requestData);
+        location.reload();
       }
-      location.reload();
     } catch (error) {
       console.log(error);
     }
@@ -54,8 +54,8 @@ function PrivateUserInfo() {
         const idBag = selectedItems.map(itemId => ({ id: itemId }));
         const requestData = { "idBag": idBag };
         await axios.put(`http://localhost:8092/api/admin/${stage}/active`, requestData);
+        location.reload();
       }
-      location.reload();
     } catch (error) {
       console.log(error);
     }
@@ -72,8 +72,8 @@ function PrivateUserInfo() {
           },
           data: requestData
         });
+        location.reload();
       }
-      location.reload();
     } catch (error) {
       console.log(error);
     }
