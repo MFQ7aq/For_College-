@@ -8,7 +8,7 @@ function PrivateUserInfo() {
   let token = localStorage.getItem('token')
   const [userData, setUserData] = useState({});
   const [selectedItems, setSelectedItems] = useState([]);
-  const [selectedStage, setSelectedStage] = useState('');
+  const [selectedStages, setSelectedStages] = useState([]);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -28,17 +28,19 @@ function PrivateUserInfo() {
     const isSelected = selectedItems.includes(itemId);
     if (isSelected) {
       setSelectedItems(selectedItems.filter(item => item !== itemId));
+      setSelectedStages(selectedStages.filter(selectedStage => selectedStage !== stage));
     } else {
       setSelectedItems([...selectedItems, itemId]);
+      setSelectedStages([...selectedStages, stage]);
     }
-    setSelectedStage(stage);
   };
 
   const handleFreezeSelected = async () => {
     try {
       const idBag = selectedItems.map(itemId => ({ id: itemId }));
       const requestData = { "idBag": idBag };
-      await axios.put(`http://localhost:8092/api/admin/${selectedStage}/freeze`, requestData);
+      const stages = selectedStages.join(',');
+      await axios.put(`http://localhost:8092/api/admin/${stages}/freeze`, requestData);
       location.reload();
     } catch (error) {
       console.log(error);
@@ -49,7 +51,8 @@ function PrivateUserInfo() {
     try {
       const idBag = selectedItems.map(itemId => ({ id: itemId }));
       const requestData = { "idBag": idBag };
-      await axios.put(`http://localhost:8092/api/admin/${selectedStage}/active`, requestData);
+      const stages = selectedStages.join(',');
+      await axios.put(`http://localhost:8092/api/admin/${stages}/active`, requestData);
       location.reload();
     } catch (error) {
       console.log(error);
@@ -60,8 +63,8 @@ function PrivateUserInfo() {
     try {
       const idBag = selectedItems.map(itemId => ({ id: itemId }));
       const requestData = { "idBag": idBag };
-      console.log(requestData);
-      await axios.delete(`http://localhost:8092/api/user/account/${selectedStage}/delete`, {
+      const stages = selectedStages.join(',');
+      await axios.delete(`http://localhost:8092/api/user/account/${stages}/delete`, {
         headers: {
           Authorization: `Bearer ${token}`
         },
