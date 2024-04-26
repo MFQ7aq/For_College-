@@ -38,7 +38,7 @@ function PrivateUserInfo() {
   const handleFreezeSelected = async () => {
     try {
       for (let i = 0; i < selectedItems.length; i++) {
-        const idBag = selectedItems[i];
+        const idBag = [{ id: selectedItems[i] }];
         const stage = selectedStages[i];
         const requestData = { "idBag": idBag };
         await axios.put(`http://localhost:8092/api/admin/${stage}/freeze`, requestData);
@@ -52,7 +52,7 @@ function PrivateUserInfo() {
   const handleActiveSelected = async () => {
     try {
       for (let i = 0; i < selectedItems.length; i++) {
-        const idBag = selectedItems[i];
+        const idBag = [{ id: selectedItems[i] }];
         const stage = selectedStages[i];
         const requestData = { "idBag": idBag };
         await axios.put(`http://localhost:8092/api/admin/${stage}/active`, requestData);
@@ -66,9 +66,10 @@ function PrivateUserInfo() {
   const handleDeleteSelected = async () => {
     try {
       for (let i = 0; i < selectedItems.length; i++) {
-        const idBag = selectedItems[i];
+        const idBag = [{ id: selectedItems[i] }];
         const stage = selectedStages[i];
         const requestData = { "idBag": idBag };
+        console.log(requestData);
         await axios.delete(`http://localhost:8092/api/user/account/${stage}/delete`, {
           headers: {
             Authorization: `Bearer ${token}`
