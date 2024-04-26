@@ -17,7 +17,7 @@
   width: 80%;
 }
 .userInfo__name {
-  color: #2C2670;
+  color: #163A62;
   display: flex;
   align-items: center;
   font-family: system-ui, 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -25,7 +25,7 @@
   font-weight: 700;
 }
 .userInfo__title {
-  color: #2C2670;
+  color: #163A62;
   display: flex;
   align-items: center;
   font-family: system-ui, 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -53,5 +53,5 @@
   margin-left: 20px;
 }
 .bline {
-  border-bottom: #2C2670 2px solid;
+  border-bottom: #163A62 2px solid;
 }

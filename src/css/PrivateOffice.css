@@ -6,7 +6,7 @@
   display: flex;
 }
 .account__config {
-  background-color: #2C2670;
+  background-color: #163A62;
   margin-top: 17px;
   padding: 0 0 12px 0;
   height: revert-layer;
@@ -87,7 +87,7 @@
   padding: 10px;
 }
 .input__text-s {
-  color: #2C2670;
+  color: #F5F3F4;
   font-family: system-ui, 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: 16px;
   font-style: normal;
@@ -112,7 +112,7 @@
   margin: 15px 15px 0 0;
 }
 .btn__blue {
-  background-color: #2C2670;
+  background-color: #163A62;
 }
 .btn__green {
   background-color: #16A767;

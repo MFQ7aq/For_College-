@@ -36,7 +36,7 @@ table.table{
   line-height: normal;
 }
 table.table .blue {
-  color: #2C2670;
+  color: #163A62;
 }
 table.table .black {
   color: black;
@@ -49,7 +49,7 @@ table.table th{
   font-family: system-ui, 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: 16px;
   font-weight: 600;
-  background-color: #2C2670;
+  background-color: #163A62;
 }
 table.table th:nth-child(1){width: 5%;}
 table.table th:nth-child(2){width: 30%;}
@@ -72,7 +72,7 @@ table.table td,table.table th{
   padding: 10px 5px;
   line-height:13px;
   vertical-align: middle;
-  border: 1px solid #2C2670;
+  border: 1px solid #163A62;
 }
 .redact {
   background-color: #16A767;

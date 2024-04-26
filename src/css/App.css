@@ -42,7 +42,7 @@ h5 {
   font-weight: 600;
 }
 h6, .h6 {
-  color: #2C2670;
+  color: #163A62;
   font-family: system-ui, 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: 20px;
   font-weight: 500;
@@ -50,7 +50,7 @@ h6, .h6 {
 }
 .Link {
   text-decoration: none;
-  color: #2C2670;
+  color: #163A62;
   font-weight: 500;
 }
 .btn {

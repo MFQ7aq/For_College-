@@ -1,6 +1,6 @@
 .nav {
   width: 100%;
-  background: #2C2670;
+  background: #163A62;
 }
 .nav__in {
   margin: 0 auto;
@@ -56,7 +56,7 @@
   padding: 20px 0;
   list-style: none;
   text-align: center;
-  background-color: #2C2670;
+  background-color: #163A62;
   position: relative;
   z-index: 1;
 }
