@@ -5,6 +5,7 @@ import NavBar from "../../components/NavBar";
 
 function PrivateUserInfo() {
   const { id } = useParams();
+  let token = localStorage.getItem('token')
   const [userData, setUserData] = useState({});
   const [selectedItems, setSelectedItems] = useState([]);
   const [selectedStage, setSelectedStage] = useState('');
@@ -49,6 +50,21 @@ function PrivateUserInfo() {
       const idBag = selectedItems.map(itemId => ({ id: itemId }));
       const requestData = { "idBag": idBag };
       await axios.put(`http://localhost:8092/api/admin/${selectedStage}/active`, requestData);
+      location.reload();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleDeleteSelected = async () => {
+    try {
+      const idBag = selectedItems.map(itemId => ({ id: itemId }));
+      const requestData = { "idBag": idBag };
+      await axios.delete(`http://localhost:8092/api/user/account/${selectedStage}/delete`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }, requestData);
       location.reload();
     } catch (error) {
       console.log(error);
@@ -148,6 +164,7 @@ function PrivateUserInfo() {
           <div className="auth__btn-center jc-sb">
             <button className="bnt__log" onClick={handleFreezeSelected}>Заморозить</button>
             <button className="bnt__log" onClick={handleActiveSelected}>Разморозить</button>
+            <button className="bnt__log" onClick={handleDeleteSelected}>Удалить</button>
           </div>
         </div>
       </div>
