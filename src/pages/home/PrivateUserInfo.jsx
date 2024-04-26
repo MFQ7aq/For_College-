@@ -64,8 +64,9 @@ function PrivateUserInfo() {
       await axios.delete(`http://localhost:8092/api/user/account/${selectedStage}/delete`, {
         headers: {
           Authorization: `Bearer ${token}`
-        }
-      }, requestData);
+        },
+        data: requestData
+      });
       location.reload();
     } catch (error) {
       console.log(error);
