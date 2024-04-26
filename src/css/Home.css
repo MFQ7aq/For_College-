@@ -21,7 +21,7 @@
   height: 184px;
 }
 .home__card:nth-child(2) {
-  color: #163A62;
+  color: #2D4478;
   width: 300px;
 }
 .home__card:nth-child(2) .card__img {
@@ -32,7 +32,7 @@
   height: 147px;
 }
 .home__card:nth-child(3) {
-  color: #282744;
+  color: #2D4478;
   width: 257px;
 }
 .home__card:nth-child(3) .card__img  {

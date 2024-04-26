@@ -20,7 +20,7 @@
   width: 80%;
 }
 .userInfo__name {
-  color: #163A62;
+  color: #2D4478;
   display: flex;
   align-items: center;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -28,7 +28,7 @@
   font-weight: 700;
 }
 .userInfo__title {
-  color: #163A62;
+  color: #2D4478;
   display: flex;
   align-items: center;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -56,5 +56,5 @@
   margin-left: 20px;
 }
 .bline {
-  border-bottom: #163A62 2px solid;
+  border-bottom: #2D4478 2px solid;
 }

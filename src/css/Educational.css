@@ -16,7 +16,7 @@
   justify-content: center;
 }
 .Edu__text-L {
-  color: #163A62;
+  color: #2D4478;
   width: 100%;
   display: flex;
   align-items: center;
@@ -25,7 +25,7 @@
   font-weight: 700;
 }
 .Edu__text-M {
-  color: #163A62;
+  color: #2D4478;
   display: flex;
   align-items: center;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -36,7 +36,7 @@
   margin: 0 0 10px 10px;
 }
 .Edu__text-S {
-  color: #163A62;
+  color: #2D4478;
   display: flex;
   align-items: center;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -57,10 +57,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px #163A62 solid;
+  border: 1px #2D4478 solid;
 }
 .row:nth-child(1),.row:nth-child(2),.row:nth-child(3) {
-  background: #163A62;
+  background: #2D4478;
 }
 .bold {
   font-weight: 800;
@@ -83,7 +83,7 @@
 }
 .MUIT__name {
   width: 40%;
-  color: #163A62;
+  color: #2D4478;
 }
 .Komteh__logo {
   background: url(../img/image1.png) no-repeat center center;
@@ -102,7 +102,7 @@
 }
 .Link__name {
   width: 58%;
-  color: #163A62;
+  color: #2D4478;
 }
 .table__link {
   width: 70%;
@@ -113,10 +113,10 @@
 }
 .table__links ul{
   list-style: none;
-  color: #163A62;
+  color: #2D4478;
 }
 .table__links li {
-  border-bottom: 1px #163A62 solid;
+  border-bottom: 1px #2D4478 solid;
   padding: 15px 0;
   display: table;
 }
@@ -145,7 +145,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #163A62;
+  background-color: #2D4478;
   cursor: pointer;
   width: 50px;
   height: 45px;
@@ -155,7 +155,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #163A62;
+  background-color: #2D4478;
   cursor: pointer;
   width: 60px;
   height: 50px;
@@ -179,7 +179,7 @@
   border: none;
   box-shadow: 2px 2px 30px -7.5px rgba(0,0,0,0.25);
   font-size: 16px;
-  color: #163A62;
+  color: #2D4478;
   margin-top: 15px;
   outline: none;
 }
@@ -227,7 +227,7 @@
   color: white;
 }
 .input__text {
-  color: #163A62;
+  color: #2D4478;
   font-size: 22px;
   margin-top: 12.5px;
 }
@@ -251,11 +251,11 @@
   margin: 10px 0 0 0;
 }
 .checkbox__text {
-  color: #163A62;
+  color: #2D4478;
   font-size: 18px;
 }
 .forgot__text {
-  color: #163A62;
+  color: #2D4478;
   font-size: 16px;
   text-decoration: none;
   margin-top: 10px;
@@ -281,7 +281,7 @@
 }
 .bnt__reg {
   padding: 14px 45px;
-  background-color: #163A62;
+  background-color: #2D4478;
   border: none;
   cursor: pointer;
   color: white;

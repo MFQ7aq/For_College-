@@ -177,6 +177,7 @@ function PrivateUserInfo() {
             <button className="bnt__log" onClick={handleFreezeSelected}>Заморозить</button>
             <button className="bnt__log" onClick={handleActiveSelected}>Разморозить</button>
             <button className="bnt__log" onClick={handleDeleteSelected}>Удалить</button>
+            <Link className="bnt__log Link" to={`/Redact/${id}`}>Редактировать</Link>
           </div>
         </div>
       </div>

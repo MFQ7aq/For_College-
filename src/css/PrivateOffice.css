@@ -6,7 +6,7 @@
   display: flex;
 }
 .account__config {
-  background-color: #163A62;
+  background-color: #2D4478;
   margin-top: 17px;
   padding: 0 0 12px 0;
   height: revert-layer;
@@ -112,7 +112,7 @@
   margin: 15px 15px 0 0;
 }
 .btn__blue {
-  background-color: #163A62;
+  background-color: #2D4478;
 }
 .btn__green {
   background-color: #16A767;
