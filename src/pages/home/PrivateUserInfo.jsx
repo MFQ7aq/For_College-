@@ -37,12 +37,13 @@ function PrivateUserInfo() {
 
   const handleFreezeSelected = async () => {
     try {
-      for (const stage of selectedStages) {
-        const idBag = selectedItems.map(itemId => ({ id: itemId }));
-        const requestData = { "idBag": idBag };
+      for (let i = 0; i < selectedItems.length; i++) {
+        const id = selectedItems[i];
+        const stage = selectedStages[i];
+        const requestData = { "id": id };
         await axios.put(`http://localhost:8092/api/admin/${stage}/freeze`, requestData);
-        location.reload();
       }
+      location.reload();
     } catch (error) {
       console.log(error);
     }
@@ -50,12 +51,13 @@ function PrivateUserInfo() {
 
   const handleActiveSelected = async () => {
     try {
-      for (const stage of selectedStages) {
-        const idBag = selectedItems.map(itemId => ({ id: itemId }));
-        const requestData = { "idBag": idBag };
+      for (let i = 0; i < selectedItems.length; i++) {
+        const id = selectedItems[i];
+        const stage = selectedStages[i];
+        const requestData = { "id": id };
         await axios.put(`http://localhost:8092/api/admin/${stage}/active`, requestData);
-        location.reload();
       }
+      location.reload();
     } catch (error) {
       console.log(error);
     }
@@ -63,17 +65,18 @@ function PrivateUserInfo() {
 
   const handleDeleteSelected = async () => {
     try {
-      for (const stage of selectedStages) {
-        const idBag = selectedItems.map(itemId => ({ id: itemId }));
-        const requestData = { "idBag": idBag };
+      for (let i = 0; i < selectedItems.length; i++) {
+        const id = selectedItems[i];
+        const stage = selectedStages[i];
+        const requestData = { "id": id };
         await axios.delete(`http://localhost:8092/api/user/account/${stage}/delete`, {
           headers: {
             Authorization: `Bearer ${token}`
           },
           data: requestData
         });
-        location.reload();
       }
+      location.reload();
     } catch (error) {
       console.log(error);
     }
