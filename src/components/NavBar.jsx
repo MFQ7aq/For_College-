@@ -36,6 +36,12 @@ const NavBar = () => {
           <li><Link to="/KITE">КИТЭ</Link></li>
           <li>
             <div className="hamburger-menu">
+              <input id="menu__toggle" type="checkbox" />
+              <ul className="menu__box">
+                <li><Link to="/LPPS" className="menu__item">Список ППС</Link></li>
+                <li><Link to="/Authorization" className="menu__item">Авторизация</Link></li>
+                <li><Link to="/Questionnaire" className="menu__item">Анкета институтов</Link></li>
+              </ul>
               {isAdmin === 'admin' && (
                 <>
                   <input id="menu__toggle" type="checkbox" />

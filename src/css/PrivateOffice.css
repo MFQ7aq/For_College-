@@ -140,7 +140,7 @@
 .head__item {
   text-align: center;
   justify-content: center;
-  background-image: url(../img/Rectangle.png);
+  background-image: url(../img/RectangleMidl.png);
   background-size: contain;
   background-repeat: no-repeat;
   width: 141.43px;
@@ -159,5 +159,5 @@
   text-decoration: none;
   color: white;
   font-size: small;
-  background-image: url(../img/Rectangle38.png);
+  background-image: url(../img/RectangleStart.png);
 }

@@ -36,6 +36,7 @@
   text-align: center;
 }
 .hamburger-menu {
+  cursor: pointer;
   width: 30px;
   height: 22px;
   background: url(../img/burger.svg) no-repeat center center;
