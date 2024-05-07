@@ -45,18 +45,14 @@ const NavBar = () => {
               {isAdmin === 'admin' && (
                 <>
                   <input id="menu__toggle" type="checkbox" />
-                  <ul className="menu__box">
-                    <li><Link to="/private_office" className="menu__item">Личный кабинет</Link></li>
-                    <li><Link to="/admin" className="menu__item">Админ Панель</Link></li>
-                  </ul>
+                  <li><Link to="/private_office" className="menu__item">Личный кабинет</Link></li>
+                  <li><Link to="/admin" className="menu__item">Админ Панель</Link></li>
                 </>
               )}
               {isAdmin === 'user' && (
                 <>
                   <input id="menu__toggle" type="checkbox" />
-                  <ul className="menu__box">
-                    <li><Link to="/private_office" className="menu__item">Личный кабинет</Link></li>
-                  </ul>
+                  <li><Link to="/private_office" className="menu__item">Личный кабинет</Link></li>
                 </>
               )}
             </div>
