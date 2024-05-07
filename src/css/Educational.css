@@ -183,6 +183,14 @@
   margin-top: 15px;
   outline: none;
 }
+.show-password-checkbox {
+  display: flex;
+  align-items: center;
+}
+.show-password-checkbox>input {
+  width: 15px;
+  height: 15px;
+}
 .auth_auth {
   display: flex;
   flex-wrap: wrap;

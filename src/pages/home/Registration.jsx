@@ -1,4 +1,4 @@
-import { useState, useCallback} from "react";
+import { useState, useCallback } from "react";
 import axios from "axios";
 import NavBar from "../../components/NavBar";
 import { useNavigate } from "react-router-dom";
@@ -7,22 +7,23 @@ function Registration() {
   const navigate = useNavigate();
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
-const handleSubmit = useCallback((e) => {
-  e.preventDefault();
-  axios.post('http://localhost:8092/pps/sign-up', {
-    "username": name,
-    "password": password,
-  })
-    .then(function (response) {
-      if (response.status >= 200 && response.status <= 204) {
-        navigate(-1)
-      }
+  const handleSubmit = useCallback((e) => {
+    e.preventDefault();
+    axios.post('http://localhost:8092/pps/sign-up', {
+      "username": name,
+      "password": password,
     })
-    .catch(function (error) {
-      console.log(error);
-    });
-}, [name, navigate, password]);
+      .then(function (response) {
+        if (response.status >= 200 && response.status <= 204) {
+          navigate(-1)
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, [name, navigate, password]);
 
   return (
     <div className="сontents">
@@ -35,7 +36,24 @@ const handleSubmit = useCallback((e) => {
           <label htmlFor="" className="auth__label">
             <form onSubmit={handleSubmit} className="auth_auth-center">
               <input type="text" className="auth__input Montherat" value={name} onChange={e => setName(e.target.value)} placeholder="Логин" />
-              <input type="password" autoComplete="" className="auth__input Montherat" value={password} onChange={e => setPassword(e.target.value)} placeholder="Пароль" />
+              <div className="password-input-container">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  autoComplete=""
+                  className="auth__input Montherat"
+                  value={password}
+                  onChange={e => setPassword(e.target.value)}
+                  placeholder="Пароль"
+                />
+                <div className="show-password-checkbox">
+                  <input
+                    type="checkbox"
+                    checked={showPassword}
+                    onChange={() => setShowPassword(!showPassword)}
+                  />
+                  <label className="Edu__text-S">Посмотреть пароль</label>
+                </div>
+              </div>
             </form>
           </label>
           <div className="auth__btn-center">
@@ -47,4 +65,4 @@ const handleSubmit = useCallback((e) => {
   )
 }
 
-export default Registration
+export default Registration;
