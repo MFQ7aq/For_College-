@@ -12,12 +12,12 @@ const AccountConf = () => {
   useEffect(() => {
     const getUserData = async () => {
       try {
-        const respUserData = await axios.get('http://localhost:8092/api/user/name', {
+        const response = await axios.get('http://localhost:8092/api/user/name', {
           headers: {
             Authorization: `Bearer ${token}`
           }
         })
-        const name = respUserData.data.user.name;
+        const name = response.data.user.name;
         setUserData(name);
       } catch (error) {
         console.log(error);
@@ -26,14 +26,14 @@ const AccountConf = () => {
 
     const getUserId = async () => {
       try {
-        const respUserId = axios.get('http://localhost:8092/api/user/id', {
+        const response = axios.get('http://localhost:8092/api/user/id', {
           headers: {
             Authorization: `Bearer ${token}`
           }
         })
-        const id = respUserId.data[0];
+        const id = response.data[0];
         setId(id);
-        console.log(id);
+        console.log((await response).data[0]);
       } catch (error) {
         console.log(error);
         console.log(id);
