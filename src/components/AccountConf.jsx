@@ -32,16 +32,18 @@ const AccountConf = () => {
           }
         })
         const id = respUserId.data[0];
-        setId(String(id));
+        setId(id);
         console.log(id);
       } catch (error) {
         console.log(error);
+        console.log(id);
+
       }
     };
 
     getUserData();
     getUserId();
-  }, [token, userData.data]);
+  }, [id, token, userData.data]);
 
   const handleLogout = useCallback(() => {
     localStorage.removeItem('token');
