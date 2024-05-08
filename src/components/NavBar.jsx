@@ -16,10 +16,9 @@ const NavBar = () => {
         });
         if (response.status === 200) {
           setIsAdmin(response.data.role);
-        } else if (response.status === 401) {
-          setIsAdmin('Null');
         }
       } catch (error) {
+        setIsAdmin('Null');
         console.log(error);
       }
     };
