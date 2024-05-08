@@ -1,72 +1,158 @@
-import { useState, useCallback } from "react";
-import axios from "axios";
-import NavBar from "../../components/NavBar";
-import { useNavigate } from "react-router-dom";
+import axios from 'axios';
+import { useCallback, useEffect, useState } from 'react';
+import AccountConf from '../../components/AccountConf';
+import NavBar from '../../components/NavBar';
+import RegNav from '../../components/RegNav';
+import { useNavigate } from 'react-router-dom';
 
-function Registration() {
+const Ural = () => {
+  const [isOpen, setIsOpen] = useState([]);
+  const [selectedOptions, setSelectedOptions] = useState([]);
+  const [options, setOptions] = useState([]);
+  const [selectNames, setSelectNames] = useState([]);
+  const [inputValues, setInputValues] = useState({});
+  const [sent, setSent] = useState("Отправить")
   const navigate = useNavigate();
-  const [name, setName] = useState('');
-  const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
+  const token = localStorage.getItem("token");
 
-  const handleSubmit = useCallback((e) => {
-    e.preventDefault();
-    axios.post('http://localhost:8092/pps/sign-up', {
-      "username": name,
-      "password": password,
-    })
-      .then(function (response) {
-        if (response.status >= 200 && response.status <= 204) {
-          navigate(-1)
-        }
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }, [name, navigate, password]);
-
-  const handleContainerClick = () => {
-    setShowPassword(false);
+  const toggleDropdown = (index) => {
+    const updatedIsOpen = [...isOpen];
+    updatedIsOpen[index] = !updatedIsOpen[index];
+    setIsOpen(updatedIsOpen);
   };
 
+  const handleOptionClick = (index, option) => {
+    const updatedSelectedOptions = [...selectedOptions];
+    updatedSelectedOptions[index] = option;
+    setSelectedOptions(updatedSelectedOptions);
+    const updatedIsOpen = [...isOpen];
+    updatedIsOpen[index] = false;
+    setIsOpen(updatedIsOpen);
+  };
+
+  const addInput = (optionIndex, subtitleIndex) => {
+    setInputValues(prevState => ({
+      ...prevState,
+      [optionIndex]: {
+        ...prevState[optionIndex],
+        [subtitleIndex]: [...(prevState[optionIndex]?.[subtitleIndex] || []), '']
+      }
+    }));
+  };
+
+  const sendDataToAPI = async () => {
+    try {
+      const socialsData = {};
+      options.forEach((optionGroup, optionIndex) => {
+        optionGroup.subtitles.forEach((subtitle, subtitleIndex) => {
+          const subData = inputValues[optionIndex]?.[subtitleIndex] || [];
+          const subId = subtitle.id;
+          subData.forEach((link, linkIndex) => {
+            socialsData[`${optionIndex}_${subtitleIndex}_${linkIndex}`] = {
+              subId: subId,
+              link: link
+            };
+          });
+        });
+      });
+
+      const response = await axios.post(
+        "http://localhost:8092/api/user/ural/add",
+        { socials: socialsData },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
+      );
+      console.log("Data sent successfully:", response.data);
+      setSent("Отправлено")
+    } catch (error) {
+      console.error("Error sending data:", error);
+      setSent("Ошибка")
+    }
+  };
+
+  const fetchData = useCallback(async () => {
+    try {
+      const response = await axios.get("http://localhost:8092/api/user/ural");
+      const data = response.data[0];
+      const newOptions = data.map(item => ({
+        ...item,
+        subtitles: item.socialActivitiesSubtitles.map(subtitle => ({
+          id: subtitle.id,
+          name: subtitle.name
+        }))
+      }));
+      const newSelectNames = data.map(item => item.name);
+      setOptions(newOptions);
+      setSelectNames(newSelectNames);
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
+  const Back = useCallback(() => {
+    navigate(-1);
+  }, [navigate]);
+
   return (
-    <div className="сontents" onClick={handleContainerClick}>
+    <div className="private-office-contents">
       <div className="header">
         <NavBar />
       </div>
-      <div className="main">
-        <div className="title__contain"><h2 className="Edu__text-L center">Регистрация</h2></div>
-        <div className="auth__contain">
-          <label htmlFor="" className="auth__label">
-            <form onSubmit={handleSubmit} className="auth_auth-center">
-              <input type="text" className="auth__input Montherat" value={name} onChange={e => setName(e.target.value)} placeholder="Логин" />
-              <div className="password-input-container">
-                <input
-                  type={showPassword ? "text" : "password"}
-                  autoComplete=""
-                  className="auth__input Montherat"
-                  value={password}
-                  onChange={e => setPassword(e.target.value)}
-                  placeholder="Пароль"
-                />
-                <div className="show-password-checkbox">
-                  <input
-                    type="checkbox"
-                    checked={showPassword}
-                    onChange={() => setShowPassword(!showPassword)}
-                  />
-                  <label>Show Password</label>
+      <div className="private-office__main">
+        <AccountConf />
+        <div className="auth__contain-doble">
+          <RegNav />
+          <h2 className='Edu__text-M Edu__text-M-office'>Научно-исследовательская деятельность</h2>
+          <div className="auth-auth-c">
+            {options.map((optionGroup, optionIndex) => (
+              <div className="custom-select-container" key={optionIndex}>
+                <div className="selected-option" onClick={() => toggleDropdown(optionIndex)}>
+                  {selectNames[optionIndex]}
                 </div>
+                {isOpen[optionIndex] && (
+                  <div className="options">
+                    {optionGroup.subtitles.map((subtitle, subtitleIndex) => (
+                      <div key={subtitleIndex} className="option">
+                        <div onClick={() => handleOptionClick(optionIndex, subtitle)}>{subtitle.name}</div>
+                        <div className="option__link">
+                          {inputValues[optionIndex]?.[subtitleIndex]?.map((value, inputIndex) => (
+                            <input
+                              key={inputIndex}
+                              type="text"
+                              value={value}
+                              onChange={(e) => {
+                                const newInputValues = { ...inputValues };
+                                newInputValues[optionIndex][subtitleIndex][inputIndex] = e.target.value;
+                                setInputValues(newInputValues);
+                              }}
+                            />
+                          ))}
+                        </div>
+                        <button onClick={() => addInput(optionIndex, subtitleIndex)} className='add__link'>Добавить</button>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
-            </form>
-          </label>
-          <div className="auth__btn-center">
-            <button className="bnt__reg Edu__text-S" onClick={handleSubmit}>Зарегистрироваться</button>
+            ))}
           </div>
+          <button type="submit" onClick={sendDataToAPI} className="bnt__reg btn__green btn__link">
+            {sent}
+          </button>
+          <button onClick={Back} className="btn__link btn__blue montherat">
+            Назад
+          </button>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Registration;
+export default Ural;

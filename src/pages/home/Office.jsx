@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import AccountConf from "../../components/AccountConf";
 
-function PrivateOffice() {
+function Office() {
   const navigate = useNavigate();
   const { id } = useParams()
   const [userData, setUserData] = useState({
@@ -76,4 +76,4 @@ function PrivateOffice() {
   );
 }
 
-export default PrivateOffice;
+export default Office;
