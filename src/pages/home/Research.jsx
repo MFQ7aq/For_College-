@@ -79,7 +79,7 @@ const Research = () => {
       const data = response.data[0];
       const newOptions = data.map(item => ({
         ...item,
-        subtitles: item.socialActivitiesSubtitles.map(subtitle => ({
+        subtitles: item.researchActivitiesSubtitles.map(subtitle => ({
           id: subtitle.id,
           name: subtitle.name
         }))
@@ -109,7 +109,7 @@ const Research = () => {
         <AccountConf />
         <div className="auth__contain-doble">
           <RegNav />
-          <h2 className='Edu__text-M Edu__text-M-office'>Воспитательная, общественная деятельность</h2>
+          <h2 className='Edu__text-M Edu__text-M-office'>Научно-исследовательская деятельность</h2>
           <div className="auth-auth-c">
             {options.map((optionGroup, optionIndex) => (
               <div className="custom-select-container" key={optionIndex}>
