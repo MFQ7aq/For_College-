@@ -6,8 +6,6 @@ import { Link } from "react-router-dom";
 function Lppsa() {
   const [users, setUsers] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [isAdmin, setIsAdmin] = useState('')
-  const token = localStorage.getItem('token');
 
   const fetchData = useCallback(async () => {
     try {
@@ -20,26 +18,8 @@ function Lppsa() {
   }, []);
 
   useEffect(() => {
-    fetchData();
-  }, [fetchData, isAdmin, token]);
-
-  const getUserRole = async () => {
-    try {
-      const response = await axios.get("http://localhost:8092/api/get/role", {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      });
-      setIsAdmin(response.data.role);
-      console.log(isAdmin);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  if (token) {
-    getUserRole();
-  }
+    fetchData()
+  }, [fetchData]);
 
   const handleSearchInputChange = (event) => {
     setSearchQuery(event.target.value);
@@ -56,7 +36,6 @@ function Lppsa() {
       </div>
       <div className="admin-panel__main">
         <label htmlFor="" className="search__label-admin">
-          <button onClick={getUserRole()}>Получить роль</button>
           <input
             type="text"
             className="search__input Montherat"

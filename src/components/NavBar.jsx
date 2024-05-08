@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const NavBar = () => {
-  const [isAdmin, setIsAdmin] = useState(false)
+  const [isAdmin, setIsAdmin] = useState('')
   const token = localStorage.getItem('token');
 
   useEffect(() => {
@@ -14,7 +14,12 @@ const NavBar = () => {
             Authorization: `Bearer ${token}`
           }
         });
+        if (response.status === 200) {
         setIsAdmin(response.data.role);
+          
+        } else if (response.status === 401) {
+          setIsAdmin('Null');
+        }
       } catch (error) {
         console.log(error);
       }
@@ -37,7 +42,7 @@ const NavBar = () => {
           <li>
             <div className="hamburger-menu">
               <input id="menu__toggle" type="checkbox" />
-              {isAdmin === '' && (
+              {isAdmin === 'Null' && (
                 <>
                   <input id="menu__toggle" type="checkbox" />
                   <ul className="menu__box">
