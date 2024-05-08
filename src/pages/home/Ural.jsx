@@ -79,7 +79,7 @@ const Ural = () => {
       const data = response.data[0];
       const newOptions = data.map(item => ({
         ...item,
-        subtitles: item.socialActivitiesSubtitles.map(subtitle => ({
+        subtitles: item.uralActivitiesSubtitles.map(subtitle => ({
           id: subtitle.id,
           name: subtitle.name
         }))
