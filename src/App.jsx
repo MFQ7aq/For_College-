@@ -21,7 +21,7 @@ import Kite from './pages/KITE'
 import GiED from './pages/KITE/GiED'
 import EiTD from './pages/KITE/EiTD'
 import Progress from './pages/home/Progress'
-import Ural from './pages/home/Ural'
+import Research from './pages/home/Research'
 import Education from './pages/home/Education'
 import Social from './pages/home/Social'
 import Offence from './pages/home/Admin/Offence'
@@ -84,7 +84,7 @@ function App() {
           <Route element={<PrivateRouteAdmin />}>
             <Route path='/private_office' element={<PrivateOffice />} />
             <Route path='/Progress' element={<Progress />} />
-            <Route path='/Ural' element={<Ural />} />
+            <Route path='/Ural' element={<Research />} />
             <Route path='/Education' element={<Education />} />
             <Route path='/Social' element={<Social />} />
             <Route path="/user/:id" element={<UserInfo />} />
@@ -99,7 +99,7 @@ function App() {
           <Route element={<PrivateRoute />}>
             <Route path='/private_office' element={<PrivateOffice />} />
             <Route path='/Progress' element={<Progress />} />
-            <Route path='/Ural' element={<Ural />} />
+            <Route path='/Ural' element={<Research />} />
             <Route path='/Education' element={<Education />} />
             <Route path='/Social' element={<Social />} />
             <Route path="/user/:id" element={<UserInfo />} />

@@ -5,7 +5,7 @@ import NavBar from '../../components/NavBar';
 import RegNav from '../../components/RegNav';
 import { useNavigate } from 'react-router-dom';
 
-const Ural = () => {
+const Research = () => {
   const [isOpen, setIsOpen] = useState([]);
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [options, setOptions] = useState([]);
@@ -57,7 +57,7 @@ const Ural = () => {
       });
 
       const response = await axios.post(
-        "http://localhost:8092/api/user/ural/add",
+        "http://localhost:8092/api/user/research/add",
         { socials: socialsData },
         {
           headers: {
@@ -75,11 +75,11 @@ const Ural = () => {
 
   const fetchData = useCallback(async () => {
     try {
-      const response = await axios.get("http://localhost:8092/api/user/ural");
+      const response = await axios.get("http://localhost:8092/api/user/research");
       const data = response.data[0];
       const newOptions = data.map(item => ({
         ...item,
-        subtitles: item.uralActivitiesSubtitles.map(subtitle => ({
+        subtitles: item.socialActivitiesSubtitles.map(subtitle => ({
           id: subtitle.id,
           name: subtitle.name
         }))
@@ -109,7 +109,7 @@ const Ural = () => {
         <AccountConf />
         <div className="auth__contain-doble">
           <RegNav />
-          <h2 className='Edu__text-M Edu__text-M-office'>Научно-исследовательская деятельность</h2>
+          <h2 className='Edu__text-M Edu__text-M-office'>Воспитательная, общественная деятельность</h2>
           <div className="auth-auth-c">
             {options.map((optionGroup, optionIndex) => (
               <div className="custom-select-container" key={optionIndex}>
@@ -155,4 +155,4 @@ const Ural = () => {
   );
 }
 
-export default Ural;
+export default Research;
