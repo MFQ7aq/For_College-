@@ -31,8 +31,8 @@ const AccountConf = () => {
             Authorization: `Bearer ${token}`
           }
         })
-        const id = respUserId.data;
-        setId(String(id));
+        const id = respUserId.data[0];
+        setId(id);
         console.log(id);
       } catch (error) {
         console.log(error);
