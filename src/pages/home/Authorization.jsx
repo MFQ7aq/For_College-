@@ -8,6 +8,7 @@ function Authorization() {
   const [password, setPassword] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token'));
   const [error, setError] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate()
 
   const handleLogin = useCallback((e) => {
@@ -53,7 +54,24 @@ function Authorization() {
               <p className="input__text Montherat">Логин</p>
               <input type="text" className={'auth__input Montherat'} value={name} onChange={e => setName(e.target.value)} placeholder="Логин" />
               <p className="input__text Montherat">Пароль</p>
-              <input type="password" autoComplete="on" className={'auth__input Montherat'} value={password} onChange={e => setPassword(e.target.value)} placeholder="Пароль" />
+              <div className="password-input-container">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  autoComplete=""
+                  className="auth__input Montherat"
+                  value={password}
+                  onChange={e => setPassword(e.target.value)}
+                  placeholder="Пароль"
+                />
+                <div className="show-password-checkbox">
+                  <input
+                    type="checkbox"
+                    checked={showPassword}
+                    onChange={() => setShowPassword(!showPassword)}
+                  />
+                  <label className="Edu__text-S">Посмотреть пароль</label>
+                </div>
+              </div>
               {error && <p className="input__text Montherat">Неправильный логин или пароль</p>}
             </form>
             {isLoggedIn ? (

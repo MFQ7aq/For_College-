@@ -19,7 +19,7 @@ const NavBar = () => {
         }
       } catch (error) {
         setIsAdmin('Null');
-        console.log(error);
+        console.log('Какая-то ошибка');
       }
     };
 
