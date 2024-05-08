@@ -15,8 +15,7 @@ const NavBar = () => {
           }
         });
         if (response.status === 200) {
-        setIsAdmin(response.data.role);
-          
+          setIsAdmin(response.data.role);
         } else if (response.status === 401) {
           setIsAdmin('Null');
         }
@@ -25,9 +24,7 @@ const NavBar = () => {
       }
     };
 
-    if (token) {
-      getUserRole();
-    }
+    getUserRole()
   }, [token]);
 
   return (
@@ -52,6 +49,17 @@ const NavBar = () => {
                   </ul>
                 </>
               )}
+              {isAdmin === 'user' && (
+                <>
+                  <input id="menu__toggle" type="checkbox" />
+                  <ul className="menu__box">
+                    <li><Link to="/LPPS" className="menu__item">Список ППС</Link></li>
+                    <li><Link to="/Authorization" className="menu__item">Авторизация</Link></li>
+                    <li><Link to="/Questionnaire" className="menu__item">Анкета институтов</Link></li>
+                    <li><Link to="/private_office" className="menu__item">Личный кабинет</Link></li>
+                  </ul>
+                </>
+              )}
               {isAdmin === 'admin' && (
                 <>
                   <input id="menu__toggle" type="checkbox" />
@@ -61,17 +69,6 @@ const NavBar = () => {
                     <li><Link to="/Questionnaire" className="menu__item">Анкета институтов</Link></li>
                     <li><Link to="/private_office" className="menu__item">Личный кабинет</Link></li>
                     <li><Link to="/admin" className="menu__item">Админ Панель</Link></li>
-                  </ul>
-                </>
-              )}
-              {isAdmin === 'user' && (
-                <>
-                  <input id="menu__toggle" type="checkbox" />
-                  <ul className="menu__box">
-                    <li><Link to="/LPPS" className="menu__item">Список ППС</Link></li>
-                    <li><Link to="/Authorization" className="menu__item">Авторизация</Link></li>
-                    <li><Link to="/Questionnaire" className="menu__item">Анкета институтов</Link></li>
-                    <li><Link to="/private_office" className="menu__item">Личный кабинет</Link></li>
                   </ul>
                 </>
               )}

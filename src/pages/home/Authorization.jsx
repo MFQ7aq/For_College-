@@ -21,6 +21,7 @@ function Authorization() {
           localStorage.setItem('token', response.data.token);
           navigate("/private_office")
           setIsLoggedIn(true);
+          location.reload()
         }
       })
       .catch(function (error) {
@@ -32,6 +33,7 @@ function Authorization() {
   const handleLogout = useCallback(() => {
     localStorage.removeItem('token');
     setIsLoggedIn(false);
+    location.reload()
   }, []);
 
   useEffect(() => {
