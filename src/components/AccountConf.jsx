@@ -32,7 +32,7 @@ const AccountConf = () => {
           }
         })
         const id = respUserId.data[0];
-        setId(id);
+        setId(String(id));
         console.log(id);
       } catch (error) {
         console.log(error);
