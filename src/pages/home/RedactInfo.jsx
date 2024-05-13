@@ -42,7 +42,7 @@ function RedactInfo() {
         const stage = selectedStages[i];
         const requestData = { "idBag": idBag };
         console.log(requestData);
-        await axios.delete(`http://localhost:8092/api/user/${stage}/freeze`, {
+        await axios.put(`http://localhost:8092/api/user/${stage}/freeze`, {
           headers: {
             Authorization: `Bearer ${token}`
           },
