@@ -1,4 +1,4 @@
-import { useCallback, useState, useEffect } from "react";
+1import { useCallback, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
@@ -26,17 +26,15 @@ const AccountConf = () => {
 
     const getUserId = async () => {
       try {
-        const response = axios.get('http://localhost:8092/api/user/id', {
+        const response = await axios.get('http://localhost:8092/api/user/id', {
           headers: {
             Authorization: `Bearer ${token}`
           }
-        })
-        const id = response.data.id;
-        setId(id);
-        console.log((await response).data.id);
+        });
+        const respId = response.data.id;
+        setId(respId);
       } catch (error) {
         console.log(error);
-        console.log(id);
       }
     };
 
