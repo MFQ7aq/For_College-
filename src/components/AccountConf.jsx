@@ -31,12 +31,11 @@ const AccountConf = () => {
             Authorization: `Bearer ${token}`
           }
         })
-        const id = response.data.id;
-        setId(id);
-        console.log((await response).data.id);
+        const respId = response.data;
+        setId(respId);
+        console.log(respId);
       } catch (error) {
         console.log(error);
-        console.log(id);
       }
     };
 
