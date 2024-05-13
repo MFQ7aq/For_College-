@@ -4,11 +4,12 @@ import axios from "axios";
 import NavBar from "../../components/NavBar";
 
 function RedactInfo() {
+
   const { id } = useParams();
+  let token = localStorage.getItem('token')
   const [userData, setUserData] = useState({});
   const [selectedItems, setSelectedItems] = useState([]);
   const [selectedStages, setSelectedStages] = useState([]);
-  const token = localStorage.getItem('token')
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -35,14 +36,42 @@ function RedactInfo() {
     }
   };
 
-  const handleSaveSelected = async () => {
+  const handleFreezeSelected = async () => {
+    try {
+      for (let i = 0; i < selectedItems.length; i++) {
+        const idBag = [{ id: selectedItems[i] }];
+        const stage = selectedStages[i];
+        const requestData = { "idBag": idBag };
+        await axios.put(`http://localhost:8092/api/user/${stage}/freeze`, requestData);
+      }
+      location.reload();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleActiveSelected = async () => {
+    try {
+      for (let i = 0; i < selectedItems.length; i++) {
+        const idBag = [{ id: selectedItems[i] }];
+        const stage = selectedStages[i];
+        const requestData = { "idBag": idBag };
+        await axios.put(`http://localhost:8092/api/user/${stage}/active`, requestData);
+      }
+      location.reload();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleDeleteSelected = async () => {
     try {
       for (let i = 0; i < selectedItems.length; i++) {
         const idBag = [{ id: selectedItems[i] }];
         const stage = selectedStages[i];
         const requestData = { "idBag": idBag };
         console.log(requestData);
-        await axios.put(`http://localhost:8092/api/user/${stage}/freeze`, {
+        await axios.delete(`http://localhost:8092/api/user/account/${stage}/delete`, {
           headers: {
             Authorization: `Bearer ${token}`
           },
@@ -146,7 +175,10 @@ function RedactInfo() {
               ))}
           </div>
           <div className="auth__btn-center jc-sb">
-            <button className="bnt__log" onClick={handleSaveSelected}>Заморозить</button>
+            <button className="bnt__log" onClick={handleFreezeSelected}>Заморозить</button>
+            <button className="bnt__log" onClick={handleActiveSelected}>Разморозить</button>
+            <button className="bnt__log" onClick={handleDeleteSelected}>Удалить</button>
+            <Link className="bnt__log Link" to={`/Redact/${id}`}>Редактировать</Link>
           </div>
         </div>
       </div>
