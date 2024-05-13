@@ -40,7 +40,7 @@ function RedactInfo() {
         const idBag = [{ id: selectedItems[i] }];
         const stage = selectedStages[i];
         const requestData = { "idBag": idBag };
-        await axios.put(`http://localhost:8092/api/admin/${stage}/freeze`, requestData);
+        await axios.put(`http://localhost:8092/api/user/${stage}/freeze`, requestData);
       }
       location.reload();
     } catch (error) {
