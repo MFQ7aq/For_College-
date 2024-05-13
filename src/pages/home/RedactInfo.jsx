@@ -8,6 +8,7 @@ function RedactInfo() {
   const [userData, setUserData] = useState({});
   const [selectedItems, setSelectedItems] = useState([]);
   const [selectedStages, setSelectedStages] = useState([]);
+  const token = localStorage.getItem('token')
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -40,7 +41,13 @@ function RedactInfo() {
         const idBag = [{ id: selectedItems[i] }];
         const stage = selectedStages[i];
         const requestData = { "idBag": idBag };
-        await axios.put(`http://localhost:8092/api/user/${stage}/freeze`, requestData);
+        console.log(requestData);
+        await axios.delete(`http://localhost:8092/api/user/${stage}/freeze`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          },
+          data: requestData
+        });
       }
       location.reload();
     } catch (error) {

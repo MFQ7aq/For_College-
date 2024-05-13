@@ -92,8 +92,8 @@ function App() {
             <Route path='/user/admin/:id' element={<UserInfoA />} />
             <Route path='/Offence' element={<Offence />} />
             <Route path='/admin_list' element={<Lppsa />} />
-            <Route path='/my_account/:id' element={<PrivateUserInfo/>}/>
-            <Route path='/Redact/:id' element={<RedactInfo/>} />
+            <Route path='/my_account/:id' element={<RedactInfo/>}/>
+            <Route path='/Redact/:id' element={<PrivateUserInfo/>} />
           </Route>)}
         {isAdmin === 'user' && (
           <Route element={<PrivateRoute />}>
@@ -103,8 +103,8 @@ function App() {
             <Route path='/Education' element={<Education />} />
             <Route path='/Social' element={<Social />} />
             <Route path="/user/:id" element={<UserInfo />} />
-            <Route path='/my_account/:id' element={<PrivateUserInfo/>}/>
-            <Route path='/Redact/:id' element={<RedactInfo/>} />
+            <Route path='/my_account/:id' element={<RedactInfo/>}/>
+            <Route path='/Redact/:id' element={<PrivateUserInfo/>} />
           </Route>
         )}
       </Routes>
