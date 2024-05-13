@@ -37,7 +37,6 @@ const AccountConf = () => {
       } catch (error) {
         console.log(error);
         console.log(id);
-
       }
     };
 
