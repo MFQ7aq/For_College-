@@ -42,7 +42,11 @@ function RedactInfo() {
         const idBag = [{ id: selectedItems[i] }];
         const stage = selectedStages[i];
         const requestData = { "idBag": idBag };
-        await axios.put(`http://localhost:8092/api/user/${stage}/freeze`, requestData);
+        await axios.put(`http://localhost:8092/api/user/${stage}/freeze`, requestData, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
       }
       location.reload();
     } catch (error) {
@@ -56,7 +60,11 @@ function RedactInfo() {
         const idBag = [{ id: selectedItems[i] }];
         const stage = selectedStages[i];
         const requestData = { "idBag": idBag };
-        await axios.put(`http://localhost:8092/api/user/${stage}/active`, requestData);
+        await axios.put(`http://localhost:8092/api/user/${stage}/active`, requestData, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
       }
       location.reload();
     } catch (error) {
