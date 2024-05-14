@@ -32,9 +32,11 @@ const Redact = () => {
     try {
       const bag = {};
       userData.userAwards.forEach(item => {
+        const editedLink = editedLinks[item.id] || "";
+        const linkToSave = editedLink.trim() === "" ? "Нет ссылки" : editedLink;
         bag[item.id] = {
           id: item.id,
-          link: editedLinks[item.id] || item.link,
+          link: linkToSave,
           stage: item.stage
         };
       });
