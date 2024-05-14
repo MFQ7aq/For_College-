@@ -1,15 +1,14 @@
-import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import NavBar from "../../components/NavBar";
 
-function RedactInfo() {
-
+const Redact = () => {
   const { id } = useParams();
-  let token = localStorage.getItem('token')
+  const token = localStorage.getItem('token');
   const [userData, setUserData] = useState({});
   const [selectedItems, setSelectedItems] = useState([]);
-  const [selectedStages, setSelectedStages] = useState([]);
+  const [editedLink, setEditedLink] = useState("");
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -25,67 +24,22 @@ function RedactInfo() {
     fetchUserData();
   }, [id]);
 
-  const toggleItemSelection = (itemId, stage) => {
-    const isSelected = selectedItems.includes(itemId);
-    if (isSelected) {
-      setSelectedItems(selectedItems.filter(item => item !== itemId));
-      setSelectedStages(selectedStages.filter(selectedStage => selectedStage !== stage));
-    } else {
-      setSelectedItems([...selectedItems, itemId]);
-      setSelectedStages([...selectedStages, stage]);
-    }
-  };
-
-  const handleFreezeSelected = async () => {
+  const handleSaveLink = async () => {
     try {
+      const bag = {};
       for (let i = 0; i < selectedItems.length; i++) {
-        const idBag = [{ id: selectedItems[i] }];
-        const stage = selectedStages[i];
-        const requestData = { "idBag": idBag };
-        await axios.put(`http://localhost:8092/api/user/${stage}/freeze`, requestData, {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        });
+        const item = selectedItems[i];
+        bag[i + 1] = {
+          id: item.id,
+          link: item.link,
+          stage: item.stage
+        };
       }
-      location.reload();
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const handleActiveSelected = async () => {
-    try {
-      for (let i = 0; i < selectedItems.length; i++) {
-        const idBag = [{ id: selectedItems[i] }];
-        const stage = selectedStages[i];
-        const requestData = { "idBag": idBag };
-        await axios.put(`http://localhost:8092/api/user/${stage}/active`, requestData, {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        });
-      }
-      location.reload();
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const handleDeleteSelected = async () => {
-    try {
-      for (let i = 0; i < selectedItems.length; i++) {
-        const idBag = [{ id: selectedItems[i] }];
-        const stage = selectedStages[i];
-        const requestData = { "idBag": idBag };
-        console.log(requestData);
-        await axios.delete(`http://localhost:8092/api/user/account/${stage}/delete`, {
-          headers: {
-            Authorization: `Bearer ${token}`
-          },
-          data: requestData
-        });
-      }
+      await axios.put(`http://localhost:8092/api/user/account/award/edit`, { bag }, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
       location.reload();
     } catch (error) {
       console.log(error);
@@ -117,12 +71,10 @@ function RedactInfo() {
                 <div className="userInfo-in userInfo__text-S" key={award.id} style={{ backgroundColor: i % 2 == 0 ? '#0047FF4D' : '#33FF001A' }}>
                   <p className={`userInfo-in-text ${award.status === 'freeze' ? 'crossed-out' : ''}`}>{award.name}</p>
                   <div className="admin__link">
-                    <Link to={award.link}>Link</Link>
                     <input
-                      className="check"
-                      type="checkbox"
-                      checked={selectedItems.includes(award.id)}
-                      onChange={() => toggleItemSelection(award.id, award.stage)}
+                      type="text"
+                      value={editedLink || award.link}
+                      onChange={(e) => setEditedLink(e.target.value)}
                     />
                   </div>
                 </div>
@@ -135,12 +87,10 @@ function RedactInfo() {
                 <div className="userInfo-in userInfo__text-S" key={research.id} style={{ backgroundColor: i % 2 == 0 ? '#0047FF4D' : '#33FF001A' }}>
                   <p className={`userInfo-in-text ${research.status === 'freeze' ? 'crossed-out' : ''}`}>{research.name}</p>
                   <div className="admin__link">
-                    <Link to={research.link}>Link</Link>
                     <input
-                      className="check"
-                      type="checkbox"
-                      checked={selectedItems.includes(research.id)}
-                      onChange={() => toggleItemSelection(research.id, research.stage)}
+                      type="text"
+                      value={editedLink || research.link}
+                      onChange={(e) => setEditedLink(e.target.value)}
                     />
                   </div>
                 </div>
@@ -153,12 +103,10 @@ function RedactInfo() {
                 <div className="userInfo-in userInfo__text-S" key={innovative.id} style={{ backgroundColor: i % 2 == 0 ? '#0047FF4D' : '#33FF001A' }}>
                   <p className={`userInfo-in-text ${innovative.status === 'freeze' ? 'crossed-out' : ''}`}>{innovative.name}</p>
                   <div className="admin__link">
-                    <Link to={innovative.link}>Link</Link>
                     <input
-                      className="check"
-                      type="checkbox"
-                      checked={selectedItems.includes(innovative.id)}
-                      onChange={() => toggleItemSelection(innovative.id, innovative.stage)}
+                      type="text"
+                      value={editedLink || innovative.link}
+                      onChange={(e) => setEditedLink(e.target.value)}
                     />
                   </div>
                 </div>
@@ -171,26 +119,21 @@ function RedactInfo() {
                 <div className="userInfo-in userInfo__text-S" key={social.id} style={{ backgroundColor: i % 2 == 0 ? '#0047FF4D' : '#33FF001A' }}>
                   <p className={`userInfo-in-text ${social.status === 'freeze' ? 'crossed-out' : ''}`}>{social.name}</p>
                   <div className="admin__link">
-                    <Link to={social.link}>Link</Link>
                     <input
-                      className="check"
-                      type="checkbox"
-                      checked={selectedItems.includes(social.id)}
-                      onChange={() => toggleItemSelection(social.id, social.stage)}
+                      type="text"
+                      value={editedLink || social.link}
+                      onChange={(e) => setEditedLink(e.target.value)}
                     />
                   </div>
                 </div>
               ))}
           </div>
           <div className="auth__btn-center jc-sb">
-            <button className="bnt__log" onClick={handleFreezeSelected}>Заморозить</button>
-            <button className="bnt__log" onClick={handleActiveSelected}>Разморозить</button>
-            <button className="bnt__log" onClick={handleDeleteSelected}>Удалить</button>
-            <Link className="bnt__log Link" to={`/Redact/${id}`}>Редактировать</Link>
+            <button className="bnt__log" onClick={handleSaveLink}>Сохранить</button>
           </div>
         </div>
       </div>
     </div>
   );
 }
-export default RedactInfo;
+export default Redact;

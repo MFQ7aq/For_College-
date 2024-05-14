@@ -32,7 +32,8 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Admin from './pages/home/Admin/Admin'
 import Lppsa from './pages/home/Admin/LPPSA'
-import RedactInfo from './pages/home/RedactInfo'
+import AwardsInfo from './pages/home/AwardsInfo'
+import Redact from './pages/home/Redact'
 
 function App() {
   const [isAdmin, setIsAdmin] = useState(false)
@@ -91,7 +92,8 @@ function App() {
             <Route path='/user/admin/:id' element={<UserInfoA />} />
             <Route path='/Offence' element={<Offence />} />
             <Route path='/admin_list' element={<Lppsa />} />
-            <Route path='/my_account/:id' element={<RedactInfo/>}/>
+            <Route path='/my_account/:id' element={<AwardsInfo/>}/>
+            <Route path='/redact/:id' element={<Redact/>}/>
           </Route>)}
         {isAdmin === 'user' && (
           <Route element={<PrivateRoute />}>
@@ -101,7 +103,8 @@ function App() {
             <Route path='/Education' element={<Education />} />
             <Route path='/Social' element={<Social />} />
             <Route path="/user/:id" element={<UserInfo />} />
-            <Route path='/my_account/:id' element={<RedactInfo/>}/>
+            <Route path='/my_account/:id' element={<AwardsInfo/>}/>
+            <Route path='/redact/:id' element={<Redact/>}/>
           </Route>
         )}
       </Routes>
