@@ -40,7 +40,8 @@ const Redact = () => {
           stage: item.stage
         };
       });
-      await axios.put(`http://localhost:8092/api/user/account/award/edit`, { bag }, {
+      const allStages = userData.userAwards.map(item => item.stage);
+      await axios.put(`http://localhost:8092/api/user/account/award/edit`, { bag, stages: allStages }, {
         headers: {
           Authorization: `Bearer ${token}`
         }
