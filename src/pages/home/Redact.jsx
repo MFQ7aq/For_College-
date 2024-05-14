@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import NavBar from "../../components/NavBar";
 
@@ -8,7 +8,7 @@ const Redact = () => {
   const token = localStorage.getItem('token');
   const [userData, setUserData] = useState({});
   const [selectedItems, setSelectedItems] = useState([]);
-  const [editedLink, setEditedLink] = useState("");
+  const [editedLinks, setEditedLinks] = useState({});
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -16,6 +16,11 @@ const Redact = () => {
         const resp = await axios.get(`http://localhost:8092/api/user/account/${id}`);
         const data = resp.data;
         setUserData(data);
+        const initialEditedLinks = {};
+        data.userAwards.forEach(award => {
+          initialEditedLinks[award.id] = award.link || "";
+        });
+        setEditedLinks(initialEditedLinks);
       } catch (error) {
         console.log(error);
       }
@@ -31,7 +36,7 @@ const Redact = () => {
         const item = selectedItems[i];
         bag[i + 1] = {
           id: item.id,
-          link: item.link,
+          link: editedLinks[item.id] || item.link,
           stage: item.stage
         };
       }
@@ -73,8 +78,8 @@ const Redact = () => {
                   <div className="admin__link">
                     <input
                       type="text"
-                      value={editedLink || award.link}
-                      onChange={(e) => setEditedLink(e.target.value)}
+                      value={editedLinks[award.id] || award.link}
+                      onChange={(e) => setEditedLinks({ ...editedLinks, [award.id]: e.target.value })}
                     />
                   </div>
                 </div>
@@ -89,8 +94,8 @@ const Redact = () => {
                   <div className="admin__link">
                     <input
                       type="text"
-                      value={editedLink || research.link}
-                      onChange={(e) => setEditedLink(e.target.value)}
+                      value={editedLinks[research.id] || research.link}
+                      onChange={(e) => setEditedLinks({ ...editedLinks, [research.id]: e.target.value })}
                     />
                   </div>
                 </div>
@@ -105,8 +110,8 @@ const Redact = () => {
                   <div className="admin__link">
                     <input
                       type="text"
-                      value={editedLink || innovative.link}
-                      onChange={(e) => setEditedLink(e.target.value)}
+                      value={editedLinks[innovative.id] || innovative.link}
+                      onChange={(e) => setEditedLinks({ ...editedLinks, [innovative.id]: e.target.value })}
                     />
                   </div>
                 </div>
@@ -121,8 +126,8 @@ const Redact = () => {
                   <div className="admin__link">
                     <input
                       type="text"
-                      value={editedLink || social.link}
-                      onChange={(e) => setEditedLink(e.target.value)}
+                      value={editedLinks[social.id] || social.link}
+                      onChange={(e) => setEditedLinks({ ...editedLinks, [social.id]: e.target.value })}
                     />
                   </div>
                 </div>
