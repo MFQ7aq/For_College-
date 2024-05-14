@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import NavBar from "../../components/NavBar";
 
@@ -7,7 +7,6 @@ const Redact = () => {
   const { id } = useParams();
   const token = localStorage.getItem('token');
   const [userData, setUserData] = useState({});
-  const [selectedItems, setSelectedItems] = useState([]);
   const [editedLinks, setEditedLinks] = useState({});
 
   useEffect(() => {
@@ -17,8 +16,8 @@ const Redact = () => {
         const data = resp.data;
         setUserData(data);
         const initialEditedLinks = {};
-        data.userAwards.forEach(award => {
-          initialEditedLinks[award.id] = award.link || "";
+        data.userAwards.forEach(item => {
+          initialEditedLinks[item.id] = item.link || "";
         });
         setEditedLinks(initialEditedLinks);
       } catch (error) {
@@ -32,15 +31,14 @@ const Redact = () => {
   const handleSaveLink = async () => {
     try {
       const bag = {};
-      for (let i = 0; i < selectedItems.length; i++) {
-        const item = selectedItems[i];
-        bag[i + 1] = {
+      userData.userAwards.forEach(item => {
+        bag[item.id] = {
           id: item.id,
           link: editedLinks[item.id] || item.link,
           stage: item.stage
         };
-      }
-      await axios.put(`http://localhost:8092/api/user/account/award/edit`, { bag }, {
+      });
+      await axios.put(`http://localhost:8092/api/user/account/award/edit`, bag, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -72,14 +70,14 @@ const Redact = () => {
           <div className="userAwards bline">
             <h2 className="userInfo__title">Личные достижения:</h2>
             {userData.userAwards &&
-              userData.userAwards.map((award, i) => (
-                <div className="userInfo-in userInfo__text-S" key={award.id} style={{ backgroundColor: i % 2 == 0 ? '#0047FF4D' : '#33FF001A' }}>
-                  <p className={`userInfo-in-text ${award.status === 'freeze' ? 'crossed-out' : ''}`}>{award.name}</p>
+              userData.userAwards.map((item, i) => (
+                <div className="userInfo-in userInfo__text-S" key={item.id} style={{ backgroundColor: i % 2 === 0 ? '#0047FF4D' : '#33FF001A' }}>
+                  <p className={`userInfo-in-text ${item.status === 'freeze' ? 'crossed-out' : ''}`}>{item.name}</p>
                   <div className="admin__link">
                     <input
                       type="text"
-                      value={editedLinks[award.id] || award.link}
-                      onChange={(e) => setEditedLinks({ ...editedLinks, [award.id]: e.target.value })}
+                      value={editedLinks[item.id] || item.link}
+                      onChange={(e) => setEditedLinks({ ...editedLinks, [item.id]: e.target.value })}
                     />
                   </div>
                 </div>
@@ -88,14 +86,14 @@ const Redact = () => {
           <div className="userResearch bline">
             <h2 className="userInfo__title">Научно-исследовательская деятельность:</h2>
             {userData.userResearch &&
-              userData.userResearch.map((research, i) => (
-                <div className="userInfo-in userInfo__text-S" key={research.id} style={{ backgroundColor: i % 2 == 0 ? '#0047FF4D' : '#33FF001A' }}>
-                  <p className={`userInfo-in-text ${research.status === 'freeze' ? 'crossed-out' : ''}`}>{research.name}</p>
+              userData.userResearch.map((item, i) => (
+                <div className="userInfo-in userInfo__text-S" key={item.id} style={{ backgroundColor: i % 2 === 0 ? '#0047FF4D' : '#33FF001A' }}>
+                  <p className={`userInfo-in-text ${item.status === 'freeze' ? 'crossed-out' : ''}`}>{item.name}</p>
                   <div className="admin__link">
                     <input
                       type="text"
-                      value={editedLinks[research.id] || research.link}
-                      onChange={(e) => setEditedLinks({ ...editedLinks, [research.id]: e.target.value })}
+                      value={editedLinks[item.id] || item.link}
+                      onChange={(e) => setEditedLinks({ ...editedLinks, [item.id]: e.target.value })}
                     />
                   </div>
                 </div>
@@ -104,14 +102,14 @@ const Redact = () => {
           <div className="userInnovative bline">
             <h2 className="userInfo__title">Инновационно-образовательная деятельность:</h2>
             {userData.userInnovative &&
-              userData.userInnovative.map((innovative, i) => (
-                <div className="userInfo-in userInfo__text-S" key={innovative.id} style={{ backgroundColor: i % 2 == 0 ? '#0047FF4D' : '#33FF001A' }}>
-                  <p className={`userInfo-in-text ${innovative.status === 'freeze' ? 'crossed-out' : ''}`}>{innovative.name}</p>
+              userData.userInnovative.map((item, i) => (
+                <div className="userInfo-in userInfo__text-S" key={item.id} style={{ backgroundColor: i % 2 === 0 ? '#0047FF4D' : '#33FF001A' }}>
+                  <p className={`userInfo-in-text ${item.status === 'freeze' ? 'crossed-out' : ''}`}>{item.name}</p>
                   <div className="admin__link">
                     <input
                       type="text"
-                      value={editedLinks[innovative.id] || innovative.link}
-                      onChange={(e) => setEditedLinks({ ...editedLinks, [innovative.id]: e.target.value })}
+                      value={editedLinks[item.id] || item.link}
+                      onChange={(e) => setEditedLinks({ ...editedLinks, [item.id]: e.target.value })}
                     />
                   </div>
                 </div>
@@ -120,14 +118,14 @@ const Redact = () => {
           <div className="userSocial bline">
             <h2 className="userInfo__title">Воспитательная, общественная деятельность:</h2>
             {userData.userSocial &&
-              userData.userSocial.map((social, i) => (
-                <div className="userInfo-in userInfo__text-S" key={social.id} style={{ backgroundColor: i % 2 == 0 ? '#0047FF4D' : '#33FF001A' }}>
-                  <p className={`userInfo-in-text ${social.status === 'freeze' ? 'crossed-out' : ''}`}>{social.name}</p>
+              userData.userSocial.map((item, i) => (
+                <div className="userInfo-in userInfo__text-S" key={item.id} style={{ backgroundColor: i % 2 === 0 ? '#0047FF4D' : '#33FF001A' }}>
+                  <p className={`userInfo-in-text ${item.status === 'freeze' ? 'crossed-out' : ''}`}>{item.name}</p>
                   <div className="admin__link">
                     <input
                       type="text"
-                      value={editedLinks[social.id] || social.link}
-                      onChange={(e) => setEditedLinks({ ...editedLinks, [social.id]: e.target.value })}
+                      value={editedLinks[item.id] || item.link}
+                      onChange={(e) => setEditedLinks({ ...editedLinks, [item.id]: e.target.value })}
                     />
                   </div>
                 </div>
