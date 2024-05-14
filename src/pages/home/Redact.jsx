@@ -38,7 +38,7 @@ const Redact = () => {
           stage: item.stage
         };
       });
-      await axios.put(`http://localhost:8092/api/user/account/award/edit`, bag, {
+      await axios.put(`http://localhost:8092/api/user/account/award/edit`, { bag }, {
         headers: {
           Authorization: `Bearer ${token}`
         }
