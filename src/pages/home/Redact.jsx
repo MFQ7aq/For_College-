@@ -31,17 +31,16 @@ const Redact = () => {
   const handleSaveLink = async () => {
     try {
       const bag = {};
-      userData.userAwards.forEach(item => {
+      userData.userAwards.concat(userData.userResearch, userData.userInnovative, userData.userSocial).forEach(item => {
         const editedLink = editedLinks[item.id] || "";
-        const linkToSave = editedLink.trim() === "" ? "Нет ссылки" : editedLink;
+        const linkToSave = editedLink.trim() === "" ? "Ссфлка не изменена... сук..." : editedLink;
         bag[item.id] = {
           id: item.id,
           link: linkToSave,
           stage: item.stage
         };
       });
-      const allStages = userData.userAwards.map(item => item.stage);
-      await axios.put(`http://localhost:8092/api/user/account/award/edit`, { bag, stages: allStages }, {
+      await axios.put(`http://localhost:8092/api/user/account/award/edit`, { bag }, {
         headers: {
           Authorization: `Bearer ${token}`
         }
