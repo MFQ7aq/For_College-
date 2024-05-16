@@ -39,10 +39,12 @@ function PrivateOffice() {
         ]);
         const { name, institut, position, regular, email } = userInfoResponse.data.user;
         setUserData({ name, institut, position, regular, email });
-        const { institutes, position: userPosition } = institutesResponse.data;
+        const { institutes, positions } = institutesResponse.data;
         setInst(institutes);
-        setPost(userPosition);
+        setPost(positions);
+        if (name != null) {
         setIsAuthenticated(true);
+        }
       } catch (error) {
         console.log(error);
         setIsAuthenticated(false);
