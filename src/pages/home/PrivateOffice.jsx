@@ -1,6 +1,6 @@
 import { useCallback, useState, useEffect } from "react";
 import NavBar from "../../components/NavBar";
-import RegNav from "../../components/RegNav"
+import RegNav from "../../components/RegNav";
 import AccountConf from "../../components/AccountConf";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -43,7 +43,7 @@ function PrivateOffice() {
         setInst(institutes);
         setPost(positions);
         if (name != null) {
-        setIsAuthenticated(true);
+          setIsAuthenticated(true);
         }
       } catch (error) {
         console.log(error);
@@ -100,63 +100,59 @@ function PrivateOffice() {
           <h3 className="Edu__text-M Edu__text-M-office">Личный данные</h3>
           <div className="office__in">
             {isAuthenticated ? (
-              <>
-                <div className="form">
-                  <p className="input__text-s bold">ФИО</p>
-                  <div className="input__office Montherat">
-                    <p className="input__text-s">{userData.name}</p>
-                  </div>
-                  <p className="input__text-s bold">Институт</p>
-                  <div className="input__office Montherat">
-                    <p className="input__text-s">{userData.institut}</p>
-                  </div>
-                  <p className="input__text-s bold">Должность</p>
-                  <div className="input__office Montherat">
-                    <p className="input__text-s">{userData.position}</p>
-                  </div>
-                  <p className="input__text-s bold">Штат/Совм.</p>
-                  <div className="input__office Montherat">
-                    <p className="input__text-s">{userData.regular}</p>
-                  </div>
-                  <p className="input__text-s bold">Email</p>
-                  <div className="input__office Montherat">
-                    <p className="input__text-s">{userData.email}</p>
-                  </div>
-                  <button onClick={Back} className="btn__link btn__blue montherat">Назад</button>
+              <div className="form">
+                <p className="input__text-s bold">ФИО</p>
+                <div className="input__office Montherat">
+                  <p className="input__text-s">{userData.name}</p>
                 </div>
-              </>
+                <p className="input__text-s bold">Институт</p>
+                <div className="input__office Montherat">
+                  <p className="input__text-s">{userData.institut}</p>
+                </div>
+                <p className="input__text-s bold">Должность</p>
+                <div className="input__office Montherat">
+                  <p className="input__text-s">{userData.position}</p>
+                </div>
+                <p className="input__text-s bold">Штат/Совм.</p>
+                <div className="input__office Montherat">
+                  <p className="input__text-s">{userData.regular}</p>
+                </div>
+                <p className="input__text-s bold">Email</p>
+                <div className="input__office Montherat">
+                  <p className="input__text-s">{userData.email}</p>
+                </div>
+                <button onClick={Back} className="btn__link btn__blue montherat">Назад</button>
+              </div>
             ) : (
-              <>
-                <div className="form">
-                  <p className="input__text-s bold">ФИО</p>
-                  <input type="text" value={selectedValues.name} onChange={(e) => handleSelect('name', e.target.value)} className="input__office Montherat" />
-                  <p className="input__text-s bold">Институт</p>
-                  <select value={selectedValues.inst} onChange={(e) => handleSelect('inst', e.target.value)} className="input__office Montherat">
-                    <option value=""></option>
-                    {inst.map((inst) => <option key={inst.id} value={inst.id}>
-                      {inst.name}
-                    </option>)}
-                  </select>
-                  <p className="input__text-s bold">Должность</p>
-                  <select value={selectedValues.post} onChange={(e) => handleSelect('post', e.target.value)} className="input__office Montherat">
-                    <option value=""></option>
-                    {post.map((post) => <option key={post.id} value={post.name}>
-                      {post.name}
-                    </option>)}
-                    <option value="Другое">Другое</option>
-                  </select>
-                  <p className="input__text-s bold">Штат/Совм.</p>
-                  <select value={selectedValues.stat} onChange={(e) => handleSelect('stat', e.target.value)} className="input__office Montherat">
-                    <option value=""></option>
-                    <option value="Штат">Штат</option>
-                    <option value="Совместитель">Совместитель</option>
-                  </select>
-                  <p className="input__text-s bold">Email</p>
-                  <input type="email" value={selectedValues.email} onChange={(e) => handleSelect('email', e.target.value)} className="input__office Montherat" />
-                  <button onClick={handleSubmit} className="btn__link btn__green-a montherat">Отправить</button>
-                  <button onClick={Back} className="btn__link btn__blue montherat">Назад</button>
-                </div>
-              </>
+              <div className="form">
+                <p className="input__text-s bold">ФИО</p>
+                <input type="text" value={selectedValues.name} onChange={(e) => handleSelect('name', e.target.value)} className="input__office Montherat" />
+                <p className="input__text-s bold">Институт</p>
+                <select value={selectedValues.inst} onChange={(e) => handleSelect('inst', e.target.value)} className="input__office Montherat">
+                  <option value=""></option>
+                  {inst.map((inst) => <option key={inst.id} value={inst.id}>
+                    {inst.name}
+                  </option>)}
+                </select>
+                <p className="input__text-s bold">Должность</p>
+                <select value={selectedValues.post} onChange={(e) => handleSelect('post', e.target.value)} className="input__office Montherat">
+                  <option value=""></option>
+                  {post.map((post) => <option key={post.id} value={post.name}>
+                    {post.name}
+                  </option>)}
+                  <option value="Другое">Другое</option>
+                </select>
+                <p className="input__text-s bold">Штат/Совм.</p>
+                <select value={selectedValues.stat} onChange={(e) => handleSelect('stat', e.target.value)} className="input__office Montherat">
+                  <option value=""></option>
+                  <option value="Штат">Штат</option>
+                  <option value="Совместитель">Совместитель</option>
+                </select>
+                <p className="input__text-s bold">Email</p>
+                <input type="email" value={selectedValues.email} onChange={(e) => handleSelect('email', e.target.value)} className="input__office Montherat" />
+                <button onClick={handleSubmit} className="btn__link btn__green-a montherat">Отправить</button>
+                <button onClick={Back} className="btn__link btn__blue montherat">Назад</button>
+              </div>
             )}
           </div>
         </div>
