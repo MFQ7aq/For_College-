@@ -82,6 +82,7 @@
   margin: 5px 0 5px 0;
   border: 1px solid blue;
   border-radius: 10px;
+  padding-left: 3px;
 }
 .input__office>.input__text-s{
   padding: 10px;
