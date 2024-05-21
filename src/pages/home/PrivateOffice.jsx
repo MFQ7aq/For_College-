@@ -20,7 +20,10 @@ function PrivateOffice() {
   const [selectedValues, setSelectedValues] = useState({
     name: '',
     stat: '',
-    email: ''
+    email: '',
+    inst: '',
+    post: '',
+    otherPost: '' // State for the other position input
   });
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -46,9 +49,9 @@ function PrivateOffice() {
     const fetchDataInst = async () => {
       try {
         const response = await axios.get('http://localhost:8092/api/user/info');
-        const { institutes, position } = response.data;
+        const { institutes, positions } = response.data;
         setInst(institutes);
-        setPost(position);
+        setPost(positions);
       } catch (error) {
         console.log(error);
         setIsAuthenticated(false);
@@ -72,12 +75,14 @@ function PrivateOffice() {
 
   const handleSubmit = useCallback((e) => {
     e.preventDefault();
+    const { name, inst, post, otherPost, stat, email } = selectedValues;
+    const position = post === 'Другое' ? otherPost : post;
     axios.post('http://localhost:8092/api/user/info/add', {
-      "name": selectedValues.name,
-      "institut": selectedValues.inst,
-      "position": selectedValues.post,
-      "regular": selectedValues.stat,
-      "email": selectedValues.email,
+      name,
+      institut: inst,
+      position,
+      regular: stat,
+      email,
     }, {
       headers: {
         Authorization: `Bearer ${token}`
@@ -85,8 +90,8 @@ function PrivateOffice() {
     })
       .then(function (response) {
         console.log(response);
-        setIsAuthenticated(true)
-        window.location.reload()
+        setIsAuthenticated(true);
+        window.location.reload();
       })
       .catch(function (error) {
         console.log(error);
@@ -102,7 +107,7 @@ function PrivateOffice() {
         <AccountConf />
         <div className="office">
           <RegNav />
-          <h3 className="Edu__text-M Edu__text-M-office">Личный данные</h3>
+          <h3 className="Edu__text-M Edu__text-M-office">Личные данные</h3>
           <div className="office__in">
             {isAuthenticated ? (
               <div className="form">
@@ -135,22 +140,28 @@ function PrivateOffice() {
                 <p className="input__text-s bold">Институт</p>
                 <select value={selectedValues.inst} onChange={(e) => handleSelect('inst', e.target.value)} className="input__office Montherat">
                   <option value=""></option>
-                  {inst && inst.map((inst) => (
-                    <option key={inst.id} value={inst.id}>
-                      {inst.name}
+                  {inst && inst.length > 0 && inst.map((instItem, index) => (
+                    <option key={index} value={instItem}>
+                      {instItem}
                     </option>
                   ))}
                 </select>
                 <p className="input__text-s bold">Должность</p>
                 <select value={selectedValues.post} onChange={(e) => handleSelect('post', e.target.value)} className="input__office Montherat">
                   <option value=""></option>
-                  {post && post.map((postItem) => (
-                    <option key={postItem.id} value={postItem.id}>
-                      {postItem.name}
+                  {post && post.length > 0 && post.map((postItem, index) => (
+                    <option key={index} value={postItem}>
+                      {postItem}
                     </option>
                   ))}
                   <option value="Другое">Другое</option>
                 </select>
+                {selectedValues.post === 'Другое' && (
+                  <div>
+                    <p className="input__text-s bold">Укажите должность</p>
+                    <input type="text" value={selectedValues.otherPost} onChange={(e) => handleSelect('otherPost', e.target.value)} className="input__office Montherat" />
+                  </div>
+                )}
                 <p className="input__text-s bold">Штат/Совм.</p>
                 <select value={selectedValues.stat} onChange={(e) => handleSelect('stat', e.target.value)} className="input__office Montherat">
                   <option value=""></option>
