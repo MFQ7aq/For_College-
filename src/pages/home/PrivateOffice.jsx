@@ -19,29 +19,21 @@ function PrivateOffice() {
   const [post, setPost] = useState([]);
   const [selectedValues, setSelectedValues] = useState({
     name: '',
-    inst: '',
     stat: '',
-    post: '',
     email: ''
   });
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchDataUser = async () => {
       try {
-        const [userInfoResponse, institutesResponse] = await Promise.all([
-          axios.get('http://localhost:8092/api/user/name', {
-            headers: {
-              Authorization: `Bearer ${token}`
-            }
-          }),
-          axios.get('http://localhost:8092/api/user/info')
-        ]);
-        const { name, institut, position, regular, email } = userInfoResponse.data.user;
+        const response = await axios.get('http://localhost:8092/api/user/name', {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+        const { name, institut, position, regular, email } = response.data.user;
         setUserData({ name, institut, position, regular, email });
-        const { institutes, positions } = institutesResponse.data;
-        setInst(institutes);
-        setPost(positions);
         if (name != null) {
           setIsAuthenticated(true);
         }
@@ -51,7 +43,20 @@ function PrivateOffice() {
       }
     };
 
-    fetchData();
+    const fetchDataInst = async () => {
+      try {
+        const response = await axios.get('http://localhost:8092/api/user/info');
+        const { institutes, position } = response.data;
+        setInst(institutes);
+        setPost(position);
+      } catch (error) {
+        console.log(error);
+        setIsAuthenticated(false);
+      }
+    };
+
+    fetchDataUser();
+    fetchDataInst();
   }, [token]);
 
   const handleSelect = useCallback((field, value) => {
@@ -130,16 +135,20 @@ function PrivateOffice() {
                 <p className="input__text-s bold">Институт</p>
                 <select value={selectedValues.inst} onChange={(e) => handleSelect('inst', e.target.value)} className="input__office Montherat">
                   <option value=""></option>
-                  {inst.map((inst) => <option key={inst.id} value={inst.id}>
-                    {inst.name}
-                  </option>)}
+                  {inst && inst.map((inst) => (
+                    <option key={inst.id} value={inst.id}>
+                      {inst.name}
+                    </option>
+                  ))}
                 </select>
                 <p className="input__text-s bold">Должность</p>
                 <select value={selectedValues.post} onChange={(e) => handleSelect('post', e.target.value)} className="input__office Montherat">
                   <option value=""></option>
-                  {post.map((post) => <option key={post.id} value={post.name}>
-                    {post.name}
-                  </option>)}
+                  {post && post.map((postItem) => (
+                    <option key={postItem.id} value={postItem.id}>
+                      {postItem.name}
+                    </option>
+                  ))}
                   <option value="Другое">Другое</option>
                 </select>
                 <p className="input__text-s bold">Штат/Совм.</p>
