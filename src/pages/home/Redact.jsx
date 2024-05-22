@@ -33,7 +33,7 @@ const Redact = () => {
       const bag = {};
       userData.userAwards.concat(userData.userResearch, userData.userInnovative, userData.userSocial).forEach(item => {
         const editedLink = editedLinks[item.id] || "";
-        const linkToSave = editedLink.trim() === "" ? "Нет ссылки" : editedLink;
+        const linkToSave = editedLink;
         bag[item.id] = {
           id: item.id,
           link: linkToSave,
