@@ -19,6 +19,15 @@ const Redact = () => {
         data.userAwards.forEach(item => {
           initialEditedLinks[item.id] = item.link || "";
         });
+        data.userResearch.forEach(item => {
+          initialEditedLinks[item.id] = item.link || "";
+        });
+        data.userInnovative.forEach(item => {
+          initialEditedLinks[item.id] = item.link || "";
+        });
+        data.userSocial.forEach(item => {
+          initialEditedLinks[item.id] = item.link || "";
+        });
         setEditedLinks(initialEditedLinks);
       } catch (error) {
         console.log(error);
@@ -33,10 +42,9 @@ const Redact = () => {
       const bag = {};
       userData.userAwards.concat(userData.userResearch, userData.userInnovative, userData.userSocial).forEach(item => {
         const editedLink = editedLinks[item.id] || "";
-        const linkToSave = editedLink;
         bag[item.id] = {
           id: item.id,
-          link: linkToSave,
+          link: editedLink,
           stage: item.stage
         };
       });
@@ -78,7 +86,7 @@ const Redact = () => {
                   <div className="admin__link">
                     <input
                       type="text"
-                      value={editedLinks[item.id] || item.link}
+                      value={editedLinks[item.id] !== undefined ? editedLinks[item.id] : item.link}
                       onChange={(e) => setEditedLinks({ ...editedLinks, [item.id]: e.target.value })}
                     />
                   </div>
@@ -94,7 +102,7 @@ const Redact = () => {
                   <div className="admin__link">
                     <input
                       type="text"
-                      value={editedLinks[item.id] || item.link}
+                      value={editedLinks[item.id] !== undefined ? editedLinks[item.id] : item.link}
                       onChange={(e) => setEditedLinks({ ...editedLinks, [item.id]: e.target.value })}
                     />
                   </div>
@@ -110,7 +118,7 @@ const Redact = () => {
                   <div className="admin__link">
                     <input
                       type="text"
-                      value={editedLinks[item.id] || item.link}
+                      value={editedLinks[item.id] !== undefined ? editedLinks[item.id] : item.link}
                       onChange={(e) => setEditedLinks({ ...editedLinks, [item.id]: e.target.value })}
                     />
                   </div>
@@ -126,7 +134,7 @@ const Redact = () => {
                   <div className="admin__link">
                     <input
                       type="text"
-                      value={editedLinks[item.id] || item.link}
+                      value={editedLinks[item.id] !== undefined ? editedLinks[item.id] : item.link}
                       onChange={(e) => setEditedLinks({ ...editedLinks, [item.id]: e.target.value })}
                     />
                   </div>
