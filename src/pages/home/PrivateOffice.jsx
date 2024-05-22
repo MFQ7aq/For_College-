@@ -15,15 +15,15 @@ function PrivateOffice() {
     regular: '',
     email: ''
   });
-  const [inst, setInst] = useState([]);
-  const [post, setPost] = useState([]);
+  const [institutes, setInstitutes] = useState([]);
+  const [positions, setPositions] = useState([]);
   const [selectedValues, setSelectedValues] = useState({
     name: '',
     stat: '',
     email: '',
     inst: '',
     post: '',
-    otherPost: '' // State for the other position input
+    otherPost: ''
   });
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -37,9 +37,7 @@ function PrivateOffice() {
         });
         const { name, institut, position, regular, email } = response.data.user;
         setUserData({ name, institut, position, regular, email });
-        if (name != null) {
-          setIsAuthenticated(true);
-        }
+        setIsAuthenticated(true);
       } catch (error) {
         console.log(error);
         setIsAuthenticated(false);
@@ -49,12 +47,11 @@ function PrivateOffice() {
     const fetchDataInst = async () => {
       try {
         const response = await axios.get('http://localhost:8092/api/user/info');
-        const { institutes, positions } = response.data;
-        setInst(institutes);
-        setPost(positions);
+        const { institutes, position } = response.data;
+        setInstitutes(institutes);
+        setPositions(position);
       } catch (error) {
         console.log(error);
-        setIsAuthenticated(false);
       }
     };
 
@@ -77,21 +74,23 @@ function PrivateOffice() {
     e.preventDefault();
     const { name, inst, post, otherPost, stat, email } = selectedValues;
     const position = post === 'Другое' ? otherPost : post;
-    axios.post('http://localhost:8092/api/user/info/add', {
+    const dataToSend = JSON.stringify({
       name,
       institut: inst,
       position,
       regular: stat,
       email,
-    }, {
+    });
+
+    axios.post('http://localhost:8092/api/user/info/add', dataToSend, {
       headers: {
-        Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json'
       }
     })
       .then(function (response) {
         console.log(response);
         setIsAuthenticated(true);
-        window.location.reload();
       })
       .catch(function (error) {
         console.log(error);
@@ -140,7 +139,7 @@ function PrivateOffice() {
                 <p className="input__text-s bold">Институт</p>
                 <select value={selectedValues.inst} onChange={(e) => handleSelect('inst', e.target.value)} className="input__office Montherat">
                   <option value=""></option>
-                  {inst && inst.length > 0 && inst.map((instItem, index) => (
+                  {institutes && institutes.length > 0 && institutes.map((instItem, index) => (
                     <option key={index} value={instItem}>
                       {instItem}
                     </option>
@@ -149,7 +148,7 @@ function PrivateOffice() {
                 <p className="input__text-s bold">Должность</p>
                 <select value={selectedValues.post} onChange={(e) => handleSelect('post', e.target.value)} className="input__office Montherat">
                   <option value=""></option>
-                  {post && post.length > 0 && post.map((postItem, index) => (
+                  {positions && positions.length > 0 && positions.map((postItem, index) => (
                     <option key={index} value={postItem}>
                       {postItem}
                     </option>
@@ -169,9 +168,8 @@ function PrivateOffice() {
                   <option value="Совместитель">Совместитель</option>
                 </select>
                 <p className="input__text-s bold">Email</p>
-                <input type="email" value={selectedValues.email} onChange={(e) => handleSelect('email', e.target.value)} className="input__office Montherat" />
-                <button onClick={handleSubmit} className="btn__link btn__green-a montherat">Отправить</button>
-                <button onClick={Back} className="btn__link btn__blue montherat">Назад</button>
+                <input type="text" value={selectedValues.email} onChange={(e) => handleSelect('email', e.target.value)} className="input__office Montherat" />
+                <button onClick={handleSubmit} className="btn__link btn__blue montherat">Сохранить</button>
               </div>
             )}
           </div>

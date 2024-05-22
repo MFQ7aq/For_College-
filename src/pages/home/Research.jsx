@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState, useRef } from 'react';
 import AccountConf from '../../components/AccountConf';
 import NavBar from '../../components/NavBar';
 import RegNav from '../../components/RegNav';
@@ -11,22 +11,22 @@ const Research = () => {
   const [options, setOptions] = useState([]);
   const [selectNames, setSelectNames] = useState([]);
   const [inputValues, setInputValues] = useState({});
-  const [sent, setSent] = useState("Отправить")
+  const [sent, setSent] = useState("Отправить");
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
+  const containerRefs = useRef([]);
 
   const toggleDropdown = (index) => {
-    const updatedIsOpen = [...isOpen];
-    updatedIsOpen[index] = !updatedIsOpen[index];
+    const updatedIsOpen = isOpen.map((open, i) => (i === index ? !open : false));
     setIsOpen(updatedIsOpen);
   };
 
-  const handleOptionClick = (index, option) => {
+  const handleOptionClick = (optionIndex, subtitleIndex, subtitle) => {
     const updatedSelectedOptions = [...selectedOptions];
-    updatedSelectedOptions[index] = option;
+    updatedSelectedOptions[optionIndex] = subtitle;
     setSelectedOptions(updatedSelectedOptions);
-    const updatedIsOpen = [...isOpen];
-    updatedIsOpen[index] = false;
+
+    const updatedIsOpen = isOpen.map(() => false);
     setIsOpen(updatedIsOpen);
   };
 
@@ -42,13 +42,13 @@ const Research = () => {
 
   const sendDataToAPI = async () => {
     try {
-      const socialsData = {};
+      const researchData = {};
       options.forEach((optionGroup, optionIndex) => {
         optionGroup.subtitles.forEach((subtitle, subtitleIndex) => {
           const subData = inputValues[optionIndex]?.[subtitleIndex] || [];
           const subId = subtitle.id;
           subData.forEach((link, linkIndex) => {
-            socialsData[`${optionIndex}_${subtitleIndex}_${linkIndex}`] = {
+            researchData[`${optionIndex}_${subtitleIndex}_${linkIndex}`] = {
               subId: subId,
               link: link
             };
@@ -58,7 +58,7 @@ const Research = () => {
 
       const response = await axios.post(
         "http://localhost:8092/api/user/research/add",
-        { socials: socialsData },
+        { research: researchData },
         {
           headers: {
             Authorization: `Bearer ${token}`
@@ -66,10 +66,10 @@ const Research = () => {
         }
       );
       console.log("Data sent successfully:", response.data);
-      setSent("Отправлено")
+      setSent("Отправлено");
     } catch (error) {
       console.error("Error sending data:", error);
-      setSent("Ошибка")
+      setSent("Ошибка");
     }
   };
 
@@ -87,6 +87,7 @@ const Research = () => {
       const newSelectNames = data.map(item => item.name);
       setOptions(newOptions);
       setSelectNames(newSelectNames);
+      setIsOpen(new Array(newOptions.length).fill(false));  // Initialize the isOpen array correctly
     } catch (error) {
       console.log(error);
     }
@@ -95,6 +96,19 @@ const Research = () => {
   useEffect(() => {
     fetchData();
   }, [fetchData]);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (containerRefs.current.every(ref => ref && !ref.contains(event.target))) {
+        setIsOpen(isOpen.map(() => false));
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isOpen]);
 
   const Back = useCallback(() => {
     navigate(-1);
@@ -112,7 +126,7 @@ const Research = () => {
           <h2 className='Edu__text-M Edu__text-M-office'>Научно-исследовательская деятельность</h2>
           <div className="auth-auth-c">
             {options.map((optionGroup, optionIndex) => (
-              <div className="custom-select-container" key={optionIndex}>
+              <div className="custom-select-container" key={optionIndex} ref={el => containerRefs.current[optionIndex] = el}>
                 <div className="selected-option" onClick={() => toggleDropdown(optionIndex)}>
                   {selectNames[optionIndex]}
                 </div>
@@ -120,7 +134,7 @@ const Research = () => {
                   <div className="options">
                     {optionGroup.subtitles.map((subtitle, subtitleIndex) => (
                       <div key={subtitleIndex} className="option">
-                        <div onClick={() => handleOptionClick(optionIndex, subtitle)}>{subtitle.name}</div>
+                        <div onClick={() => handleOptionClick(optionIndex, subtitleIndex, subtitle)}>{subtitle.name}</div>
                         <div className="option__link">
                           {inputValues[optionIndex]?.[subtitleIndex]?.map((value, inputIndex) => (
                             <input
