@@ -117,7 +117,7 @@ function AwardsInfo() {
                 <div className="userInfo-in userInfo__text-S" key={award.id} style={{ backgroundColor: i % 2 == 0 ? '#0047FF4D' : '#33FF001A' }}>
                   <p className={`userInfo-in-text ${award.status === 'freeze' ? 'crossed-out' : ''}`}>{award.name}</p>
                   <div className="admin__link">
-                    <Link to={award.link}>Link</Link>
+                    <Link target="_blank" to={award.link}>Link</Link>
                     <input
                       className="check"
                       type="checkbox"
@@ -135,7 +135,7 @@ function AwardsInfo() {
                 <div className="userInfo-in userInfo__text-S" key={research.id} style={{ backgroundColor: i % 2 == 0 ? '#0047FF4D' : '#33FF001A' }}>
                   <p className={`userInfo-in-text ${research.status === 'freeze' ? 'crossed-out' : ''}`}>{research.name}</p>
                   <div className="admin__link">
-                    <Link to={research.link}>Link</Link>
+                    <Link target="_blank" to={research.link}>Link</Link>
                     <input
                       className="check"
                       type="checkbox"
@@ -153,7 +153,7 @@ function AwardsInfo() {
                 <div className="userInfo-in userInfo__text-S" key={innovative.id} style={{ backgroundColor: i % 2 == 0 ? '#0047FF4D' : '#33FF001A' }}>
                   <p className={`userInfo-in-text ${innovative.status === 'freeze' ? 'crossed-out' : ''}`}>{innovative.name}</p>
                   <div className="admin__link">
-                    <Link to={innovative.link}>Link</Link>
+                    <Link target="_blank" to={innovative.link}>Link</Link>
                     <input
                       className="check"
                       type="checkbox"
@@ -171,7 +171,7 @@ function AwardsInfo() {
                 <div className="userInfo-in userInfo__text-S" key={social.id} style={{ backgroundColor: i % 2 == 0 ? '#0047FF4D' : '#33FF001A' }}>
                   <p className={`userInfo-in-text ${social.status === 'freeze' ? 'crossed-out' : ''}`}>{social.name}</p>
                   <div className="admin__link">
-                    <Link to={social.link}>Link</Link>
+                    <Link target="_blank" to={social.link}>Link</Link>
                     <input
                       className="check"
                       type="checkbox"
