@@ -40,8 +40,8 @@ const Redact = () => {
   const handleSaveLink = async () => {
     try {
       const bag = {};
-      userData.userAwards.concat(userData.userResearch, userData.userInnovative, userData.userSocial).forEach(item => {
-        const editedLink = editedLinks[item.id] || "";
+      [...userData.userAwards, ...userData.userResearch, ...userData.userInnovative, ...userData.userSocial].forEach(item => {
+        const editedLink = editedLinks[item.id] !== undefined ? editedLinks[item.id] : item.link;
         bag[item.id] = {
           id: item.id,
           link: editedLink,
