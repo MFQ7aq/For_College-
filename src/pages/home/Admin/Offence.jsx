@@ -4,8 +4,8 @@ import axios from "axios";
 
 function Offence() {
   const [users, setUsers] = useState([]);
-  const [selectedOptions, setSelectedOptions] = useState({});
   const [openStates, setOpenStates] = useState({});
+  const [selectedOptions, setSelectedOptions] = useState({});
 
   const fetchData = useCallback(async () => {
     try {
@@ -29,7 +29,7 @@ function Offence() {
 
   const handleOptionClick = (userId, optionId, optionName) => {
     setSelectedOptions((prevOptions) => {
-      const userOptions = { ...prevOptions[userId] }; 
+      const userOptions = { ...prevOptions[userId] };
       userOptions[optionId] = userOptions[optionId] || "";
       return {
         ...prevOptions,
@@ -52,7 +52,7 @@ function Offence() {
         const userOptions = selectedOptions[userId];
         for (const optionId in userOptions) {
           const quantity = userOptions[optionId];
-          formattedData.offence[`${+userId}_${optionId}`] = { userId: +userId, id: optionId, quantity }; 
+          formattedData.offence[`${+userId}_${optionId}`] = { userId: +userId, id: optionId, quantity };
         }
       }
       const response = await axios.post("http://localhost:8092/api/admin/offence/add", formattedData);

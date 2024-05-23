@@ -29,7 +29,11 @@ function Prodress() {
 
   const fetchData = useCallback(async () => {
     try {
-      const response = await axios.get('http://localhost:8092/api/user/progress');
+      const response = await axios.get('http://localhost:8092/api/user/progress', {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
       const data = response.data[0];
       const degrees = data.find(item => item.name === 'Ученая степень');
       const ranks = data.find(item => item.name === 'Ученое звание');

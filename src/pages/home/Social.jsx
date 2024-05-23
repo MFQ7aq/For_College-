@@ -75,7 +75,11 @@ const Social = () => {
 
   const fetchData = useCallback(async () => {
     try {
-      const response = await axios.get("http://localhost:8092/api/user/social");
+      const response = await axios.get("http://localhost:8092/api/user/social", {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
       const data = response.data[0];
       const newOptions = data.map(item => ({
         ...item,
@@ -87,7 +91,7 @@ const Social = () => {
       const newSelectNames = data.map(item => item.name);
       setOptions(newOptions);
       setSelectNames(newSelectNames);
-      setIsOpen(new Array(newOptions.length).fill(false));  // Initialize the isOpen array correctly
+      setIsOpen(new Array(newOptions.length).fill(false));
     } catch (error) {
       console.log(error);
     }

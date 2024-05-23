@@ -75,7 +75,11 @@ const Research = () => {
 
   const fetchData = useCallback(async () => {
     try {
-      const response = await axios.get("http://localhost:8092/api/user/research");
+      const response = await axios.get("http://localhost:8092/api/user/research", {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
       const data = response.data[0];
       const newOptions = data.map(item => ({
         ...item,
