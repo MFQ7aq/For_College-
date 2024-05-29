@@ -1,11 +1,35 @@
 import NavBar from "../../components/NavBar"
 import BackButton from "../../components/Back"
+import axios from "axios";
+import { useState } from "react";
+import { useEffect } from "react";
 
 function Rating_inst_un() {
+  const token = localStorage.getItem('token')
+  const [inst, setInst] = useState([])
+
+  useEffect(() => {
+    const getInst = async () => {
+      try {
+        const response = await axios.get('http://localhost:8092/api/user/info', {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+        const { institutes } = response.data;
+        setInst(institutes);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getInst();
+  }, [token])
+
   return (
     <div className="сontents">
       <div className="header">
-        <NavBar/>
+        <NavBar />
       </div>
       <div className="main">
         <div className="title__table-un">
@@ -21,51 +45,17 @@ function Rating_inst_un() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Институт цифровойтрансформации и программирования</td>
-              <td>672</td>
-              <td>11670</td>
-              <td>12342</td>
-            </tr>
-            <tr>
-              <td>Институт дизайна, архитектуры и текстиля</td>
-              <td>151</td>
-              <td>8660</td>
-              <td>8811</td>
-            </tr>
-            <tr>
-              <td>Институт строительстваи инновационных технологий</td>
-              <td>327</td>
-              <td>9895</td>
-              <td>10222</td>
-            </tr>
-            <tr>
-              <td>Институт энергетики и транспорта</td>
-              <td>373</td>
-              <td>11540</td>
-              <td>11913</td>
-            </tr>
-            <tr>
-              <td>Институт экономики и менеджмента</td>
-              <td>658</td>
-              <td>13400</td>
-              <td>14058</td>
-            </tr>
-            <tr>
-              <td>Институт межкультурной коммуникации и психологии</td>
-              <td>495</td>
-              <td>8995</td>
-              <td>9490</td>
-            </tr>
-            <tr>
-              <td>Российско-Кыргызский институт автоматизации управления бизнеса</td>
-              <td>685</td>
-              <td>18560</td>
-              <td>19245</td>
-            </tr>
+            {inst.map((inst, i) => (
+              <tr key={i}>
+                <td>{inst}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            ))}
           </tbody>
         </table>
-        <BackButton/>
+        <BackButton />
       </div>
     </div>
   )

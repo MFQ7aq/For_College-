@@ -46,10 +46,15 @@ function PrivateOffice() {
 
     const fetchDataInst = async () => {
       try {
-        const response = await axios.get('http://localhost:8092/api/user/info');
+        const response = await axios.get('http://localhost:8092/api/user/info', {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
         const { institutes, position } = response.data;
         setInstitutes(institutes);
         setPositions(position);
+        console.log(institutes);
       } catch (error) {
         console.log(error);
       }
