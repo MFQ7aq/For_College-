@@ -45,7 +45,7 @@ function Prodress() {
     } catch (error) {
       console.log(error);
     }
-  }, [setDegree, setRank, setStateAwards]);
+  }, [token]);
 
   useEffect(() => {
     fetchData();
