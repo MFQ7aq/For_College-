@@ -90,6 +90,7 @@ function PrivateOffice() {
     })
       .then(function (response) {
         console.log(response);
+        window.location.reload();
         setIsAuthenticated(true);
       })
       .catch(function (error) {
