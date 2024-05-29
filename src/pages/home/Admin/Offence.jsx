@@ -4,13 +4,14 @@ import axios from "axios";
 
 function Offence() {
   const [users, setUsers] = useState([]);
-  const [openStates, setOpenStates] = useState({});
+  const [openStates, setOpenStates] = useState([]);
   const [selectedOptions, setSelectedOptions] = useState({});
 
   const fetchData = useCallback(async () => {
     try {
       const response = await axios.get("http://localhost:8092/api/admin/offence");
       setUsers(response.data.offence);
+      setOpenStates(new Array(response.data.offence.length).fill(false)); // Создаем массив с длиной, равной количеству пользователей, и заполняем его false
     } catch (error) {
       console.log(error);
     }
@@ -20,11 +21,12 @@ function Offence() {
     fetchData();
   }, [fetchData]);
 
-  const toggleOptions = (userId) => {
-    setOpenStates((prevStates) => ({
-      ...prevStates,
-      [userId]: !prevStates[userId]
-    }));
+  const toggleOptions = (index) => {
+    setOpenStates((prevStates) => {
+      const newStates = [...prevStates];
+      newStates[index] = !newStates[index];
+      return newStates;
+    });
   };
 
   const handleOptionClick = (userId, optionId, optionName) => {
@@ -73,18 +75,18 @@ function Offence() {
           Изменить
         </button>
         <div className="users">
-          {users.map((user) => (
+          {users.map((user, index) => (
             <div key={user.userId} className="user">
               <h2 className="Edu__text-M">{user.userName}</h2>
               <div className="select">
                 <div className="custom-select">
                   <span
-                    className={`selected ${openStates[user.userId] ? 'open' : ''}`}
-                    onClick={() => toggleOptions(user.userId)}
+                    className={`selected ${openStates[index] ? 'open' : ''}`}
+                    onClick={() => toggleOptions(index)}
                   >
                     {"Срывы, замена, опоздания"}
                   </span>
-                  {openStates[user.userId] && (
+                  {openStates[index] && (
                     <div className="options-container">
                       <div className="options">
                         {user.offences.map((option) => (
