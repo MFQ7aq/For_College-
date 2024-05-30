@@ -8,6 +8,7 @@ import AccountConf from "../../components/AccountConf";
 
 function Office() {
   const navigate = useNavigate();
+  const token = localStorage.getItem('token')
   const { id } = useParams()
   const [userData, setUserData] = useState({
     name: '',
@@ -29,7 +30,7 @@ function Office() {
     };
 
     userInfo();
-  }, [id]);
+  }, [id, token]);
 
   const Back = useCallback(() => {
     navigate(-1);
@@ -53,11 +54,11 @@ function Office() {
               </div>
               <p className="input__text-s bold">Институт</p>
               <div className="input__office Montherat">
-                <p className="input__text-s">{userData.institutions.name}</p>
+                <p className="input__text-s">{userData.institutions ? userData.institutions.name : ''}</p>
               </div>
               <p className="input__text-s bold">Должность</p>
               <div className="input__office Montherat">
-                <p className="input__text-s">{userData.position}</p>
+                <p className="input__text-s">{userData.position ? userData.position.name : ''}</p>
               </div>
               <p className="input__text-s bold">Штат/Совм.</p>
               <div className="input__office Montherat">
@@ -72,7 +73,7 @@ function Office() {
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 }
 

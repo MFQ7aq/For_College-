@@ -5,26 +5,21 @@ import { useState } from "react";
 import { useEffect } from "react";
 
 function Rating_inst_un() {
-  const token = localStorage.getItem('token')
   const [inst, setInst] = useState([])
 
   useEffect(() => {
     const getInst = async () => {
       try {
-        const response = await axios.get('http://localhost:8092/api/user/info', {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        });
-        const { institutes } = response.data;
-        setInst(institutes);
+        const response = await axios.get('http://localhost:8092/api/rating/institutes');
+        const data = response.data.institutions;
+        setInst(data);
       } catch (error) {
         console.log(error);
       }
     };
 
     getInst();
-  }, [token])
+  }, [])
 
   return (
     <div className="сontents">
@@ -40,17 +35,15 @@ function Rating_inst_un() {
             <tr>
               <th className="un_l">Институты МУИТ</th>
               <th className="un_l">Средний балл ППС</th>
-              <th className="un_l">Баллы институтов</th>
               <th className="un_l">Итого</th>
             </tr>
           </thead>
           <tbody>
-            {inst.map((inst, i) => (
+            {inst.map((institution, i) => (
               <tr key={i}>
-                <td>{inst}</td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{institution.name}</td>
+                <td>{institution.middlePoints}</td>
+                <td>{institution.sum}</td>
               </tr>
             ))}
           </tbody>
