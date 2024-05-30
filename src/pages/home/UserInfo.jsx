@@ -41,7 +41,9 @@ function UserInfo() {
             </div>
           </div>
           <div className="userAwards bline">
-            <h2 className="userInfo__title">Личные достижения:</h2>
+            {userData.userAwards && userData.userAwards.length > 0 && (
+              <h2 className="userInfo__title">Личные достижения:</h2>
+            )}
             {userData.userAwards &&
               userData.userAwards.map((award, i) => (
                 <div className="userInfo-in userInfo__text-S" key={award.id} style={{ backgroundColor: i % 2 == 0 ? '#0047FF4D' : '#33FF001A' }}>
@@ -53,7 +55,9 @@ function UserInfo() {
               ))}
           </div>
           <div className="userResearch bline">
-            <h2 className="userInfo__title">Государственные награды:</h2>
+            {userData.userResearch && userData.userResearch.length > 0 && (
+              <h2 className="userInfo__title">Государственные награды:</h2>
+            )}
             {userData.userResearch &&
               userData.userResearch.map((research, i) => (
                 <div className="userInfo-in userInfo__text-S" key={research.id} style={{ backgroundColor: i % 2 == 0 ? '#0047FF4D' : '#33FF001A' }}>
@@ -65,7 +69,9 @@ function UserInfo() {
               ))}
           </div>
           <div className="userInnovative bline">
-            <h2 className="userInfo__title">Научно-исследовательсская деятельность:</h2>
+            {userData.userInnovative && userData.userInnovative.length > 0 && (
+              <h2 className="userInfo__title">Научно-исследовательсская деятельность:</h2>
+            )}
             {userData.userInnovative &&
               userData.userInnovative.map((innovative, i) => (
                 <div className="userInfo-in userInfo__text-S" key={innovative.id} style={{ backgroundColor: i % 2 == 0 ? '#0047FF4D' : '#33FF001A' }}>
@@ -77,7 +83,9 @@ function UserInfo() {
               ))}
           </div>
           <div className="userSocial bline">
-            <h2 className="userInfo__title">Инновационно-образовательная деятальность:</h2>
+            {userData.userSocial && userData.userSocial.length > 0 && (
+              <h2 className="userInfo__title">Инновационно-образовательная деятальность:</h2>
+            )}
             {userData.userSocial &&
               userData.userSocial.map((social, i) => (
                 <div className="userInfo-in userInfo__text-S" key={social.id} style={{ backgroundColor: i % 2 == 0 ? '#0047FF4D' : '#33FF001A' }}>

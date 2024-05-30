@@ -11,7 +11,6 @@ import LPPS from './pages/home/LPPS';
 import Authorization from './pages/home/Authorization';
 import Registration from './pages/home/Registration';
 import Questionnaire from './pages/home/Questionnaire';
-import Office from './pages/home/Office';
 import PrivateOffice from './pages/home/PrivateOffice';
 import Muit from './pages/MUIT';
 import Rating_pred from './pages/MUIT/Rating_pred';
@@ -28,7 +27,6 @@ import Progress from './pages/home/Progress';
 import Research from './pages/home/Research';
 import Education from './pages/home/Education';
 import Social from './pages/home/Social';
-import Offence from './pages/home/Admin/Offence';
 import UserInfo from './pages/home/UserInfo';
 import UserInfoA from './pages/home/Admin/UserInfoA';
 import Admin from './pages/home/Admin/Admin';
@@ -71,7 +69,6 @@ function App() {
           <Route path='/user/:id' element={<UserInfo />} />
           <Route path='/admin' element={<Admin />} />
           <Route path='/user/admin/:id' element={<UserInfoA />} />
-          <Route path='/Offence' element={<Offence />} />
           <Route path='/admin_list' element={<Lppsa />} />
           <Route path='/my_account/:id' element={<AwardsInfo />} />
           <Route path='/redact/:id' element={<Redact />} />
@@ -103,7 +100,7 @@ function App() {
         <Route path='/Authorization' element={<Authorization />} />
         <Route path='/Registration' element={<Registration />} />
         <Route path='/Questionnaire' element={<Questionnaire />} />
-        <Route path='/Office/:id' element={<Office />} />
+        <Route path='/user/:id' element={<UserInfo />} />
         <Route path='/MUIT' element={<Muit />} />
         <Route path='/MUIT/rating_pred' element={<Rating_pred />} />
         <Route path='/MUIT/rating_inst' element={<Rating_inst />} />
