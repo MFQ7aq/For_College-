@@ -9,7 +9,9 @@ function Admin() {
         <div className="header">
           <NavBar />
         </div>
-        <Link to='/admin_list'>Список препподователей</Link>
+        <div className="admin__links">
+          <Link to='/admin_list' className="admin__link">Список препподователей</Link>
+        </div>
       </div>
     </div>
   );

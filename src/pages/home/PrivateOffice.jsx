@@ -170,7 +170,7 @@ function PrivateOffice() {
                 <p className="input__text-s bold">Штат/Совм.</p>
                 <select value={selectedValues.stat} onChange={(e) => handleSelect('stat', e.target.value)} className="input__office Montherat">
                   <option value=""></option>
-                  <option value="Штат">Штат</option>
+                  <option value="Штатный">Штатный</option>
                   <option value="Совместитель">Совместитель</option>
                 </select>
                 <p className="input__text-s bold">Email</p>
