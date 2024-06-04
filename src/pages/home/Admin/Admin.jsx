@@ -11,6 +11,7 @@ function Admin() {
         </div>
         <div className="admin__links">
           <Link to='/admin_list' className="admin__link">Список препподователей</Link>
+          <Link to='/' className="admin__link">Просто кнопка</Link>
         </div>
       </div>
     </div>

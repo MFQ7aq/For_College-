@@ -71,6 +71,11 @@ function PrivateOffice() {
     }));
   }, []);
 
+  const RedactInfo = (() => {
+    setIsAuthenticated(false)
+    window.location.reload();
+  });
+
   const Back = useCallback(() => {
     navigate(-1);
   }, [navigate]);
@@ -137,6 +142,7 @@ function PrivateOffice() {
                   <p className="input__text-s">{userData.email}</p>
                 </div>
                 <button onClick={Back} className="btn__link btn__blue montherat">Назад</button>
+                <button onClick={RedactInfo} className="btn__link btn__green montherat">Редактировать</button>
               </div>
             ) : (
               <div className="form">
