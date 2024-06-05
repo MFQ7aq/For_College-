@@ -1,11 +1,12 @@
 import NavBar from "../../components/NavBar"
 import BackButton from "../../components/Back"
 import axios from "axios";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 
 function Rating_inst_un() {
-  const [inst, setInst] = useState([])
+  const [inst, setInst] = useState([]);
+  const [sortedField, setSortedField] = useState('sum');
+  const [filteredInst, setFilteredInst] = useState([]);
 
   useEffect(() => {
     const getInst = async () => {
@@ -13,13 +14,24 @@ function Rating_inst_un() {
         const response = await axios.get('http://localhost:8092/api/rating/institutes');
         const data = response.data.institutions;
         setInst(data);
+        setFilteredInst(data);
       } catch (error) {
         console.log(error);
       }
     };
 
     getInst();
-  }, [])
+  }, []);
+
+  useEffect(() => {
+    sortData(sortedField);
+  }, [sortedField]);
+
+  const sortData = (field) => {
+    const sortedData = [...inst].sort((a, b) => b[field] - a[field]);
+    setFilteredInst(sortedData);
+    setSortedField(field);
+  };
 
   return (
     <div className="сontents">
@@ -34,12 +46,12 @@ function Rating_inst_un() {
           <thead>
             <tr>
               <th className="un_l">Институты МУИТ</th>
-              <th className="un_l">Средний балл ППС</th>
-              <th className="un_l">Итого</th>
+              <th className="sorter un_l" onClick={() => sortData('midllePoints')}>Средний балл ППС</th>
+              <th className="sorter un_l" onClick={() => sortData('sum')}>Итого</th>
             </tr>
           </thead>
           <tbody>
-            {inst.map((institution, i) => (
+            {filteredInst.map((institution, i) => (
               <tr key={i}>
                 <td>{institution.name}</td>
                 <td>{institution.middlePoints}</td>
@@ -54,4 +66,4 @@ function Rating_inst_un() {
   )
 }
 
-export default Rating_inst_un
+export default Rating_inst_un;
