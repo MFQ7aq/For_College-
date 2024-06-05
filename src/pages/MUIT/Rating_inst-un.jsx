@@ -14,7 +14,7 @@ function Rating_inst_un() {
         const response = await axios.get('http://localhost:8092/api/rating/institutes');
         const data = response.data.institutions;
         setInst(data);
-        setFilteredInst(data);
+        setFilteredInst(data); // Set filtered data initially as all data
       } catch (error) {
         console.log(error);
       }
@@ -24,11 +24,12 @@ function Rating_inst_un() {
   }, []);
 
   useEffect(() => {
+    // Call sortData function when sortedField changes
     sortData(sortedField);
   }, [sortedField]);
 
   const sortData = (field) => {
-    const sortedData = [...inst].sort((a, b) => b[field] - a[field]);
+    const sortedData = [...filteredInst].sort((a, b) => b[field] - a[field]);
     setFilteredInst(sortedData);
     setSortedField(field);
   };
@@ -46,7 +47,7 @@ function Rating_inst_un() {
           <thead>
             <tr>
               <th className="un_l">Институты МУИТ</th>
-              <th className="sorter un_l" onClick={() => sortData('midllePoints')}>Средний балл ППС</th>
+              <th className="sorter un_l" onClick={() => sortData('middlePoints')}>Средний балл ППС</th>
               <th className="sorter un_l" onClick={() => sortData('sum')}>Итого</th>
             </tr>
           </thead>
