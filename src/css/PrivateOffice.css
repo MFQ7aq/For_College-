@@ -138,6 +138,14 @@
   align-items: center;
   justify-content: center;
 }
+.header__menu-m {
+  margin: 10px 17%;
+  width: 707.15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
 .head__item {
   text-align: center;
   justify-content: center;
