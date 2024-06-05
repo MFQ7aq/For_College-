@@ -9,7 +9,7 @@ function RedactEducation() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const resp = await axios.get(`http://localhost:8092/api/admin/stage/edit/education/title`);
+        const resp = await axios.get(`http://localhost:8092/api/admin/stage/edit/innovative/title`);
         const data = resp.data.titles;
         setTitles(data)
       } catch (error) {

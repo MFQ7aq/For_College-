@@ -14,7 +14,7 @@ function Rating_inst_un() {
         const response = await axios.get('http://localhost:8092/api/rating/institutes');
         const data = response.data.institutions;
         setInst(data);
-        setFilteredInst(data); // Set filtered data initially as all data
+        setFilteredInst(data);
       } catch (error) {
         console.log(error);
       }
@@ -24,7 +24,6 @@ function Rating_inst_un() {
   }, []);
 
   useEffect(() => {
-    // Call sortData function when sortedField changes
     sortData(sortedField);
   }, [sortedField]);
 
