@@ -51,11 +51,11 @@ function Rating_pps() {
               <th>№</th>
               <th>ФИО</th>
               <th>Институты</th>
-              <th onClick={() => sortData('awardPoints')}>I.Личные достижения</th>
-              <th onClick={() => sortData('researchPoints')}>II. Научно-исследовательская деятельность</th>
-              <th onClick={() => sortData('innovativePoints')}>III. Инновационно-образовательная деятельность</th>
-              <th onClick={() => sortData('socialPoints')}>IV. Воспитательная, общественная деятельность</th>
-              <th onClick={() => sortData('sum')}>Итого</th>
+              <th className="sorter" onClick={() => sortData('awardPoints')}>I.Личные достижения</th>
+              <th className="sorter" onClick={() => sortData('researchPoints')}>II. Научно-исследовательская деятельность</th>
+              <th className="sorter" onClick={() => sortData('innovativePoints')}>III. Инновационно-образовательная деятельность</th>
+              <th className="sorter" onClick={() => sortData('socialPoints')}>IV. Воспитательная, общественная деятельность</th>
+              <th className="sorter" onClick={() => sortData('sum')}>Итого</th>
             </tr>
           </thead>
           <tbody>
