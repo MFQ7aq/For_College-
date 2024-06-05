@@ -6,13 +6,15 @@ import { Link } from "react-router-dom";
 
 function Rating_pps() {
   const [userData, setUserData] = useState([]);
+  const [sortedField, setSortedField] = useState('sum');
 
   useEffect(() => {
     const userInfo = async () => {
       try {
         const resp = await axios.get('http://localhost:8092/api/rating/pps');
-        setUserData(Object.values(resp.data.pps));
-        console.log(resp.data.pps);
+        const sortedData = Object.values(resp.data.pps).sort((a, b) => b.sum - a.sum);
+        setUserData(sortedData);
+        console.log(sortedData);
       } catch (error) {
         console.log(error);
       }
@@ -20,6 +22,12 @@ function Rating_pps() {
 
     userInfo();
   }, []);
+
+  const sortData = (field) => {
+    const sortedData = [...userData].sort((a, b) => b[field] - a[field]);
+    setUserData(sortedData);
+    setSortedField(field);
+  };
 
   return (
     <div className="сontents">
@@ -34,6 +42,13 @@ function Rating_pps() {
             <div className="search__btn-rating"><div className="search__btn-in"></div>
           </div>
         </label>
+        </div>
+        <div className="sort-buttons">
+          <button onClick={() => sortData('sum')}>Сортировать по Итоговой сумме</button>
+          <button onClick={() => sortData('awardPoints')}>Сортировать по Личным достижениям</button>
+          <button onClick={() => sortData('researchPoints')}>Сортировать по Научно-исследовательской деятельности</button>
+          <button onClick={() => sortData('innovativePoints')}>Сортировать по Инновационно-образовательной деятельности</button>
+          <button onClick={() => sortData('socialPoints')}>Сортировать по Воспитательной, общественной деятельности</button>
         </div>
         <table className="table">
           <thead>
