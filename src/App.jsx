@@ -33,6 +33,12 @@ import Admin from './pages/home/Admin/Admin';
 import Lppsa from './pages/home/Admin/LPPSA';
 import AwardsInfo from './pages/home/AwardsInfo';
 import Redact from './pages/home/Redact';
+import RedactStage from './pages/home/Admin/Redact/RedactStage';
+import RedactProgres from './pages/home/Admin/Redact/RedactProgres';
+import RedactResaerch from './pages/home/Admin/Redact/RedactResaerch';
+import RedactEducation from './pages/home/Admin/Redact/RedactEducation';
+import RedactSocial from './pages/home/Admin/Redact/RedactSocial';
+
 
 function App() {
   const [role, setRole] = useState(null);
@@ -72,6 +78,11 @@ function App() {
           <Route path='/admin_list' element={<Lppsa />} />
           <Route path='/my_account/:id' element={<AwardsInfo />} />
           <Route path='/redact/:id' element={<Redact />} />
+          <Route path='/redact_stage' element={<RedactStage/>} />
+          <Route path='/redact_progres' element={<RedactProgres/>} />
+          <Route path='/redact_resaerch' element={<RedactResaerch/>} />
+          <Route path='/redact_education' element={<RedactEducation/>} />
+          <Route path='/redact_social' element={<RedactSocial/>} />
         </Route>
       );
     } else if (role === 'user') {
