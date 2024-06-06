@@ -2,8 +2,9 @@ import { Link } from "react-router-dom";
 import NavBar from "../../../../components/NavBar";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import addIcon from '../../../../img/add.png';
 
-function RadactStage() {
+function RadactProgres() {
   const [titles, setTitles] = useState([])
 
   useEffect(() => {
@@ -34,14 +35,22 @@ function RadactStage() {
             <Link to="/redact_social" className="head__item Montherat">Воспитательная, общественная деятельность</Link>
           </div>
         </>
-        <div className="admin__links" >
+        <h2 className='Edu__text-M stage_name'>Личные достижения</h2>
+        <div className="admin__links">
+          <Link to="/academic_degree" className="admin__link">Учёная степень</Link>
+          <Link to="/academic_title" className="admin__link">Учёное звание</Link>
+          <Link to="/state_awards" className="admin__link">Гос награды</Link>
           {titles.map((title) => (
             <Link key={title.id} to='/' className="admin__link">{title.name}</Link>
           ))}
+          <Link to="/add_achievement" className="admin__link admin__link--add">
+            <img src={addIcon} className="addPng" alt="Добавить" />
+          </Link>
         </div>
+        <button className="save-button">Сохранить</button>
       </div>
     </div>
   );
 }
 
-export default RadactStage;
+export default RadactProgres;

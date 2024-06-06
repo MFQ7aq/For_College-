@@ -148,7 +148,7 @@ function PrivateOffice() {
               <div className="form">
                 <p className="input__text-s bold">ФИО</p>
                 <input type="text" value={selectedValues.name} onChange={(e) => handleSelect('name', e.target.value)} className="input__office Montherat" />
-                <p className="input__text-s bold">Институт</p>
+                <p className="input__text-s bold">Учередение</p>
                 <select value={selectedValues.inst} onChange={(e) => handleSelect('inst', e.target.value)} className="input__office Montherat">
                   <option value=""></option>
                   {institutes && institutes.length > 0 && institutes.map((instItem, index) => (

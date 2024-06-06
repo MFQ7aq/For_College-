@@ -1,17 +1,18 @@
 import { Link } from "react-router-dom";
 import NavBar from "../../../../components/NavBar";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 function RedactResaerch() {
-  const [titles, setTitles] = useState([])
+  const [titles, setTitles] = useState([]);
+  const [newTitle, setNewTitle] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const resp = await axios.get(`http://localhost:8092/api/admin/stage/edit/social/title`);
         const data = resp.data.titles;
-        setTitles(data)
+        setTitles(data);
       } catch (error) {
         console.log(error);
       }
@@ -19,6 +20,19 @@ function RedactResaerch() {
 
     fetchData();
   }, []);
+
+  const handleSave = async () => {
+    try {
+      const resp = await axios.post(`http://localhost:8092/api/admin/stage/edit/social/title`, {
+        name: newTitle // Передаем новое название в теле запроса
+      });
+      const updatedTitles = [...titles, resp.data.title]; // Добавляем новую награду к текущему списку
+      setTitles(updatedTitles);
+      setNewTitle(""); // Очищаем поле для ввода нового названия
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="сontents">
@@ -34,10 +48,17 @@ function RedactResaerch() {
             <Link to="/redact_social" className="head__item Montherat">Воспитательная, общественная деятельность</Link>
           </div>
         </>
+        <h2 className='Edu__text-M stage_name'>Воспитательная, общественная деятельность</h2>
         <div className="admin__links" >
           {titles.map((title) => (
-            <Link key={title.id} to='/' className="admin__link">{title.name}</Link>
+            <React.Fragment key={title.id}>
+              <Link to='/' className="admin__link">{title.name}</Link>
+            </React.Fragment>
           ))}
+          <div>
+            <input type="text" value={newTitle} onChange={(e) => setNewTitle(e.target.value)} />
+            <button onClick={handleSave}>Добавить награду</button>
+          </div>
         </div>
       </div>
     </div>

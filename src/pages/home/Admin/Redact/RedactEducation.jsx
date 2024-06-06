@@ -34,6 +34,7 @@ function RedactEducation() {
             <Link to="/redact_social" className="head__item Montherat">Воспитательная, общественная деятельность</Link>
           </div>
         </>
+        <h2 className='Edu__text-M stage_name'>Инновационно-образовательная деятельность</h2>
         <div className="admin__links" >
           {titles.map((title) => (
             <Link key={title.id} to='/' className="admin__link">{title.name}</Link>
