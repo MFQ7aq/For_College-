@@ -80,14 +80,14 @@ function App() {
           <Route path='/admin_list' element={<Lppsa />} />
           <Route path='/my_account/:id' element={<AwardsInfo />} />
           <Route path='/redact/:id' element={<Redact />} />
-          <Route path='/redact_progres' element={<RedactProgres/>} />
-          <Route path="/redact_progres/:id" component={<RedactProgresId/>} />
-          <Route path='/redact_resaerch' element={<RedactResaerch/>} />
-          <Route path="/redact_resaerch/:id" component={<RedactResaerchId/>} />
-          <Route path='/redact_education' element={<RedactEducation/>} />
-          <Route path='/redact_education/:id' element={<RedactEducationId/>} />
-          <Route path='/redact_social' element={<RedactSocial/>} />
-          <Route path='/redact_social/:id' element={<RedactSocialId/>} />
+          <Route path='/redact_progres' element={<RedactProgres />} />
+          <Route path='/redact_resaerch' element={<RedactResaerch />} />
+          <Route path='/redact_education' element={<RedactEducation />} />
+          <Route path='/redact_social' element={<RedactSocial />} />
+          <Route path="/redact_progres/:id" element={<RedactProgresId />} />
+          <Route path="/redact_resaerch/:id" element={<RedactResaerchId />} />
+          <Route path="/redact_education/:id" element={<RedactEducationId />} />
+          <Route path="/redact_social/:id" element={<RedactSocialId />} />
         </Route>
       );
     } else if (role === 'user') {

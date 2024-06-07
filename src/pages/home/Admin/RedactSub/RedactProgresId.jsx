@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import NavBar from "../../../../components/NavBar";
 
-function RadactProgresId() {
+function RedactProgresId() {
 
   return (
     <div className="сontents">
@@ -17,13 +17,13 @@ function RadactProgresId() {
             <Link to="/redact_social" className="head__item Montherat">Воспитательная, общественная деятельность</Link>
           </div>
         </>
-        <h2 className='Edu__text-M stage_name'>Инновационно-образовательная деятельность</h2>
+        <h2 className='Edu__text-M stage_name'>Личные достижения</h2>
         <div className="admin__links" >
-          
+
         </div>
       </div>
     </div>
   );
 }
 
-export default RadactProgresId;
+export default RedactProgresId;

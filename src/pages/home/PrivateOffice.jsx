@@ -8,60 +8,44 @@ import axios from "axios";
 function PrivateOffice() {
   const navigate = useNavigate();
   const token = localStorage.getItem('token');
-  const [userData, setUserData] = useState({
-    name: '',
-    institut: '',
-    position: '',
-    regular: '',
-    email: ''
-  });
+  const [userData, setUserData] = useState(null);
   const [institutes, setInstitutes] = useState([]);
   const [positions, setPositions] = useState([]);
   const [selectedValues, setSelectedValues] = useState({
     name: '',
-    stat: '',
-    email: '',
     inst: '',
     post: '',
-    otherPost: ''
+    otherPost: '',
+    stat: '',
+    email: ''
   });
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
-    const fetchDataUser = async () => {
+    const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:8092/api/user/name', {
+        const userResponse = await axios.get('http://localhost:8092/api/user/name', {
           headers: {
             Authorization: `Bearer ${token}`
           }
         });
-        const { name, institut, position, regular, email } = response.data.user;
-        setUserData({ name, institut, position, regular, email });
+        setUserData(userResponse.data.user);
         setIsAuthenticated(true);
+
+        const infoResponse = await axios.get('http://localhost:8092/api/user/info', {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+        setInstitutes(infoResponse.data.university);
+        setPositions(infoResponse.data.position);
       } catch (error) {
-        console.log(error);
+        console.error(error);
         setIsAuthenticated(false);
       }
     };
 
-    const fetchDataInst = async () => {
-      try {
-        const response = await axios.get('http://localhost:8092/api/user/info', {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        });
-        const { institutes, position } = response.data;
-        setInstitutes(institutes);
-        setPositions(position);
-        console.log(institutes);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fetchDataUser();
-    fetchDataInst();
+    fetchData();
   }, [token]);
 
   const handleSelect = useCallback((field, value) => {
@@ -71,12 +55,7 @@ function PrivateOffice() {
     }));
   }, []);
 
-  const RedactInfo = (() => {
-    setIsAuthenticated(false)
-    window.location.reload();
-  });
-
-  const Back = useCallback(() => {
+  const handleBack = useCallback(() => {
     navigate(-1);
   }, [navigate]);
 
@@ -84,13 +63,13 @@ function PrivateOffice() {
     e.preventDefault();
     const { name, inst, post, otherPost, stat, email } = selectedValues;
     const position = post === 'Другое' ? otherPost : post;
-    const dataToSend = JSON.stringify({
+    const dataToSend = {
       name,
       institut: inst,
       position,
       regular: stat,
       email,
-    });
+    };
 
     axios.post('http://localhost:8092/api/user/info/add', dataToSend, {
       headers: {
@@ -100,13 +79,16 @@ function PrivateOffice() {
     })
       .then(function (response) {
         console.log(response);
-        window.location.reload();
         setIsAuthenticated(true);
       })
       .catch(function (error) {
-        console.log(error);
+        console.error(error);
       });
   }, [selectedValues, token]);
+
+  const handleEdit = useCallback(() => {
+    setIsAuthenticated(false);
+  }, []);
 
   return (
     <div className="private-office-contents">
@@ -141,8 +123,8 @@ function PrivateOffice() {
                 <div className="input__office Montherat">
                   <p className="input__text-s">{userData.email}</p>
                 </div>
-                <button onClick={Back} className="btn__link btn__blue montherat">Назад</button>
-                <button onClick={RedactInfo} className="btn__link btn__green montherat">Редактировать</button>
+                <button onClick={handleBack} className="btn__link btn__blue montherat">Назад</button>
+                <button onClick={handleEdit} className="btn__link btn__green montherat">Редактировать</button>
               </div>
             ) : (
               <div className="form">
@@ -151,7 +133,7 @@ function PrivateOffice() {
                 <p className="input__text-s bold">Учередение</p>
                 <select value={selectedValues.inst} onChange={(e) => handleSelect('inst', e.target.value)} className="input__office Montherat">
                   <option value=""></option>
-                  {institutes && institutes.length > 0 && institutes.map((instItem, index) => (
+                  {institutes.map((instItem, index) => (
                     <option key={index} value={instItem}>
                       {instItem}
                     </option>
@@ -160,7 +142,7 @@ function PrivateOffice() {
                 <p className="input__text-s bold">Должность</p>
                 <select value={selectedValues.post} onChange={(e) => handleSelect('post', e.target.value)} className="input__office Montherat">
                   <option value=""></option>
-                  {positions && positions.length > 0 && positions.map((postItem, index) => (
+                  {positions.map((postItem, index) => (
                     <option key={index} value={postItem}>
                       {postItem}
                     </option>
