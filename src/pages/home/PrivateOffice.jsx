@@ -11,6 +11,8 @@ function PrivateOffice() {
   const [userData, setUserData] = useState(null);
   const [institutes, setInstitutes] = useState([]);
   const [positions, setPositions] = useState([]);
+  const [university, setUniversity] = useState([]);
+  const [filteredInstitutes, setFilteredInstitutes] = useState([]);
   const [selectedValues, setSelectedValues] = useState({
     name: '',
     inst: '',
@@ -37,7 +39,8 @@ function PrivateOffice() {
             Authorization: `Bearer ${token}`
           }
         });
-        setInstitutes(infoResponse.data.university);
+        setInstitutes(infoResponse.data.institutes);
+        setUniversity(infoResponse.data.university)
         setPositions(infoResponse.data.position);
       } catch (error) {
         console.error(error);
@@ -47,6 +50,15 @@ function PrivateOffice() {
 
     fetchData();
   }, [token]);
+
+  useEffect(() => {
+    if (selectedValues.inst) {
+      const filtered = institutes.filter(inst => inst.university === selectedValues.inst);
+      setFilteredInstitutes(filtered);
+    } else {
+      setFilteredInstitutes([]);
+    }
+  }, [selectedValues.inst, institutes]);
 
   const handleSelect = useCallback((field, value) => {
     setSelectedValues(prevValues => ({
@@ -101,7 +113,7 @@ function PrivateOffice() {
           <RegNav />
           <h3 className="Edu__text-M Edu__text-M-office">Личные данные</h3>
           <div className="office__in">
-            {isAuthenticated ? (
+            {isAuthenticated && userData ? (
               <div className="form">
                 <p className="input__text-s bold">ФИО</p>
                 <div className="input__office Montherat">
@@ -130,15 +142,28 @@ function PrivateOffice() {
               <div className="form">
                 <p className="input__text-s bold">ФИО</p>
                 <input type="text" value={selectedValues.name} onChange={(e) => handleSelect('name', e.target.value)} className="input__office Montherat" />
-                <p className="input__text-s bold">Учередение</p>
+                <p className="input__text-s bold">Учреждение</p>
                 <select value={selectedValues.inst} onChange={(e) => handleSelect('inst', e.target.value)} className="input__office Montherat">
                   <option value=""></option>
-                  {institutes.map((instItem, index) => (
-                    <option key={index} value={instItem}>
-                      {instItem}
+                  {university.map((uniItem, index) => (
+                    <option key={index} value={index}>
+                      {uniItem}
                     </option>
                   ))}
                 </select>
+                {filteredInstitutes.length > 0 && (
+                  <>
+                    <p className="input__text-s bold">Институт</p>
+                    <select value={selectedValues.instituteName} onChange={(e) => handleSelect('instituteName', e.target.value)} className="input__office Montherat">
+                      <option value=""></option>
+                      {filteredInstitutes.map((inst, index) => (
+                        <option key={index} value={inst.name}>
+                          {inst.name}
+                        </option>
+                      ))}
+                    </select>
+                  </>
+                )}
                 <p className="input__text-s bold">Должность</p>
                 <select value={selectedValues.post} onChange={(e) => handleSelect('post', e.target.value)} className="input__office Montherat">
                   <option value=""></option>
