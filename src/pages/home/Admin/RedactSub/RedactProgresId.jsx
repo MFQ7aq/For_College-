@@ -19,6 +19,7 @@ function RadactProgresId() {
         </>
         <h2 className='Edu__text-M stage_name'>Инновационно-образовательная деятельность</h2>
         <div className="admin__links" >
+          
         </div>
       </div>
     </div>
