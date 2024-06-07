@@ -38,7 +38,7 @@ function RedactEducation() {
         <h2 className='Edu__text-M stage_name'>Инновационно-образовательная деятельность</h2>
         <div className="admin__links" >
           {titles.map((title) => (
-            <Link key={title.id} to={`/redact_innovative/${title.id}`} className="admin__link">{title.name}</Link>
+            <Link key={title.id} to={`/redact_education/${title.id}`} className="admin__link">{title.name}</Link>
           ))}
           <button to="/" className="admin__link admin__link--add">
             <img src={addIcon} className="addPng" alt="Добавить" />
