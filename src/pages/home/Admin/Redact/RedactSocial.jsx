@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 import NavBar from "../../../../components/NavBar";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import addIcon from '../../../../img/add.png';
 
 function RedactResaerch() {
   const [titles, setTitles] = useState([]);
-  const [newTitle, setNewTitle] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,19 +20,6 @@ function RedactResaerch() {
 
     fetchData();
   }, []);
-
-  const handleSave = async () => {
-    try {
-      const resp = await axios.post(`http://localhost:8092/api/admin/stage/edit/social/title`, {
-        name: newTitle // Передаем новое название в теле запроса
-      });
-      const updatedTitles = [...titles, resp.data.title]; // Добавляем новую награду к текущему списку
-      setTitles(updatedTitles);
-      setNewTitle(""); // Очищаем поле для ввода нового названия
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   return (
     <div className="сontents">
@@ -52,13 +39,12 @@ function RedactResaerch() {
         <div className="admin__links" >
           {titles.map((title) => (
             <React.Fragment key={title.id}>
-              <Link to='/' className="admin__link">{title.name}</Link>
+              <Link key={title.id} to={`/redact_social/${title.id}`} className="admin__link">{title.name}</Link>
             </React.Fragment>
           ))}
-          <div>
-            <input type="text" value={newTitle} onChange={(e) => setNewTitle(e.target.value)} />
-            <button onClick={handleSave}>Добавить награду</button>
-          </div>
+          <button to="/" className="admin__link admin__link--add">
+            <img src={addIcon} className="addPng" alt="Добавить" />
+          </button>
         </div>
       </div>
     </div>

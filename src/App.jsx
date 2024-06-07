@@ -37,7 +37,10 @@ import RedactProgres from './pages/home/Admin/Redact/RedactProgres';
 import RedactResaerch from './pages/home/Admin/Redact/RedactResaerch';
 import RedactEducation from './pages/home/Admin/Redact/RedactEducation';
 import RedactSocial from './pages/home/Admin/Redact/RedactSocial';
-
+import RedactProgresId from './pages/home/Admin/RedactSub/RedactProgresId';
+import RedactResaerchId from './pages/home/Admin/RedactSub/RedactResaerchId';
+import RedactEducationId from './pages/home/Admin/RedactSub/RedactEducationId';
+import RedactSocialId from './pages/home/Admin/RedactSub/RedactSocialId';
 
 function App() {
   const [role, setRole] = useState(null);
@@ -78,9 +81,13 @@ function App() {
           <Route path='/my_account/:id' element={<AwardsInfo />} />
           <Route path='/redact/:id' element={<Redact />} />
           <Route path='/redact_progres' element={<RedactProgres/>} />
+          <Route path="/redact_progres/:id" component={<RedactProgresId/>} />
           <Route path='/redact_resaerch' element={<RedactResaerch/>} />
+          <Route path="/redact_resaerch/:id" component={<RedactResaerchId/>} />
           <Route path='/redact_education' element={<RedactEducation/>} />
+          <Route path='/redact_education/:id' element={<RedactEducationId/>} />
           <Route path='/redact_social' element={<RedactSocial/>} />
+          <Route path='/redact_social/:id' element={<RedactSocialId/>} />
         </Route>
       );
     } else if (role === 'user') {

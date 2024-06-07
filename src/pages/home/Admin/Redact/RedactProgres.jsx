@@ -37,17 +37,13 @@ function RadactProgres() {
         </>
         <h2 className='Edu__text-M stage_name'>Личные достижения</h2>
         <div className="admin__links">
-          <Link to="/academic_degree" className="admin__link">Учёная степень</Link>
-          <Link to="/academic_title" className="admin__link">Учёное звание</Link>
-          <Link to="/state_awards" className="admin__link">Гос награды</Link>
           {titles.map((title) => (
-            <Link key={title.id} to='/' className="admin__link">{title.name}</Link>
+            <Link key={title.id} to={`/redact_progres/${title.id}`} className="admin__link">{title.name}</Link>
           ))}
-          <Link to="/add_achievement" className="admin__link admin__link--add">
+          <button to="/" className="admin__link admin__link--add">
             <img src={addIcon} className="addPng" alt="Добавить" />
-          </Link>
+          </button>
         </div>
-        <button className="save-button">Сохранить</button>
       </div>
     </div>
   );

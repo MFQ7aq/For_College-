@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 import NavBar from "../../../../components/NavBar";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import addIcon from '../../../../img/add.png';
 
 function RedactResaerch() {
   const [titles, setTitles] = useState([]);
-  const [newTitle, setNewTitle] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,19 +20,6 @@ function RedactResaerch() {
 
     fetchData();
   }, []);
-
-  const handleSave = async () => {
-    try {
-      const resp = await axios.post(`http://localhost:8092/api/admin/stage/edit/social/title`, {
-        name: newTitle
-      });
-      const updatedTitles = [...titles, resp.data.title];
-      setTitles(updatedTitles);
-      setNewTitle("");
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   return (
     <div className="сontents">
@@ -51,12 +38,11 @@ function RedactResaerch() {
         <h2 className='Edu__text-M stage_name'>Воспитательная, общественная деятельность</h2>
         <div className="admin__links" >
           {titles.map((title) => (
-            <Link key={title.id} to='/' className="admin__link">{title.name}</Link>
+            <Link key={title.id} to={`/redact_resaerch/${title.id}`} className="admin__link">{title.name}</Link>
           ))}
-        </div>
-        <div>
-          <input type="text" value={newTitle} onChange={(e) => setNewTitle(e.target.value)} />
-          <button onClick={handleSave}>Добавить награду</button>
+          <button to="/" className="admin__link admin__link--add">
+            <img src={addIcon} className="addPng" alt="Добавить" />
+          </button>
         </div>
       </div>
     </div>

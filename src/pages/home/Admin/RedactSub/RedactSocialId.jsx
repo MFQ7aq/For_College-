@@ -1,25 +1,8 @@
 import { Link } from "react-router-dom";
 import NavBar from "../../../../components/NavBar";
-import axios from "axios";
-import { useEffect, useState } from "react";
-import addIcon from '../../../../img/add.png';
 
-function RedactEducation() {
-  const [titles, setTitles] = useState([])
+function RedactResaerchId() {
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const resp = await axios.get(`http://localhost:8092/api/admin/stage/edit/innovative/title`);
-        const data = resp.data.titles;
-        setTitles(data)
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fetchData();
-  }, []);
 
   return (
     <div className="сontents">
@@ -37,16 +20,11 @@ function RedactEducation() {
         </>
         <h2 className='Edu__text-M stage_name'>Инновационно-образовательная деятельность</h2>
         <div className="admin__links" >
-          {titles.map((title) => (
-            <Link key={title.id} to={`/redact_innovative/${title.id}`} className="admin__link">{title.name}</Link>
-          ))}
-          <button to="/" className="admin__link admin__link--add">
-            <img src={addIcon} className="addPng" alt="Добавить" />
-          </button>
+
         </div>
       </div>
     </div>
   );
 }
 
-export default RedactEducation;
+export default RedactResaerchId;
