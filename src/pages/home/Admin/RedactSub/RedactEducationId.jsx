@@ -1,7 +1,25 @@
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 import NavBar from "../../../../components/NavBar";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 
 function RedactEducationId() {
+  const { id } = useParams();
+  const [titles, setTitles] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const resp = await axios.get(`http://localhost:8092/api/user/account/award/get/${id}`);
+        const data = resp.data.titles;
+        setTitles(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, [id]);
 
   return (
     <div className="сontents">
@@ -9,17 +27,13 @@ function RedactEducationId() {
         <div className="header">
           <NavBar />
         </div>
-        <>
-          <div className="header__menu-m">
-            <Link to="/redact_progres" className="head__item_1 Montherat">Личные достижения</Link>
-            <Link to="/redact_resaerch" className="head__item Montherat">Научно-исследовательская деятельность</Link>
-            <Link to="/redact_education" className="head__item Montherat">Инновационно-образовательная деятельность</Link>
-            <Link to="/redact_social" className="head__item Montherat">Воспитательная, общественная деятельность</Link>
-          </div>
-        </>
-        <h2 className='Edu__text-M stage_name'>Инновационно-образовательная деятельность</h2>
-        <div className="admin__links" >
-
+        <div>
+          <h2>Details for Title ID: {id}</h2>
+          <ul>
+            {titles.map((title, index) => (
+              <li key={index}>{title.name}</li>
+            ))}
+          </ul>
         </div>
       </div>
     </div>

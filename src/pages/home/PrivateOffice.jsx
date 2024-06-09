@@ -11,7 +11,7 @@ function PrivateOffice() {
   const [userData, setUserData] = useState(null);
   const [institutes, setInstitutes] = useState([]);
   const [positions, setPositions] = useState([]);
-  const [university, setUniversity] = useState([]);
+  const [universities, setUniversities] = useState([]);
   const [filteredInstitutes, setFilteredInstitutes] = useState([]);
   const [selectedValues, setSelectedValues] = useState({
     name: '',
@@ -40,7 +40,7 @@ function PrivateOffice() {
           }
         });
         setInstitutes(infoResponse.data.institutes);
-        setUniversity(infoResponse.data.university)
+        setUniversities(infoResponse.data.university);
         setPositions(infoResponse.data.position);
       } catch (error) {
         console.error(error);
@@ -53,12 +53,12 @@ function PrivateOffice() {
 
   useEffect(() => {
     if (selectedValues.inst) {
-      const filtered = institutes.filter(inst => inst.university === selectedValues.inst);
+      const filtered = institutes.filter(inst => inst.university === universities[selectedValues.inst]);
       setFilteredInstitutes(filtered);
     } else {
       setFilteredInstitutes([]);
     }
-  }, [selectedValues.inst, institutes]);
+  }, [selectedValues.inst, institutes, universities]);
 
   const handleSelect = useCallback((field, value) => {
     setSelectedValues(prevValues => ({
@@ -77,7 +77,7 @@ function PrivateOffice() {
     const position = post === 'Другое' ? otherPost : post;
     const dataToSend = {
       name,
-      institut: inst,
+      institut: filteredInstitutes.find(i => i.id === parseInt(inst))?.name || "",
       position,
       regular: stat,
       email,
@@ -96,7 +96,7 @@ function PrivateOffice() {
       .catch(function (error) {
         console.error(error);
       });
-  }, [selectedValues, token]);
+  }, [selectedValues, filteredInstitutes, token]);
 
   const handleEdit = useCallback(() => {
     setIsAuthenticated(false);
@@ -139,57 +139,61 @@ function PrivateOffice() {
                 <button onClick={handleEdit} className="btn__link btn__green montherat">Редактировать</button>
               </div>
             ) : (
-              <div className="form">
-                <p className="input__text-s bold">ФИО</p>
-                <input type="text" value={selectedValues.name} onChange={(e) => handleSelect('name', e.target.value)} className="input__office Montherat" />
-                <p className="input__text-s bold">Учреждение</p>
-                <select value={selectedValues.inst} onChange={(e) => handleSelect('inst', e.target.value)} className="input__office Montherat">
-                  <option value=""></option>
-                  {university.map((uniItem, index) => (
-                    <option key={index} value={index}>
-                      {uniItem}
-                    </option>
-                  ))}
-                </select>
-                {filteredInstitutes.length > 0 && (
-                  <>
-                    <p className="input__text-s bold">Институт</p>
-                    <select value={selectedValues.instituteName} onChange={(e) => handleSelect('instituteName', e.target.value)} className="input__office Montherat">
-                      <option value=""></option>
-                      {filteredInstitutes.map((inst, index) => (
-                        <option key={index} value={inst.name}>
-                          {inst.name}
-                        </option>
-                      ))}
-                    </select>
-                  </>
-                )}
-                <p className="input__text-s bold">Должность</p>
-                <select value={selectedValues.post} onChange={(e) => handleSelect('post', e.target.value)} className="input__office Montherat">
-                  <option value=""></option>
-                  {positions.map((postItem, index) => (
-                    <option key={index} value={postItem}>
-                      {postItem}
-                    </option>
-                  ))}
-                  <option value="Другое">Другое</option>
-                </select>
-                {selectedValues.post === 'Другое' && (
-                  <div>
-                    <p className="input__text-s bold">Укажите должность</p>
-                    <input type="text" value={selectedValues.otherPost} onChange={(e) => handleSelect('otherPost', e.target.value)} className="input__office Montherat" />
-                  </div>
-                )}
-                <p className="input__text-s bold">Штат/Совм.</p>
-                <select value={selectedValues.stat} onChange={(e) => handleSelect('stat', e.target.value)} className="input__office Montherat">
-                  <option value=""></option>
-                  <option value="Штатный">Штатный</option>
-                  <option value="Совместитель">Совместитель</option>
-                </select>
-                <p className="input__text-s bold">Email</p>
-                <input type="text" value={selectedValues.email} onChange={(e) => handleSelect('email', e.target.value)} className="input__office Montherat" />
-                <button onClick={handleSubmit} className="btn__link btn__blue montherat">Сохранить</button>
-              </div>
+              <>
+                <div className="form">
+                  <p className="input__text-s bold">ФИО</p>
+                  <input type="text" value={selectedValues.name} onChange={(e) => handleSelect('name', e.target.value)} className="input__office Montherat" />
+                  <p className="input__text-s bold">Учреждение</p>
+                  <select value={selectedValues.inst} onChange={(e) => handleSelect('inst', e.target.value)} className="input__office Montherat">
+                    <option value=""></option>
+                    {universities.map((uniItem, index) => (
+                      <option key={index} value={index}>
+                        {uniItem}
+                      </option>
+                    ))}
+                  </select>
+                  {filteredInstitutes.length > 0 && (
+                    <>
+                      <p className="input__text-s bold">Институт</p>
+                      <select value={selectedValues.instituteName} onChange={(e) => handleSelect('inst', e.target.value)} className="input__office Montherat">
+                        <option value=""></option>
+                        {filteredInstitutes.map((inst, index) => (
+                          <option key={index} value={inst.id}>
+                            {inst.name}
+                          </option>
+                        ))}
+                      </select>
+                    </>
+                  )}
+                  <p className="input__text-s bold">Должность</p>
+                  <select value={selectedValues.post} onChange={(e) => handleSelect('post', e.target.value)} className="input__office Montherat">
+                    <option value=""></option>
+                    {positions.map((postItem, index) => (
+                      <option key={index} value={postItem}>
+                        {postItem}
+                      </option>
+                    ))}
+                    <option value="Другое">Другое</option>
+                  </select>
+                  {selectedValues.post === 'Другое' && (
+                    <div>
+                      <p className="input__text-s bold">Укажите должность</p>
+                      <input type="text" value={selectedValues.otherPost} onChange={(e) => handleSelect('otherPost', e.target.value)} className="input__office Montherat" />
+                    </div>
+                  )}
+                </div>
+                <div className="form">
+                  <p className="input__text-s bold">Штатный/Совместитель</p>
+                  <select value={selectedValues.stat} onChange={(e) => handleSelect('stat', e.target.value)} className="input__office Montherat">
+                    <option value=""></option>
+                    <option value="Штатный">Штатный</option>
+                    <option value="Совместитель">Совместитель</option>
+                  </select>
+                  <p className="input__text-s bold">Email</p>
+                  <input type="text" value={selectedValues.email} onChange={(e) => handleSelect('email', e.target.value)} className="input__office Montherat" />
+                  <button onClick={handleSubmit} className="btn__link btn__blue montherat">Сохранить</button>
+                </div>
+              </>
             )}
           </div>
         </div>

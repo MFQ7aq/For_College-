@@ -5,14 +5,14 @@ import { useEffect, useState } from "react";
 import addIcon from '../../../../img/add.png';
 
 function RedactEducation() {
-  const [titles, setTitles] = useState([])
+  const [titles, setTitles] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const resp = await axios.get(`http://localhost:8092/api/admin/stage/edit/innovative/title`);
         const data = resp.data.titles;
-        setTitles(data)
+        setTitles(data);
       } catch (error) {
         console.log(error);
       }
@@ -27,20 +27,18 @@ function RedactEducation() {
         <div className="header">
           <NavBar />
         </div>
-        <>
-          <div className="header__menu-m">
-            <Link to="/redact_progres" className="head__item_1 Montherat">Личные достижения</Link>
-            <Link to="/redact_resaerch" className="head__item Montherat">Научно-исследовательская деятельность</Link>
-            <Link to="/redact_education" className="head__item Montherat">Инновационно-образовательная деятельность</Link>
-            <Link to="/redact_social" className="head__item Montherat">Воспитательная, общественная деятельность</Link>
-          </div>
-        </>
+        <div className="header__menu-m">
+          <Link to="/redact_progres" className="head__item_1 Montherat">Личные достижения</Link>
+          <Link to="/redact_resaerch" className="head__item Montherat">Научно-исследовательская деятельность</Link>
+          <Link to="/redact_education" className="head__item Montherat">Инновационно-образовательная деятельность</Link>
+          <Link to="/redact_social" className="head__item Montherat">Воспитательная, общественная деятельность</Link>
+        </div>
         <h2 className='Edu__text-M stage_name'>Инновационно-образовательная деятельность</h2>
-        <div className="admin__links" >
+        <div className="admin__links">
           {titles.map((title) => (
             <Link key={title.id} to={`/redact_education/${title.id}`} className="admin__link">{title.name}</Link>
           ))}
-          <button to="/" className="admin__link admin__link--add">
+          <button className="admin__link admin__link--add">
             <img src={addIcon} className="addPng" alt="Добавить" />
           </button>
         </div>
