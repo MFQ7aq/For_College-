@@ -10,7 +10,7 @@ function Home() {
       <div className="main">
         <div className="home__cards">
           <div className="home__card">
-            <Link to="/COMTEHNO"><div className="card__img"></div></Link>
+            <Link to="/COMTEH"><div className="card__img"></div></Link>
             <p className="card__text">Бишкекский колледж компьютерных систем и технологий</p>
           </div>
           <div className="home__card">
