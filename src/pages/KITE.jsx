@@ -55,7 +55,7 @@ function Kite() {
           <tbody>
             {filteredInst.map((institution, i) => (
               <tr key={i}>
-                <td>{institution.name}</td>
+                <td>Отделение</td>
                 <td>{institution.middlePoints}</td>
                 <td>{institution.sum}</td>
               </tr>
