@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import NavBar from "../../components/NavBar";
+import BackButton from "../../components/Back";
 
 const Redact = () => {
   const { id } = useParams();
@@ -58,6 +59,7 @@ const Redact = () => {
         }
       });
       location.reload();
+      
     } catch (error) {
       console.log(error);
     }
@@ -147,6 +149,7 @@ const Redact = () => {
           </div>
           <div className="auth__btn-center jc-sb">
             <button className="bnt__log" onClick={handleSaveLink}>Сохранить</button>
+            <BackButton/>
           </div>
         </div>
       </div>
