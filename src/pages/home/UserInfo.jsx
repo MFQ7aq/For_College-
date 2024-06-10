@@ -5,7 +5,7 @@ import NavBar from "../../components/NavBar";
 
 function UserInfo() {
   const { id } = useParams();
-  let token = localStorage.getItem(token);
+  let token = localStorage.getItem('token');
   const [userData, setUserData] = useState({});
 
   useEffect(() => {
