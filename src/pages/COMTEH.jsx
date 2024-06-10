@@ -54,7 +54,7 @@ function Comteh() {
           <tbody>
             {filteredInst.map((institution, i) => (
               <tr key={i}>
-                <td>Отделение</td>
+                <td>{institution.name}</td>
                 <td>{institution.middlePoints}</td>
                 <td>{institution.sum}</td>
               </tr>
