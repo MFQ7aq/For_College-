@@ -13,8 +13,6 @@ import Registration from './pages/home/Registration';
 import Questionnaire from './pages/home/Questionnaire';
 import PrivateOffice from './pages/home/PrivateOffice';
 import Muit from './pages/MUIT';
-import Rating_pred from './pages/MUIT/Rating_pred';
-import Rating_inst from './pages/MUIT/Rating_inst';
 import Rating_pps from './pages/MUIT/Rating_pps';
 import Rating_inst_un from './pages/MUIT/Rating_inst-un';
 import Comteh from './pages/COMTEH';
@@ -118,8 +116,6 @@ function App() {
         <Route path='/Questionnaire' element={<Questionnaire />} />
         <Route path='/user/:id' element={<UserInfo />} />
         <Route path='/MUIT' element={<Muit />} />
-        <Route path='/MUIT/rating_pred' element={<Rating_pred />} />
-        <Route path='/MUIT/rating_inst' element={<Rating_inst />} />
         <Route path='/MUIT/rating_pps-un' element={<Rating_pps />} />
         <Route path='/MUIT/rating_inst-un' element={<Rating_inst_un />} />
         <Route path='/COMTEH' element={<Comteh />} />

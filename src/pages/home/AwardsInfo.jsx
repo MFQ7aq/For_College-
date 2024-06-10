@@ -14,7 +14,11 @@ function AwardsInfo() {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const resp = await axios.get(`http://localhost:8092/api/user/account/${id}`);
+        const resp = await axios.get(`http://localhost:8092/api/user/account/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          }
+        })
         const data = resp.data;
         setUserData(data);
       } catch (error) {
@@ -23,7 +27,7 @@ function AwardsInfo() {
     };
 
     fetchUserData();
-  }, [id]);
+  }, [id, token]);
 
   const toggleItemSelection = (itemId, stage) => {
     const isSelected = selectedItems.includes(itemId);
