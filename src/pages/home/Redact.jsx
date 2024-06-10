@@ -87,7 +87,7 @@ const Redact = () => {
               userData.userAwards.map((item, i) => (
                 <div className="userInfo-in userInfo__text-S" key={item.id} style={{ backgroundColor: i % 2 === 0 ? '#0047FF4D' : '#33FF001A' }}>
                   <p className={`userInfo-in-text ${item.status === 'freeze' ? 'crossed-out' : ''}`}>{item.name}</p>
-                  <div className="admin__link">
+                  <div>
                     <input
                       type="text"
                       value={editedLinks[item.id] !== undefined ? editedLinks[item.id] : item.link}
@@ -103,7 +103,7 @@ const Redact = () => {
               userData.userResearch.map((item, i) => (
                 <div className="userInfo-in userInfo__text-S" key={item.id} style={{ backgroundColor: i % 2 === 0 ? '#0047FF4D' : '#33FF001A' }}>
                   <p className={`userInfo-in-text ${item.status === 'freeze' ? 'crossed-out' : ''}`}>{item.name}</p>
-                  <div className="admin__link">
+                  <div>
                     <input
                       type="text"
                       value={editedLinks[item.id] !== undefined ? editedLinks[item.id] : item.link}
@@ -119,7 +119,7 @@ const Redact = () => {
               userData.userInnovative.map((item, i) => (
                 <div className="userInfo-in userInfo__text-S" key={item.id} style={{ backgroundColor: i % 2 === 0 ? '#0047FF4D' : '#33FF001A' }}>
                   <p className={`userInfo-in-text ${item.status === 'freeze' ? 'crossed-out' : ''}`}>{item.name}</p>
-                  <div className="admin__link">
+                  <div>
                     <input
                       type="text"
                       value={editedLinks[item.id] !== undefined ? editedLinks[item.id] : item.link}
@@ -135,7 +135,7 @@ const Redact = () => {
               userData.userSocial.map((item, i) => (
                 <div className="userInfo-in userInfo__text-S" key={item.id} style={{ backgroundColor: i % 2 === 0 ? '#0047FF4D' : '#33FF001A' }}>
                   <p className={`userInfo-in-text ${item.status === 'freeze' ? 'crossed-out' : ''}`}>{item.name}</p>
-                  <div className="admin__link">
+                  <div>
                     <input
                       type="text"
                       value={editedLinks[item.id] !== undefined ? editedLinks[item.id] : item.link}
