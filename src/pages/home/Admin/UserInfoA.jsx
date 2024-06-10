@@ -5,6 +5,7 @@ import NavBar from "../../../components/NavBar";
 
 function UserInfoA() {
   const { id } = useParams();
+  let token = localStorage.getItem('token')
   const [userData, setUserData] = useState({});
   const [selectedItems, setSelectedItems] = useState([]);
   const [selectedStage, setSelectedStage] = useState('');
@@ -12,7 +13,11 @@ function UserInfoA() {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const resp = await axios.get(`http://localhost:8092/api/user/account/${id}`);
+        const resp = await axios.get(`http://localhost:8092/api/user/account/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          }
+        })
         const data = resp.data;
         setUserData(data);
       } catch (error) {
@@ -81,7 +86,7 @@ function UserInfoA() {
               userData.userAwards.map((award, i) => (
                 <div className="userInfo-in userInfo__text-S" key={award.id} style={{ backgroundColor: i % 2 == 0 ? '#0047FF4D' : '#33FF001A' }}>
                   <p className={`userInfo-in-text ${award.status === 'freeze' ? 'crossed-out' : ''}`}>{award.name}</p>
-                  <div className="admin__link">
+                  <div>
                     <Link to={award.link}>Link</Link>
                     <input
                       className="check"
@@ -101,7 +106,7 @@ function UserInfoA() {
               userData.userResearch.map((research, i) => (
                 <div className="userInfo-in userInfo__text-S" key={research.id} style={{ backgroundColor: i % 2 == 0 ? '#0047FF4D' : '#33FF001A' }}>
                   <p className={`userInfo-in-text ${research.status === 'freeze' ? 'crossed-out' : ''}`}>{research.name}</p>
-                  <div className="admin__link">
+                  <div>
                     <Link to={research.link}>Link</Link>
                     <input
                       className="check"
@@ -121,7 +126,7 @@ function UserInfoA() {
               userData.userInnovative.map((innovative, i) => (
                 <div className="userInfo-in userInfo__text-S" key={innovative.id} style={{ backgroundColor: i % 2 == 0 ? '#0047FF4D' : '#33FF001A' }}>
                   <p className={`userInfo-in-text ${innovative.status === 'freeze' ? 'crossed-out' : ''}`}>{innovative.name}</p>
-                  <div className="admin__link">
+                  <div>
                     <Link to={innovative.link}>Link</Link>
                     <input
                       className="check"
@@ -141,7 +146,7 @@ function UserInfoA() {
               userData.userSocial.map((social, i) => (
                 <div className="userInfo-in userInfo__text-S" key={social.id} style={{ backgroundColor: i % 2 == 0 ? '#0047FF4D' : '#33FF001A' }}>
                   <p className={`userInfo-in-text ${social.status === 'freeze' ? 'crossed-out' : ''}`}>{social.name}</p>
-                  <div className="admin__link">
+                  <div>
                     <Link to={social.link}>Link</Link>
                     <input
                       className="check"
